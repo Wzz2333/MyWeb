@@ -155,77 +155,48 @@
     <!-- 联系方式区 -->
     <section id="contact" class="py-32">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">联系我</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- 表单 -->
-                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl">
-                    <h3 class="text-2xl font-semibold mb-8 text-white">发送消息</h3>
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium mb-2 text-gray-400">姓名</label>
-                            <input type="text" id="name" class="w-full px-5 py-3 border border-gray-700 rounded-xl bg-zinc-800/50 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium mb-2 text-gray-400">邮箱</label>
-                            <input type="email" id="email" class="w-full px-5 py-3 border border-gray-700 rounded-xl bg-zinc-800/50 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium mb-2 text-gray-400">消息</label>
-                            <textarea id="message" rows="5" class="w-full px-5 py-3 border border-gray-700 rounded-xl bg-zinc-800/50 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"></textarea>
-                        </div>
-                        <button type="submit" class="w-full px-5 py-3 bg-gradient-to-r from-blue-500 to-violet-500 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20">
-                            发送消息
-                        </button>
-                    </form>
-                </div>
-                
-                <!-- 联系信息 -->
-                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl">
-                    <h3 class="text-2xl font-semibold mb-8 text-white">联系方式</h3>
-                    <div class="space-y-8">
+            <h2 class="text-5xl md:text-6xl font-bold text-center mb-20 text-white">联系我</h2>
+            <div class="flex justify-center">
+                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-10 shadow-2xl max-w-2xl w-full">
+                    <h3 class="text-3xl font-semibold mb-10 text-center text-white">联系方式</h3>
+                    <div class="space-y-10">
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-5 flex-shrink-0">
-                                <i class="fa fa-envelope text-xl text-blue-400" aria-hidden="true"></i>
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fa fa-envelope text-2xl text-blue-400" aria-hidden="true"></i>
                             </div>
                             <div>
-                                <h4 class="font-medium mb-2 text-white">邮箱</h4>
-                                <p class="text-gray-400">example@example.com</p>
+                                <h4 class="text-xl font-medium mb-3 text-white">邮箱</h4>
+                                <p class="text-gray-300">1295368207@qq.com</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-5 flex-shrink-0">
-                                <i class="fa fa-phone text-xl text-blue-400" aria-hidden="true"></i>
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fa fa-phone text-2xl text-blue-400" aria-hidden="true"></i>
                             </div>
                             <div>
-                                <h4 class="font-medium mb-2 text-white">电话</h4>
-                                <p class="text-gray-400">123-456-7890</p>
+                                <h4 class="text-xl font-medium mb-3 text-white">电话</h4>
+                                <p class="text-gray-300">18660828506</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-5 flex-shrink-0">
-                                <i class="fa fa-map-marker text-xl text-blue-400" aria-hidden="true"></i>
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fa fa-map-marker text-2xl text-blue-400" aria-hidden="true"></i>
                             </div>
                             <div>
-                                <h4 class="font-medium mb-2 text-white">地址</h4>
-                                <p class="text-gray-400">中国北京市</p>
+                                <h4 class="text-xl font-medium mb-3 text-white">地址</h4>
+                                <p class="text-gray-300">中国辽宁省沈阳市</p>
                             </div>
                         </div>
                         
                         <!-- 社交图标 -->
-                        <div class="mt-10">
-                            <h4 class="font-medium mb-5 text-white">关注我</h4>
-                            <div class="flex space-x-5">
-                                <a href="https://github.com" target="_blank" class="w-12 h-12 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-colors">
-                                    <i class="fa fa-github text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
+                        <div class="mt-12">
+                            <h4 class="text-xl font-medium mb-6 text-center text-white">关注我</h4>
+                            <div class="flex justify-center space-x-8">
+                                <a href="https://github.com" target="_blank" class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110">
+                                    <i class="fa fa-github text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://twitter.com" target="_blank" class="w-12 h-12 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-colors">
-                                    <i class="fa fa-twitter text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
-                                </a>
-                                <a href="https://linkedin.com" target="_blank" class="w-12 h-12 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-colors">
-                                    <i class="fa fa-linkedin text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
-                                </a>
-                                <a href="https://instagram.com" target="_blank" class="w-12 h-12 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-colors">
-                                    <i class="fa fa-instagram text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
+                                <a href="https://twitter.com" target="_blank" class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110">
+                                    <i class="fa fa-twitter text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
