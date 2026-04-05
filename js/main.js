@@ -1,7 +1,42 @@
 // JavaScript 功能脚本
 
+// 生成星星
+function generateStars() {
+  const starsContainer = document.getElementById('stars');
+  if (!starsContainer) return;
+  
+  const starCount = 200; // 星星数量
+  
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    
+    // 随机大小
+    const size = Math.random();
+    if (size < 0.7) {
+      star.classList.add('small');
+    } else if (size < 0.9) {
+      star.classList.add('medium');
+    } else {
+      star.classList.add('large');
+    }
+    
+    // 随机位置
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    
+    // 随机动画延迟
+    star.style.animationDelay = `${Math.random() * 4}s`;
+    
+    starsContainer.appendChild(star);
+  }
+}
+
 // 等待 DOM 加载完成
 document.addEventListener('DOMContentLoaded', function() {
+  // 生成星星
+  generateStars();
+  
   // 移动端菜单开关
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -18,34 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenu.classList.add('hidden');
       });
     });
-  }
-  
-  // 深色模式切换并本地存储
-  const themeToggle = document.getElementById('theme-toggle');
-  
-  // 初始化主题
-  function initTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }
-  
-  // 切换主题
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    localStorage.setItem('theme', currentTheme);
-  }
-  
-  // 初始化主题
-  initTheme();
-  
-  // 绑定主题切换事件
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
   }
   
   // 平滑滚动到锚点
