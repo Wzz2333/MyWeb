@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="一个基于 GitHub Pages 部署的现代、美观、响应式静态网站">
+    <meta name="keywords" content="GitHub Pages, 静态网站, 响应式设计, Tailwind CSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3b82f6">
+    <title>王一止 | 个人网站</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-space-bg text-gray-100">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-xl z-50 transition-all duration-300 border-b border-white/10 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">王一止</a>
+            
+            <!-- 桌面端导航 -->
+            <nav class="hidden md:flex space-x-10">
+                <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300">首页</a>
+                <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">关于我</a>
+                <a href="#social" class="text-gray-300 hover:text-white transition-colors duration-300">常用链接</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">联系我</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-zinc-800 transition-colors">
+                <i class="fa fa-bars text-gray-300" aria-hidden="true"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-xl border-b border-white/10">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">首页</a>
+                <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">关于我</a>
+                <a href="#social" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">常用链接</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">联系我</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero 区 -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pb-56">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-blue-900/20 to-purple-900/25 z-0"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
+        <div class="container mx-auto px-6 z-10 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                王一止
+            </h1>
+            <!-- 中国古典诗词随机显示 -->
+            <div id="poetry-container" class="mb-2 max-w-5xl mx-auto cursor-pointer w-full">
+                <div id="poetry-text" class="transition-all duration-800 ease-out font-[Ziti2]">
+                    <div class="text-4xl md:text-6xl text-center mb-2">
+                        <span class="inline-block transform hover:scale-105 transition-transform">
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">长</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">风</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">破</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">浪</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">会</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">有</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">时</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-2">，</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">直</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">挂</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">云</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">帆</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">济</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">沧</span>
+                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1">海</span>
+                        </span>
+                    </div>
+                    <div class="text-xl md:text-2xl text-center">
+                        <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">—— 李白</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 时间显示 -->
+            <div id="time-display" class="mt-4 mb-6 text-center">
+                <div id="time" class="text-xl md:text-2xl text-gray-300 font-normal"></div>
+                <div id="date" class="text-lg md:text-xl text-gray-400 font-normal mt-1"></div>
+                <div id="lunar" class="text-base md:text-lg text-gray-500 font-normal mt-1"></div>
+            </div>
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mb-2"></div>
+            
+            <script>
+                // 中国古典诗词数组
+                const poetryList = [
+                    { text: "长风破浪会有时，直挂云帆济沧海", author: "李白" },
+                    { text: "人生得意须尽欢，莫使金樽空对月", author: "李白" },
+                    { text: "天生我材必有用，千金散尽还复来", author: "李白" },
+                    { text: "黄河之水天上来，奔流到海不复回", author: "李白" },
+                    { text: "两岸猿声啼不住，轻舟已过万重山", author: "李白" },
+                    { text: "举头望明月，低头思故乡", author: "李白" },
+                    { text: "桃花潭水深千尺，不及汪伦送我情", author: "李白" },
+                    { text: "孤帆远影碧空尽，唯见长江天际流", author: "李白" },
+                    { text: "床前明月光，疑是地上霜", author: "李白" },
+                    { text: "朝辞白帝彩云间，千里江陵一日还", author: "李白" },
+                    { text: "白发三千丈，缘愁似个长", author: "李白" },
+                    { text: "飞流直下三千尺，疑是银河落九天", author: "李白" },
+                    { text: "云想衣裳花想容，春风拂槛露华浓", author: "李白" },
+                    { text: "抽刀断水水更流，举杯消愁愁更愁", author: "李白" },
+                    { text: "大鹏一日同风起，扶摇直上九万里", author: "李白" },
+                    { text: "安得广厦千万间，大庇天下寒士俱欢颜", author: "杜甫" },
+                    { text: "会当凌绝顶，一览众山小", author: "杜甫" },
+                    { text: "无边落木萧萧下，不尽长江滚滚来", author: "杜甫" },
+                    { text: "随风潜入夜，润物细无声", author: "杜甫" },
+                    { text: "两个黄鹂鸣翠柳，一行白鹭上青天", author: "杜甫" },
+                    { text: "国破山河在，城春草木深", author: "杜甫" },
+                    { text: "烽火连三月，家书抵万金", author: "杜甫" },
+                    { text: "迟日江山丽，春风花草香", author: "杜甫" },
+                    { text: "泥融飞燕子，沙暖睡鸳鸯", author: "杜甫" },
+                    { text: "黄四娘家花满蹊，千朵万朵压枝低", author: "杜甫" },
+                    { text: "留连戏蝶时时舞，自在娇莺恰恰啼", author: "杜甫" },
+                    { text: "白日依山尽，黄河入海流", author: "王之涣" },
+                    { text: "欲穷千里目，更上一层楼", author: "王之涣" },
+                    { text: "羌笛何须怨杨柳，春风不度玉门关", author: "王之涣" },
+                    { text: "春眠不觉晓，处处闻啼鸟", author: "孟浩然" },
+                    { text: "夜来风雨声，花落知多少", author: "孟浩然" },
+                    { text: "故人具鸡黍，邀我至田家", author: "孟浩然" },
+                    { text: "绿树村边合，青山郭外斜", author: "孟浩然" },
+                    { text: "野旷天低树，江清月近人", author: "孟浩然" },
+                    { text: "独在异乡为异客，每逢佳节倍思亲", author: "王维" },
+                    { text: "遥知兄弟登高处，遍插茱萸少一人", author: "王维" },
+                    { text: "大漠孤烟直，长河落日圆", author: "王维" },
+                    { text: "明月松间照，清泉石上流", author: "王维" },
+                    { text: "竹喧归浣女，莲动下渔舟", author: "王维" },
+                    { text: "人闲桂花落，夜静春山空", author: "王维" },
+                    { text: "月出惊山鸟，时鸣春涧中", author: "王维" },
+                    { text: "红豆生南国，春来发几枝", author: "王维" },
+                    { text: "愿君多采撷，此物最相思", author: "王维" },
+                    { text: "西塞山前白鹭飞，桃花流水鳜鱼肥", author: "张志和" },
+                    { text: "青箬笠，绿蓑衣，斜风细雨不须归", author: "张志和" },
+                    { text: "千山鸟飞绝，万径人踪灭", author: "柳宗元" },
+                    { text: "孤舟蓑笠翁，独钓寒江雪", author: "柳宗元" },
+                    { text: "远上寒山石径斜，白云生处有人家", author: "杜牧" },
+                    { text: "停车坐爱枫林晚，霜叶红于二月花", author: "杜牧" },
+                    { text: "清明时节雨纷纷，路上行人欲断魂", author: "杜牧" },
+                    { text: "借问酒家何处有，牧童遥指杏花村", author: "杜牧" },
+                    { text: "银烛秋光冷画屏，轻罗小扇扑流萤", author: "杜牧" },
+                    { text: "天阶夜色凉如水，卧看牵牛织女星", author: "杜牧" },
+                    { text: "商女不知亡国恨，隔江犹唱后庭花", author: "杜牧" },
+                    { text: "相见时难别亦难，东风无力百花残", author: "李商隐" },
+                    { text: "春蚕到死丝方尽，蜡炬成灰泪始干", author: "李商隐" },
+                    { text: "晓镜但愁云鬓改，夜吟应觉月光寒", author: "李商隐" },
+                    { text: "蓬山此去无多路，青鸟殷勤为探看", author: "李商隐" },
+                    { text: "锦瑟无端五十弦，一弦一柱思华年", author: "李商隐" },
+                    { text: "庄生晓梦迷蝴蝶，望帝春心托杜鹃", author: "李商隐" },
+                    { text: "沧海月明珠有泪，蓝田日暖玉生烟", author: "李商隐" },
+                    { text: "此情可待成追忆，只是当时已惘然", author: "李商隐" },
+                    { text: "昨夜星辰昨夜风，画楼西畔桂堂东", author: "李商隐" },
+                    { text: "身无彩凤双飞翼，心有灵犀一点通", author: "李商隐" },
+                    { text: "春潮带雨晚来急，野渡无人舟自横", author: "韦应物" },
+                    { text: "独怜幽草涧边生，上有黄鹂深树鸣", author: "韦应物" },
+                    { text: "天街小雨润如酥，草色遥看近却无", author: "韩愈" },
+                    { text: "最是一年春好处，绝胜烟柳满皇都", author: "韩愈" },
+                    { text: "随风潜入夜，润物细无声", author: "杜甫" },
+                    { text: "两个黄鹂鸣翠柳，一行白鹭上青天", author: "杜甫" },
+                    { text: "山重水复疑无路，柳暗花明又一村", author: "陆游" },
+                    { text: "纸上得来终觉浅，绝知此事要躬行", author: "陆游" },
+                    { text: "僵卧孤村不自哀，尚思为国戍轮台", author: "陆游" },
+                    { text: "夜阑卧听风吹雨，铁马冰河入梦来", author: "陆游" },
+                    { text: "死去元知万事空，但悲不见九州同", author: "陆游" },
+                    { text: "王师北定中原日，家祭无忘告乃翁", author: "陆游" },
+                    { text: "红酥手，黄縢酒，满城春色宫墙柳", author: "陆游" },
+                    { text: "东风恶，欢情薄，一怀愁绪，几年离索", author: "陆游" },
+                    { text: "春如旧，人空瘦，泪痕红浥鲛绡透", author: "陆游" },
+                    { text: "桃花落，闲池阁，山盟虽在，锦书难托", author: "陆游" },
+                    { text: "无可奈何花落去，似曾相识燕归来", author: "晏殊" },
+                    { text: "昨夜西风凋碧树，独上高楼，望尽天涯路", author: "晏殊" },
+                    { text: "衣带渐宽终不悔，为伊消得人憔悴", author: "柳永" },
+                    { text: "众里寻他千百度，蓦然回首，那人却在，灯火阑珊处", author: "辛弃疾" },
+                    { text: "醉里挑灯看剑，梦回吹角连营", author: "辛弃疾" },
+                    { text: "八百里分麾下炙，五十弦翻塞外声", author: "辛弃疾" },
+                    { text: "了却君王天下事，赢得生前身后名", author: "辛弃疾" },
+                    { text: "大江东去，浪淘尽，千古风流人物", author: "苏轼" },
+                    { text: "故垒西边，人道是，三国周郎赤壁", author: "苏轼" },
+                    { text: "乱石穿空，惊涛拍岸，卷起千堆雪", author: "苏轼" },
+                    { text: "江山如画，一时多少豪杰", author: "苏轼" },
+                    { text: "十年生死两茫茫，不思量，自难忘", author: "苏轼" },
+                    { text: "千里孤坟，无处话凄凉", author: "苏轼" },
+                    { text: "相顾无言，惟有泪千行", author: "苏轼" },
+                    { text: "料得年年肠断处，明月夜，短松冈", author: "苏轼" },
+                    { text: "人有悲欢离合，月有阴晴圆缺，此事古难全", author: "苏轼" },
+                    { text: "但愿人长久，千里共婵娟", author: "苏轼" },
+                    { text: "莫听穿林打叶声，何妨吟啸且徐行", author: "苏轼" },
+                    { text: "竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生", author: "苏轼" },
+                    { text: "回首向来萧瑟处，归去，也无风雨也无晴", author: "苏轼" },
+                    { text: "拣尽寒枝不肯栖，寂寞沙洲冷", author: "苏轼" }
+                ];
+                
+                let currentIndex = 0;
+                let poetryInterval;
+                
+                function getRandomPoetry() {
+                    let newIndex;
+                    do {
+                        newIndex = Math.floor(Math.random() * poetryList.length);
+                    } while (newIndex === currentIndex);
+                    currentIndex = newIndex;
+                    return poetryList[newIndex];
+                }
+                
+                function updatePoetry() {
+                    const poetryElement = document.getElementById('poetry-text');
+                    
+                    // 淡出动画
+                    poetryElement.style.opacity = '0';
+                    poetryElement.style.transform = 'translateY(-10px)';
+                    
+                    setTimeout(() => {
+                        const poetry = getRandomPoetry();
+                        
+                        // 生成错落有致的文字（古诗部分）
+                        let poemHtml = '<span class="inline-block transform hover:scale-105 transition-transform">';
+                        const poemOffsets = ['-translate-y-1 mr-1', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'mr-2', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'translate-y-1'];
+                        
+                        for (let i = 0; i < poetry.text.length; i++) {
+                            const char = poetry.text[i];
+                            const offset = poemOffsets[i] || '';
+                            poemHtml += `<span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent ${offset}">${char}</span>`;
+                        }
+                        
+                        poemHtml += '</span>';
+                        
+                        // 生成作者部分
+                        const authorHtml = `<span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">—— ${poetry.author}</span>`;
+                        
+                        // 组合完整 HTML
+                        const fullHtml = `
+                            <div class="text-4xl md:text-6xl text-center mb-2">
+                                ${poemHtml}
+                            </div>
+                            <div class="text-xl md:text-2xl text-center">
+                                ${authorHtml}
+                            </div>
+                        `;
+                        
+                        poetryElement.innerHTML = fullHtml;
+                        
+                        // 淡入动画
+                        poetryElement.style.opacity = '1';
+                        poetryElement.style.transform = 'translateY(0)';
+                    }, 400);
+                }
+                
+                function startPoetryCycle() {
+                    poetryInterval = setInterval(updatePoetry, 6000);
+                }
+                
+                function stopPoetryCycle() {
+                    clearInterval(poetryInterval);
+                }
+                
+                // 初始启动
+                startPoetryCycle();
+                
+                // 鼠标悬停暂停
+                document.getElementById('poetry-container').addEventListener('mouseenter', stopPoetryCycle);
+                document.getElementById('poetry-container').addEventListener('mouseleave', startPoetryCycle);
+                
+                // 点击切换
+                document.getElementById('poetry-container').addEventListener('click', updatePoetry);
+            </script>
+        </div>
+    </section>
+
+    <!-- 关于我 / 项目介绍区 -->
+    <section id="about" class="pt-20 pb-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">关于我</h2>
+            
+            <!-- 初始状态：居中的主卡片 -->
+            <div id="about-initial" class="flex justify-center transition-all duration-700 ease-out">
+                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 hover:shadow-blue-500/20 cursor-pointer max-w-lg w-full" id="main-card" onclick="toggleAboutSection();">
+                    <div class="flex flex-col items-center mb-8">
+                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover shadow-xl mb-6 border-2 border-blue-500/30">
+                    </div>
+                    <p class="text-xl text-gray-300 text-center leading-relaxed">
+                        沈阳师范大学在校学生
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 点击后状态：主卡片左移 + 子卡片 -->
+            <div id="about-expanded" class="flex flex-col md:flex-row gap-8 hidden transition-all duration-700 ease-out">
+                <!-- 主卡片 -->
+                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 hover:shadow-blue-500/20 cursor-pointer max-w-lg w-full md:w-1/2" onclick="toggleAboutSection();">
+                    <div class="flex flex-col items-center mb-8">
+                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover shadow-xl mb-6 border-2 border-blue-500/30">
+                    </div>
+                    <p class="text-xl text-gray-300 text-center leading-relaxed">
+                        沈阳师范大学在校学生
+                    </p>
+                </div>
+                
+                <!-- 子卡片容器 -->
+                <div class="md:w-1/2 space-y-6">
+                    <!-- 子卡片 1 -->
+                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="document.getElementById('modal-1').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                        <h3 class="text-xl font-semibold mb-4 text-white">关于沈阳师范大学</h3>
+                        <p class="text-gray-400">点击了解更多关于我的母校</p>
+                    </div>
+                    
+                    <!-- 子卡片 2 -->
+                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="document.getElementById('modal-2').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                        <h3 class="text-xl font-semibold mb-4 text-white">关于辽宁沈阳</h3>
+                        <p class="text-gray-400">点击了解更多关于我所在的城市</p>
+                    </div>
+                    
+                    <!-- 子卡片 3 -->
+                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="document.getElementById('modal-3').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                        <h3 class="text-xl font-semibold mb-4 text-white">关于山东宁阳</h3>
+                        <p class="text-gray-400">点击了解更多关于我的家乡</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 模态框 -->
+    <div id="modal-1" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-zinc-900/90 backdrop-blur-2xl rounded-3xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-6">
+                <h3 class="text-2xl font-bold text-white">关于沈阳师范大学</h3>
+                <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <img src="./sources/text/SYNU/SYNU.png" alt="沈阳师范大学" class="rounded-2xl w-full h-auto">
+                </div>
+                <div class="space-y-4">
+                    <p class="text-gray-300">沈阳师范大学是辽宁省人民政府与教育部共建的一所综合性大学，位于辽宁省沈阳市。学校创建于1951年，是一所历史悠久、学科门类齐全的高等学府。</p>
+                    <p class="text-gray-300">学校占地面积1890亩，建筑面积80余万平方米，校园环境优美，教学设施先进。学校设有26个二级学院，开设76个本科专业，涵盖教育学、文学、理学、工学、法学、管理学、艺术学等多个学科门类。</p>
+                    <p class="text-gray-300">沈阳师范大学注重人才培养质量，拥有一支高水平的师资队伍，其中包括国家级教学名师、长江学者、国家杰出青年科学基金获得者等高层次人才。学校坚持“厚德博学、求真创新”的校训，培养了大批优秀人才，为国家和地方经济社会发展做出了重要贡献。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-2" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-zinc-900/90 backdrop-blur-2xl rounded-3xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-6">
+                <h3 class="text-2xl font-bold text-white">关于辽宁沈阳</h3>
+                <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <img src="./sources/text/LiaoNingShenYang/SY.jpeg" alt="辽宁沈阳" class="rounded-2xl w-full h-auto">
+                </div>
+                <div class="space-y-4">
+                    <p class="text-gray-300">沈阳是辽宁省省会，是中国东北地区的经济、文化、交通和商贸中心，也是中国重要的工业基地和历史文化名城。沈阳位于辽河平原中部，地势平坦，气候四季分明。</p>
+                    <p class="text-gray-300">沈阳历史悠久，有着2300多年的建城史，是清王朝的发祥地，素有“一朝发祥地，两代帝王都”之称。沈阳拥有众多历史文化遗迹，如沈阳故宫、北陵公园、东陵公园等，这些都是中国历史文化的重要组成部分。</p>
+                    <p class="text-gray-300">沈阳是中国重要的工业基地，被誉为“共和国装备部”，拥有沈阳机床、沈阳飞机工业集团等一批知名企业。近年来，沈阳积极推进产业转型升级，发展新兴产业，城市面貌发生了巨大变化，成为东北地区最具活力的城市之一。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-3" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-zinc-900/90 backdrop-blur-2xl rounded-3xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-6">
+                <h3 class="text-2xl font-bold text-white">关于山东宁阳</h3>
+                <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <img src="./sources/text/NingYang/Ningyang.jpg" alt="山东宁阳" class="rounded-2xl w-full h-auto">
+                </div>
+                <div class="space-y-4">
+                    <p class="text-gray-300">宁阳县位于山东省中部，泰安市南部，是泰安市下辖的一个县。宁阳县历史悠久，文化底蕴深厚，是中国古代文明的重要发祥地之一。</p>
+                    <p class="text-gray-300">宁阳县地理位置优越，交通便利，京沪铁路、京台高速公路穿境而过。全县总面积1125平方公里，人口约80万。宁阳县是传统的农业大县，盛产小麦、玉米、棉花等农作物，同时也是山东省重要的蔬菜生产基地。</p>
+                    <p class="text-gray-300">宁阳县文化资源丰富，拥有大汶口文化遗址、颜子庙等历史文化遗迹。近年来，宁阳县积极发展文化旅游产业，打造了一批具有地方特色的旅游景点，如神童山森林公园、彩山风景区等，吸引了众多游客前来观光旅游。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常用链接区 -->
+    <section id="social" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 text-white">常用链接</h2>
+            <p class="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
+                我常用的网站快捷入口，点击即可访问
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- 网站卡片 1 -->
+                <a href="https://space.bilibili.com/351313082?spm_id_from=333.1007.0.0" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fa fa-play-circle text-2xl text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Bilibili</h3>
+                    <p class="text-gray-400 text-sm">
+                        space.bilibili.com
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            中国领先的年轻人文化社区和视频平台
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 网站卡片 2 -->
+                <a href="https://www.douyin.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fab fa-tiktok text-2xl text-white" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">抖音</h3>
+                    <p class="text-gray-400 text-sm">
+                        douyin.com
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            中国最流行的短视频分享平台
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 网站卡片 3 -->
+                <a href="https://grok.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fa fa-robot text-2xl text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Grok</h3>
+                    <p class="text-gray-400 text-sm">
+                        grok.com
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            由Elon Musk开发的AI对话助手，专注于实时信息和幽默回答
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 网站卡片 4 -->
+                <a href="https://webvpn.synu.edu.cn/users/sign_in" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fa fa-university text-2xl text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">沈阳师范大学 VPN</h3>
+                    <p class="text-gray-400 text-sm">
+                        webvpn.synu.edu.cn
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            沈阳师范大学校园VPN，用于远程访问校内资源
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 网站卡片 5 -->
+                <a href="https://github.com/dashboard" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fab fa-github text-2xl text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">GitHub</h3>
+                    <p class="text-gray-400 text-sm">
+                        github.com
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            全球最大的代码托管平台，开发者协作工具
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 网站卡片 6 -->
+                <a href="https://pan.baidu.com/disk/main?from=homeFlow&login_type=weixin#/index?category=all" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fa fa-cloud text-2xl text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">百度网盘</h3>
+                    <p class="text-gray-400 text-sm">
+                        pan.baidu.com
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            百度推出的云存储服务，提供文件存储、分享和下载功能
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 网站卡片 7 -->
+                <a href="https://ikuuu.club/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fa fa-globe text-2xl text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">iKuuu</h3>
+                    <p class="text-gray-400 text-sm">
+                        ikuuu.club
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            提供VPN服务，帮助用户安全访问互联网
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 网站卡片 8 -->
+                <a href="https://chatgpt.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                        <i class="fa fa-comments text-2xl text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">ChatGPT</h3>
+                    <p class="text-gray-400 text-sm">
+                        chatgpt.com
+                    </p>
+                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                            OpenAI开发的AI对话模型，提供智能问答和创意生成服务
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 展开按钮 -->
+                <div class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 flex justify-center pt-8">
+                    <button id="toggle-more-links" class="px-8 py-3 bg-zinc-900/70 backdrop-blur-md border border-gray-700 rounded-xl hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+                        <span>显示更多链接</span>
+                        <i class="fa fa-chevron-down transition-transform duration-300" id="toggle-icon"></i>
+                    </button>
+                </div>
+                
+                <!-- 更多链接 -->
+                <div id="more-links" class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 hidden">
+                    <!-- 更多链接 1 -->
+                    <a href="https://www.google.com/intl/zh-cn/earth/index.html" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                            <i class="fa fa-globe text-2xl text-blue-400" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Google 地球</h3>
+                        <p class="text-gray-400 text-sm">
+                            google.com/earth
+                        </p>
+                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                                世界上最详尽的地球仪，通过卫星图像、3D 建筑与地形图像探索全球
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 更多链接 2 -->
+                    <a href="https://wallhaven.cc/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                            <i class="fa fa-image text-2xl text-blue-400" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Wallhaven</h3>
+                        <p class="text-gray-400 text-sm">
+                            wallhaven.cc
+                        </p>
+                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                                高质量壁纸分享网站，拥有大量精美壁纸资源
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 更多链接 3 -->
+                    <a href="https://www.gamer520.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                            <i class="fa fa-gamepad text-2xl text-blue-400" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Gamer520</h3>
+                        <p class="text-gray-400 text-sm">
+                            gamer520.com
+                        </p>
+                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                                游戏资讯网站，提供游戏下载、攻略和最新游戏动态
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 更多链接 4 -->
+                    <a href="https://changjiang.yuketang.cn/v2/web/index" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                            <i class="fa fa-graduation-cap text-2xl text-blue-400" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">长江雨课堂</h3>
+                        <p class="text-gray-400 text-sm">
+                            changjiang.yuketang.cn
+                        </p>
+                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                                在线教育平台，提供课程学习、作业提交等功能
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 更多链接 5 -->
+                    <a href="https://www.mcmod.cn/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                            <i class="fa fa-cube text-2xl text-blue-400" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">MC百科</h3>
+                        <p class="text-gray-400 text-sm">
+                            mcmod.cn
+                        </p>
+                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                                最大的Minecraft中文MOD百科，提供游戏模组信息和教程
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 更多链接 6 -->
+                    <a href="https://mail.qq.com/cgi-bin/frame_html?sid=h4h0VJSTZ1LPVht6&r=d89b0dde6405fd3a3b41a959e79b3460" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+                            <i class="fa fa-envelope text-2xl text-blue-400" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">QQ邮箱</h3>
+                        <p class="text-gray-400 text-sm">
+                            mail.qq.com
+                        </p>
+                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
+                                腾讯QQ邮箱，提供邮件收发、文件存储等功能
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // 展开/收起更多链接
+        document.getElementById('toggle-more-links').addEventListener('click', function() {
+            const moreLinks = document.getElementById('more-links');
+            const toggleIcon = document.getElementById('toggle-icon');
+            const toggleText = this.querySelector('span');
+            
+            if (moreLinks.classList.contains('hidden')) {
+                moreLinks.classList.remove('hidden');
+                toggleIcon.classList.add('rotate-180');
+                toggleText.textContent = '收起更多链接';
+            } else {
+                moreLinks.classList.add('hidden');
+                toggleIcon.classList.remove('rotate-180');
+                toggleText.textContent = '显示更多链接';
+            }
+        });
+    </script>
+
+    <!-- 联系方式区 -->
+    <section id="contact" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-bold text-center mb-20 text-white">联系我</h2>
+            <div class="flex justify-center">
+                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-10 shadow-2xl max-w-2xl w-full">
+                    <h3 class="text-3xl font-semibold mb-10 text-center text-white">联系方式</h3>
+                    <div class="space-y-10">
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fa fa-envelope text-2xl text-blue-400" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-medium mb-3 text-white">邮箱</h4>
+                                <p class="text-gray-300">1295368207@qq.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fa fa-phone text-2xl text-blue-400" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-medium mb-3 text-white">电话</h4>
+                                <p class="text-gray-300">18660828506</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fa fa-map-marker text-2xl text-blue-400" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-medium mb-3 text-white">地址</h4>
+                                <p class="text-gray-300">中国辽宁省沈阳市</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 社交图标 -->
+                        <div class="mt-12">
+                            <h4 class="text-xl font-medium mb-6 text-center text-white">关注我</h4>
+                            <div class="flex flex-wrap justify-center gap-8">
+                                <a href="https://github.com/Wzz2333" target="_blank" class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110">
+                                    <i class="fab fa-github text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://x.com/WangZhe00331794" target="_blank" class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110">
+                                    <i class="fab fa-twitter text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
+                                </a>
+                                <button 
+                                    class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110"
+                                    onclick="openModal('qq-modal')"
+                                    aria-label="扫码关注我的QQ"
+                                >
+                                    <i class="fab fa-qq text-2xl text-blue-400" aria-hidden="true"></i>
+                                </button>
+                                <button 
+                                    class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110"
+                                    onclick="openModal('tiktok-modal')"
+                                    aria-label="扫码关注我的抖音"
+                                >
+                                    <i class="fab fa-tiktok text-2xl text-white" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gradient-to-t from-black via-zinc-950 to-transparent backdrop-blur-md border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <p class="text-gray-400">© 2026 王一止. 保留所有权利.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Wzz2333" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="#home" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mt-8"></div>
+            <div class="text-center mt-8">
+                <p class="text-gray-500 text-sm">简约大气 · 现代黑化 · 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function toggleAboutSection() {
+            const initial = document.getElementById('about-initial');
+            const expanded = document.getElementById('about-expanded');
+            
+            if (initial && expanded) {
+                console.log('Toggle function called');
+                
+                // 检查当前状态
+                if (expanded.classList.contains('hidden')) {
+                    // 从初始状态切换到展开状态
+                    initial.style.opacity = '0';
+                    initial.style.transform = 'scale(0.9)';
+                    
+                    setTimeout(() => {
+                        initial.classList.add('hidden');
+                        expanded.classList.remove('hidden');
+                        expanded.style.opacity = '0';
+                        expanded.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            expanded.style.opacity = '1';
+                            expanded.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, 300);
+                    
+                    console.log('Switched to expanded state');
+                } else {
+                    // 从展开状态切换到初始状态
+                    expanded.style.opacity = '0';
+                    expanded.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        expanded.classList.add('hidden');
+                        initial.classList.remove('hidden');
+                        initial.style.opacity = '0';
+                        initial.style.transform = 'scale(0.9)';
+                        
+                        setTimeout(() => {
+                            initial.style.opacity = '1';
+                            initial.style.transform = 'scale(1)';
+                        }, 50);
+                    }, 300);
+                    
+                    console.log('Switched to initial state');
+                }
+            } else {
+                console.log('Elements not found');
+                console.log('Initial element:', initial);
+                console.log('Expanded element:', expanded);
+            }
+        }
+    </script>
+    
+    <!-- QQ模态框 -->
+    <div 
+        id="qq-modal" 
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300 ease-out"
+        aria-modal="true"
+        role="dialog"
+    >
+        <div class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl transform transition-all duration-300 ease-out scale-90 opacity-0" id="qq-modal-content">
+            <div class="flex justify-end mb-4">
+                <button 
+                    class="text-gray-400 hover:text-white text-2xl transition-colors"
+                    onclick="closeModal('qq-modal')"
+                    aria-label="关闭"
+                >
+                    ×
+                </button>
+            </div>
+            <div class="flex flex-col items-center">
+                <img 
+                    src="./sources/qq.jpg" 
+                    alt="QQ二维码" 
+                    class="max-w-full h-auto mb-4"
+                >
+                <p class="text-center text-gray-300">扫码关注我的QQ</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 抖音模态框 -->
+    <div 
+        id="tiktok-modal" 
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300 ease-out"
+        aria-modal="true"
+        role="dialog"
+    >
+        <div class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl transform transition-all duration-300 ease-out scale-90 opacity-0" id="tiktok-modal-content">
+            <div class="flex justify-end mb-4">
+                <button 
+                    class="text-gray-400 hover:text-white text-2xl transition-colors"
+                    onclick="closeModal('tiktok-modal')"
+                    aria-label="关闭"
+                >
+                    ×
+                </button>
+            </div>
+            <div class="flex flex-col items-center">
+                <img 
+                    src="./sources/dy.jpg" 
+                    alt="抖音二维码" 
+                    class="max-w-full h-auto mb-4"
+                >
+                <p class="text-center text-gray-300">扫码关注我的抖音</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 打开模态框
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = document.getElementById(modalId + '-content');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-90', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            
+            // 阻止背景滚动
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 关闭模态框
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = document.getElementById(modalId + '-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-90', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                // 恢复背景滚动
+                document.body.style.overflow = '';
+            }, 300);
+        }
+        
+        // 点击模态框背景关闭
+        document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+        
+        // 时间显示功能
+        function updateTime() {
+            const now = new Date();
+            
+            // 显示时间（几时几分）
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('time').textContent = `${hours}:${minutes}`;
+            
+            // 显示日期（多少年多少月多少日）
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            document.getElementById('date').textContent = `${year}年${month}月${day}日`;
+            
+            // 简单的农历计算（这里使用简化版，实际项目中可能需要更复杂的农历库）
+            const lunar = getLunarDate(now);
+            document.getElementById('lunar').textContent = lunar;
+        }
+        
+        // 简化的农历计算函数
+        function getLunarDate(date) {
+            // 这里使用一个简化的农历计算，实际项目中可能需要更复杂的农历库
+            const lunarMonths = ['正月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '冬月', '腊月'];
+            const lunarDays = ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十', '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'];
+            
+            // 这里使用一个简单的映射，实际项目中需要更复杂的计算
+            const month = date.getMonth();
+            const day = date.getDate() - 1;
+            
+            return `农历 ${lunarMonths[month]} ${lunarDays[day]}`;
+        }
+        
+        // 初始更新时间
+        updateTime();
+        
+        // 每秒钟更新一次时间
+        setInterval(updateTime, 1000);
+        </script>
+</body>
+</html>
