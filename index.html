@@ -6,15 +6,18 @@
     <meta name="keywords" content="GitHub Pages, 静态网站, 响应式设计, Tailwind CSS">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#3b82f6">
-    <title>我的静态网站 | GitHub Pages</title>
+    <title>王一止 | 个人网站</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+<body class="text-gray-100">
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+    
     <!-- 导航栏 -->
-    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50 transition-all duration-300">
+    <header class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md z-50 transition-all duration-300">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-blue-600 dark:text-blue-400">王一止</a>
             
@@ -22,15 +25,9 @@
             <nav class="hidden md:flex space-x-8">
                 <a href="#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">首页</a>
                 <a href="#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">关于我</a>
-                <a href="#features" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">功能</a>
+                <a href="#social" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">社交网站</a>
                 <a href="#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">联系我</a>
             </nav>
-            
-            <!-- 深色模式切换 -->
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
-                <i class="fa fa-sun-o hidden dark:block" aria-hidden="true"></i>
-            </button>
             
             <!-- 移动端菜单按钮 -->
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
@@ -39,11 +36,11 @@
         </div>
         
         <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+        <div id="mobile-menu" class="md:hidden hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
                 <a href="#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">首页</a>
                 <a href="#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">关于我</a>
-                <a href="#features" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">功能</a>
+                <a href="#social" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">社交网站</a>
                 <a href="#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">联系我</a>
             </div>
         </div>
@@ -53,14 +50,6 @@
     <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24">
         <div class="container mx-auto px-4">
             <div class="flex flex-col items-center text-center">
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-                    <a href="#features" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all transform hover:scale-105">
-                        立即体验
-                    </a>
-                    <a href="https://github.com" target="_blank" class="px-8 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 font-medium rounded-lg transition-all transform hover:scale-105">
-                        查看 GitHub
-                    </a>
-                </div>
             </div>
         </div>
     </section>
@@ -69,9 +58,8 @@
     <section id="about" class="py-16 bg-white dark:bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">关于我</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 卡片 1 -->
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <div class="flex justify-center">
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 max-w-md w-full">
                     <div class="flex flex-col items-center mb-6">
                         <img src="./sources/head.jpg" alt="个人头像" class="w-32 h-32 rounded-full object-cover shadow-lg mb-4">
                     </div>
@@ -80,80 +68,83 @@
                         沈阳师范大学在校学生
                     </p>
                 </div>
-                
-                <!-- 卡片 2 -->
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
-                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa fa-code text-2xl text-purple-600 dark:text-purple-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">技术栈</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
-                        熟悉 HTML5、CSS3、JavaScript、Tailwind CSS、React 等前端技术，以及 Git、GitHub 等版本控制工具。
-                    </p>
-                </div>
-                
-                <!-- 卡片 3 -->
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
-                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa fa-lightbulb-o text-2xl text-green-600 dark:text-green-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">项目目标</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
-                        本项目旨在创建一个高质量、现代、美观、响应式的静态网站，展示个人或项目信息，并通过 GitHub Pages 免费部署。
-                    </p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- 功能/亮点区 -->
-    <section id="features" class="py-16">
+    <!-- 社交网站区 -->
+    <section id="social" class="py-16">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">功能亮点</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- 功能卡片 1 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">社交网站</h2>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+                我常用的网站快捷入口，点击即可访问
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- 网站卡片 1 -->
+                <a href="https://space.bilibili.com/351313082?spm_id_from=333.1007.0.0" target="_blank" class="bg-white/80 dark:bg-gray-800/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/30">
                     <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa fa-mobile text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                        <i class="fa fa-globe text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">响应式设计</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
-                        适配各种屏幕尺寸，从手机到桌面端都能完美显示。
+                    <h3 class="text-lg font-semibold mb-2">Bilibili</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        space.bilibili.com
                     </p>
-                </div>
+                </a>
                 
-                <!-- 功能卡片 2 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa fa-moon-o text-xl text-purple-600 dark:text-purple-400" aria-hidden="true"></i>
+                <!-- 网站卡片 2 -->
+                <a href="https://www.douyin.com/" target="_blank" class="bg-white/80 dark:bg-gray-800/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/30">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-globe text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">深色模式</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
-                        支持深色/浅色模式切换，保护眼睛，节省电量。
+                    <h3 class="text-lg font-semibold mb-2">抖音</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        douyin.com
                     </p>
-                </div>
+                </a>
                 
-                <!-- 功能卡片 3 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa fa-bolt text-xl text-green-600 dark:text-green-400" aria-hidden="true"></i>
+                <!-- 网站卡片 3 -->
+                <a href="https://grok.com/" target="_blank" class="bg-white/80 dark:bg-gray-800/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/30">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-globe text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">性能优化</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
-                        轻量化设计，快速加载，提供流畅的用户体验。
+                    <h3 class="text-lg font-semibold mb-2">Grok</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        grok.com
                     </p>
-                </div>
+                </a>
                 
-                <!-- 功能卡片 4 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                    <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fa fa-github text-xl text-red-600 dark:text-red-400" aria-hidden="true"></i>
+                <!-- 网站卡片 4 -->
+                <a href="https://webvpn.synu.edu.cn/users/sign_in" target="_blank" class="bg-white/80 dark:bg-gray-800/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/30">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-globe text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">GitHub Pages</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
-                        免费部署，无需服务器，简单易用的静态网站托管服务。
+                    <h3 class="text-lg font-semibold mb-2">沈阳师范大学 VPN</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        webvpn.synu.edu.cn
                     </p>
-                </div>
+                </a>
+                
+                <!-- 网站卡片 5 -->
+                <a href="https://github.com/dashboard" target="_blank" class="bg-white/80 dark:bg-gray-800/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/30">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-globe text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">GitHub</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        github.com
+                    </p>
+                </a>
+                
+                <!-- 网站卡片 6 -->
+                <a href="https://pan.baidu.com/disk/main?from=homeFlow&login_type=weixin#/index?category=all" target="_blank" class="bg-white/80 dark:bg-gray-800/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/30">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-globe text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">百度网盘</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        pan.baidu.com
+                    </p>
+                </a>
             </div>
         </div>
     </section>
