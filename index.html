@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="一个基于 GitHub Pages 部署的现代、美观、响应式静态网站">
+    <meta name="keywords" content="GitHub Pages, 静态网站, 响应式设计, Tailwind CSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3b82f6">
+    <title>我的静态网站 | GitHub Pages</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-600 dark:text-blue-400">王一止</a>
+            
+            <!-- 桌面端导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">首页</a>
+                <a href="#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">关于我</a>
+                <a href="#features" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">功能</a>
+                <a href="#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">联系我</a>
+            </nav>
+            
+            <!-- 深色模式切换 -->
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
+                <i class="fa fa-sun-o hidden dark:block" aria-hidden="true"></i>
+            </button>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">首页</a>
+                <a href="#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">关于我</a>
+                <a href="#features" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">功能</a>
+                <a href="#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">联系我</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero 区 -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#features" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all transform hover:scale-105">
+                        立即体验
+                    </a>
+                    <a href="https://github.com" target="_blank" class="px-8 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 font-medium rounded-lg transition-all transform hover:scale-105">
+                        查看 GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 / 项目介绍区 -->
+    <section id="about" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">关于我</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 卡片 1 -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="./sources/head.jpg" alt="个人头像" class="w-32 h-32 rounded-full object-cover shadow-lg mb-4">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">个人介绍</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">
+                        沈阳师范大学在校学生
+                    </p>
+                </div>
+                
+                <!-- 卡片 2 -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-code text-2xl text-purple-600 dark:text-purple-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">技术栈</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        熟悉 HTML5、CSS3、JavaScript、Tailwind CSS、React 等前端技术，以及 Git、GitHub 等版本控制工具。
+                    </p>
+                </div>
+                
+                <!-- 卡片 3 -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-lightbulb-o text-2xl text-green-600 dark:text-green-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">项目目标</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        本项目旨在创建一个高质量、现代、美观、响应式的静态网站，展示个人或项目信息，并通过 GitHub Pages 免费部署。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能/亮点区 -->
+    <section id="features" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">功能亮点</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 功能卡片 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-mobile text-xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">响应式设计</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        适配各种屏幕尺寸，从手机到桌面端都能完美显示。
+                    </p>
+                </div>
+                
+                <!-- 功能卡片 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-moon-o text-xl text-purple-600 dark:text-purple-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">深色模式</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        支持深色/浅色模式切换，保护眼睛，节省电量。
+                    </p>
+                </div>
+                
+                <!-- 功能卡片 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-bolt text-xl text-green-600 dark:text-green-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">性能优化</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        轻量化设计，快速加载，提供流畅的用户体验。
+                    </p>
+                </div>
+                
+                <!-- 功能卡片 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                    <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-github text-xl text-red-600 dark:text-red-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">GitHub Pages</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        免费部署，无需服务器，简单易用的静态网站托管服务。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式区 -->
+    <section id="contact" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">联系我</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- 表单 -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-8 shadow-md">
+                    <h3 class="text-xl font-semibold mb-6">发送消息</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-1">姓名</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-1">邮箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-1">消息</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all transform hover:scale-[1.02]">
+                            发送消息
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- 联系信息 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">联系方式</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-envelope text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">邮箱</h4>
+                                <p class="text-gray-600 dark:text-gray-300">example@example.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-phone text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">电话</h4>
+                                <p class="text-gray-600 dark:text-gray-300">123-456-7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-map-marker text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">地址</h4>
+                                <p class="text-gray-600 dark:text-gray-300">中国北京市</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 社交图标 -->
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">关注我</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+                                    <i class="fa fa-github text-gray-800 dark:text-gray-200" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://twitter.com" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+                                    <i class="fa fa-twitter text-gray-800 dark:text-gray-200" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+                                    <i class="fa fa-linkedin text-gray-800 dark:text-gray-200" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://instagram.com" target="_blank" class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+                                    <i class="fa fa-instagram text-gray-800 dark:text-gray-200" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-600 dark:text-gray-300">© 2026 我的静态网站. 保留所有权利.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="https://github.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
