@@ -316,6 +316,12 @@
                         <h3 class="text-xl font-semibold mb-4 text-white">关于山东宁阳</h3>
                         <p class="text-gray-400">点击了解更多关于我的家乡</p>
                     </div>
+                    
+                    <!-- 子卡片 4：我的荣誉 -->
+                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="openHonorsModal()">
+                        <h3 class="text-xl font-semibold mb-4 text-white">我的荣誉</h3>
+                        <p class="text-gray-400">点击查看我的荣誉奖项</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -849,6 +855,28 @@
         </div>
     </div>
     
+    <!-- 我的荣誉模态框 -->
+    <div id="honors-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-zinc-900/95 backdrop-blur-2xl rounded-3xl p-8 max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-8">
+                <h3 class="text-2xl font-bold text-white">我的荣誉</h3>
+                <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="document.getElementById('honors-modal').classList.add('hidden'); document.body.style.overflow = '';">×</button>
+            </div>
+            <div id="honors-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- 荣誉图片将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 图片查看器模态框 -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/95 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="relative max-w-5xl w-full mx-4 max-h-[90vh]">
+            <button class="absolute top-4 right-4 text-white text-3xl z-10" onclick="document.getElementById('lightbox-modal').classList.add('hidden'); document.body.style.overflow = '';">×</button>
+            <img id="lightbox-image" src="" alt="荣誉图片" class="max-w-full max-h-[80vh] object-contain mx-auto">
+            <div id="lightbox-caption" class="text-white text-center mt-4"></div>
+        </div>
+    </div>
+    
     <script>
         // 打开模态框
         function openModal(modalId) {
@@ -927,6 +955,81 @@
         
         // 每秒钟更新一次时间
         setInterval(updateTime, 1000);
+        
+        // 打开我的荣誉模态框
+        function openHonorsModal() {
+            const modal = document.getElementById('honors-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // 生成荣誉图片网格
+            generateHonorsGrid();
+        }
+        
+        // 生成荣誉图片网格
+        function generateHonorsGrid() {
+            const grid = document.getElementById('honors-grid');
+            grid.innerHTML = '';
+            
+            // 从 sources/jiang 文件夹读取的图片文件
+            const honorImages = [
+                { name: '2025健行奖学金', path: './sources/jiang/2025健行奖学金.jpg' },
+                { name: '2025博学之星奖学金', path: './sources/jiang/2025博学之星奖学金.jpg' },
+                { name: '2025厚德奖学金', path: './sources/jiang/2025厚德奖学金.jpg' },
+                { name: '2025数学竞赛国家三等奖', path: './sources/jiang/2025数学竞赛国家三等奖.jpg' },
+                { name: '2025数学竞赛省级二等奖', path: './sources/jiang/2025数学竞赛省级二等奖.jpg' },
+                { name: '勤工培训证明', path: './sources/jiang/勤工培训证明.jpg' },
+                { name: '图片征集活动二等奖', path: './sources/jiang/图片征集活动二等奖.jpg' },
+                { name: '生态环保作品竞赛三等奖', path: './sources/jiang/生态环保作品竞赛三等奖.jpg' },
+                { name: '英语四级成绩单', path: './sources/jiang/英语四级成绩单.jpg' },
+                { name: '计算机博弈二等奖', path: './sources/jiang/计算机博弈二等奖.jpg' },
+                { name: '计算机博弈二等奖2', path: './sources/jiang/计算机博弈二等奖2.jpg' }
+            ];
+            
+            honorImages.forEach(honor => {
+                const card = document.createElement('div');
+                card.className = 'relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/20 cursor-pointer group';
+                
+                card.innerHTML = `
+                    <img src="${honor.path}" alt="${honor.name}" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+                        <p class="text-white font-medium text-center">${honor.name}</p>
+                    </div>
+                `;
+                
+                // 点击图片查看大图
+                card.addEventListener('click', function() {
+                    openLightbox(honor.path, honor.name);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // 打开图片查看器
+        function openLightbox(imagePath, caption) {
+            const lightbox = document.getElementById('lightbox-modal');
+            const image = document.getElementById('lightbox-image');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            image.src = imagePath;
+            lightboxCaption.textContent = caption;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 键盘 ESC 键关闭模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.fixed.inset-0');
+                modals.forEach(modal => {
+                    if (!modal.classList.contains('hidden')) {
+                        modal.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
         </script>
 </body>
 </html>
