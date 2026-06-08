@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   window.addEventListener('scroll', function() {
     if (window.scrollY > 50) {
-      header.classList.add('py-2');
+      header.classList.add('py-2', 'scrolled');
       header.classList.remove('py-4');
     } else {
       header.classList.add('py-4');
-      header.classList.remove('py-2');
+      header.classList.remove('py-2', 'scrolled');
     }
   });
   
@@ -55,50 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // 导航栏滚动效果
-  const header = document.querySelector('header');
-  
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-  
-  // 表单提交提示
-  const contactForm = document.getElementById('contact-form');
-  
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // 获取表单数据
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      
-      // 简单验证
-      if (!name || !email || !message) {
-        alert('请填写所有必填字段');
-        return;
-      }
-      
-      // 输出到控制台
-      console.log('表单提交数据:', {
-        name,
-        email,
-        message
-      });
-      
-      // 显示提示
-      alert('消息已发送！我们会尽快回复您。');
-      
-      // 重置表单
-      contactForm.reset();
-    });
-  }
-  
   // 淡入动画
   function handleScrollAnimation() {
     const elements = document.querySelectorAll('section');
@@ -118,70 +74,4 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // 滚动时执行
   window.addEventListener('scroll', handleScrollAnimation);
-  
-  // 关于我区域交互
-  const mainCard = document.getElementById('main-card');
-  const aboutInitial = document.getElementById('about-initial');
-  const aboutExpanded = document.getElementById('about-expanded');
-  
-  console.log('Elements found:', {
-    mainCard: !!mainCard,
-    aboutInitial: !!aboutInitial,
-    aboutExpanded: !!aboutExpanded
-  });
-  
-  if (mainCard && aboutInitial && aboutExpanded) {
-    mainCard.addEventListener('click', function() {
-      console.log('Main card clicked');
-      // 隐藏初始状态，显示展开状态
-      aboutInitial.classList.add('hidden');
-      aboutExpanded.classList.remove('hidden');
-    });
-  } else {
-    console.error('Some elements not found');
-  }
-  
-  // 子卡片点击事件
-  const subCards = document.querySelectorAll('[data-modal]');
-  console.log('Sub cards found:', subCards.length);
-  subCards.forEach(card => {
-    card.addEventListener('click', function(e) {
-      e.stopPropagation(); // 防止事件冒泡
-      const modalId = this.getAttribute('data-modal');
-      const modal = document.getElementById(modalId);
-      console.log('Sub card clicked:', modalId, !!modal);
-      if (modal) {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // 防止背景滚动
-      }
-    });
-  });
-  
-  // 关闭模态框
-  const closeButtons = document.querySelectorAll('.close-modal');
-  console.log('Close buttons found:', closeButtons.length);
-  closeButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.stopPropagation(); // 防止事件冒泡
-      const modal = this.closest('[id^="modal-"]');
-      console.log('Close button clicked:', !!modal);
-      if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = ''; // 恢复背景滚动
-      }
-    });
-  });
-  
-  // 点击模态框背景关闭
-  const modals = document.querySelectorAll('[id^="modal-"]');
-  console.log('Modals found:', modals.length);
-  modals.forEach(modal => {
-    modal.addEventListener('click', function(e) {
-      if (e.target === this) {
-        console.log('Modal background clicked');
-        this.classList.add('hidden');
-        document.body.style.overflow = '';
-      }
-    });
-  });
 });

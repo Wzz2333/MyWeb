@@ -1,0 +1,10 @@
+[
+    {
+        "slug": "hello-world",
+        "title": "第一篇博客：Hello World",
+        "date": "2026-06-01",
+        "tags": ["技术"],
+        "summary": "这是我的第一篇博客文章，记录搭建个人网站的心得体会和技术选型思路。",
+        "cover": "code"
+    }
+]

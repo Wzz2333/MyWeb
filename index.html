@@ -19,11 +19,14 @@
             <a href="#" class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">王一止</a>
             
             <!-- 桌面端导航 -->
-            <nav class="hidden md:flex space-x-10">
+            <nav class="hidden md:flex items-center space-x-10">
                 <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300">首页</a>
                 <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">关于我</a>
                 <a href="#social" class="text-gray-300 hover:text-white transition-colors duration-300">常用链接</a>
                 <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">联系我</a>
+                <a href="blog.html" class="px-5 py-2 bg-gradient-to-r from-blue-600 to-violet-600 rounded-full text-white font-medium hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105 transition-all duration-300">
+                    <i class="fa fa-pencil mr-2" aria-hidden="true"></i>博客
+                </a>
             </nav>
             
             <!-- 移动端菜单按钮 -->
@@ -39,6 +42,9 @@
                 <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">关于我</a>
                 <a href="#social" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">常用链接</a>
                 <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">联系我</a>
+                <a href="blog.html" class="py-2 px-4 bg-gradient-to-r from-blue-600 to-violet-600 rounded-full text-white font-medium text-center">
+                    <i class="fa fa-pencil mr-2" aria-hidden="true"></i>博客
+                </a>
             </div>
         </div>
     </header>
@@ -751,8 +757,6 @@
             const expanded = document.getElementById('about-expanded');
             
             if (initial && expanded) {
-                console.log('Toggle function called');
-                
                 // 检查当前状态
                 if (expanded.classList.contains('hidden')) {
                     // 从初始状态切换到展开状态
@@ -770,8 +774,6 @@
                             expanded.style.transform = 'translateY(0)';
                         }, 50);
                     }, 300);
-                    
-                    console.log('Switched to expanded state');
                 } else {
                     // 从展开状态切换到初始状态
                     expanded.style.opacity = '0';
@@ -788,13 +790,7 @@
                             initial.style.transform = 'scale(1)';
                         }, 50);
                     }, 300);
-                    
-                    console.log('Switched to initial state');
                 }
-            } else {
-                console.log('Elements not found');
-                console.log('Initial element:', initial);
-                console.log('Expanded element:', expanded);
             }
         }
     </script>
