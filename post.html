@@ -194,14 +194,14 @@
         if (!slug) {
             contentEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">未指定文章</p><a href="blog.html" class="text-blue-400 hover:underline">返回博客列表</a></div>';
         } else {
-            fetch('posts/posts.json')
+            fetch('posts/posts.json?t=' + Date.now())
                 .then(function(r) { return r.json(); })
                 .then(function(posts) {
                     var post = posts.find(function(p) { return p.slug === slug; });
                     if (post) document.title = post.title + ' | 王一止的博客';
                 });
 
-            fetch('posts/' + slug + '.md')
+            fetch('posts/' + slug + '.md?t=' + Date.now())
                 .then(function(r) {
                     if (!r.ok) throw new Error('文章不存在');
                     return r.text();

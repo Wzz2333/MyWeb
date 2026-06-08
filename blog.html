@@ -195,6 +195,14 @@
                 </a>
             <div class="flex items-center gap-4">
                 <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">博客</span>
+                <div class="flex bg-white/5 rounded-lg p-1">
+                    <button class="tab-btn px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-blue-500/30 text-white" data-tab="posts">
+                        <i class="fa fa-pen-to-square mr-1"></i>博客文章
+                    </button>
+                    <button class="tab-btn px-4 py-1.5 rounded-md text-sm font-medium transition-all text-gray-400 hover:text-white" data-tab="projects">
+                        <i class="fa fa-folder mr-1"></i>我的项目
+                    </button>
+                </div>
                 <!-- 透明度调节按钮 -->
                 <div class="opacity-panel" id="opacity-panel">
                     <button class="p-2 rounded-lg hover:bg-white/10 transition-colors text-gray-400 hover:text-white" title="调节透明度">
@@ -241,71 +249,134 @@
     <main class="pt-24 pb-20">
         <div class="container mx-auto px-6 max-w-5xl">
 
-            <!-- 页面标题 -->
-            <div class="text-center mb-10">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
-                    <i class="fa fa-pen-to-square text-blue-400 mr-3" aria-hidden="true"></i>博客
-                </h1>
-                <p class="text-gray-400 text-lg">技术分享 · 学习笔记 · 生活随想</p>
-                <div class="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mt-4"></div>
-            </div>
+            <!-- 博客文章区域 -->
+            <div id="tab-posts">
+                <!-- 页面标题 -->
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
+                        <i class="fa fa-pen-to-square text-blue-400 mr-3" aria-hidden="true"></i>博客
+                    </h1>
+                    <p class="text-gray-400 text-lg">技术分享 · 学习笔记 · 生活随想</p>
+                    <div class="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mt-4"></div>
+                </div>
 
-            <!-- 分类筛选 -->
-            <div id="filter-bar" class="flex flex-wrap justify-center gap-2 mb-8">
-                <button class="filter-btn active px-4 py-1.5 rounded-full text-sm border border-white/10" data-filter="all">全部</button>
-            </div>
+                <!-- 分类筛选 -->
+                <div id="filter-bar" class="flex flex-wrap justify-center gap-2 mb-8">
+                    <button class="filter-btn active px-4 py-1.5 rounded-full text-sm border border-white/10" data-filter="all">全部</button>
+                </div>
 
-            <!-- 统计信息 -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8" id="stats-bar">
-                <div class="stat-card glass-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-white" id="stat-posts">0</div>
-                    <div class="text-xs text-gray-500 mt-1">文章总数</div>
+                <!-- 统计信息 -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8" id="stats-bar">
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-white" id="stat-posts">0</div>
+                        <div class="text-xs text-gray-500 mt-1">文章总数</div>
+                    </div>
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-blue-400" id="stat-tags">0</div>
+                        <div class="text-xs text-gray-500 mt-1">标签数量</div>
+                    </div>
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-violet-400" id="stat-latest">-</div>
+                        <div class="text-xs text-gray-500 mt-1">最新文章</div>
+                    </div>
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-emerald-400" id="stat-updated">-</div>
+                        <div class="text-xs text-gray-500 mt-1">最近更新</div>
+                    </div>
                 </div>
-                <div class="stat-card glass-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-blue-400" id="stat-tags">0</div>
-                    <div class="text-xs text-gray-500 mt-1">标签数量</div>
-                </div>
-                <div class="stat-card glass-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-violet-400" id="stat-latest">-</div>
-                    <div class="text-xs text-gray-500 mt-1">最新文章</div>
-                </div>
-                <div class="stat-card glass-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-emerald-400" id="stat-updated">-</div>
-                    <div class="text-xs text-gray-500 mt-1">最近更新</div>
-                </div>
-            </div>
 
-            <!-- 搜索框 -->
-            <div class="mb-8">
-                <div class="glass-card rounded-xl flex items-center px-4 py-2.5">
-                    <i class="fa fa-search text-gray-500 mr-3" aria-hidden="true"></i>
-                    <input type="text" id="search-input" placeholder="搜索文章..." class="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-sm">
+                <!-- 搜索框 -->
+                <div class="mb-8">
+                    <div class="glass-card rounded-xl flex items-center px-4 py-2.5">
+                        <i class="fa fa-search text-gray-500 mr-3" aria-hidden="true"></i>
+                        <input type="text" id="search-input" placeholder="搜索文章..." class="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-sm">
+                    </div>
                 </div>
-            </div>
 
-            <!-- 文章列表 -->
-            <div id="posts-list" class="space-y-4">
-                <!-- 骨架屏加载 -->
-                <div class="glass-card rounded-xl p-6">
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <div class="skeleton w-full sm:w-48 h-32 rounded-xl flex-shrink-0"></div>
-                        <div class="flex-1 space-y-3 py-1">
-                            <div class="skeleton h-5 w-32 rounded"></div>
-                            <div class="skeleton h-7 w-3/4 rounded"></div>
-                            <div class="skeleton h-4 w-full rounded"></div>
-                            <div class="skeleton h-4 w-2/3 rounded"></div>
+                <!-- 文章列表 -->
+                <div id="posts-list" class="space-y-4">
+                    <!-- 骨架屏加载 -->
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="skeleton w-full sm:w-48 h-32 rounded-xl flex-shrink-0"></div>
+                            <div class="flex-1 space-y-3 py-1">
+                                <div class="skeleton h-5 w-32 rounded"></div>
+                                <div class="skeleton h-7 w-3/4 rounded"></div>
+                                <div class="skeleton h-4 w-full rounded"></div>
+                                <div class="skeleton h-4 w-2/3 rounded"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- 空状态 -->
+                <div id="empty-state" class="hidden text-center py-16">
+                    <div class="w-20 h-20 glass-card rounded-full flex items-center justify-center mx-auto mb-5">
+                        <i class="fa fa-folder-open text-3xl text-gray-600" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg text-gray-400 mb-2">暂无文章</h3>
+                    <p class="text-gray-600 text-sm">精彩内容，敬请期待</p>
+                </div>
             </div>
 
-            <!-- 空状态 -->
-            <div id="empty-state" class="hidden text-center py-16">
-                <div class="w-20 h-20 glass-card rounded-full flex items-center justify-center mx-auto mb-5">
-                    <i class="fa fa-folder-open text-3xl text-gray-600" aria-hidden="true"></i>
+            <!-- 我的项目区域 -->
+            <div id="tab-projects" class="hidden">
+                <!-- 页面标题 -->
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
+                        <i class="fa fa-folder-open text-violet-400 mr-3" aria-hidden="true"></i>我的项目
+                    </h1>
+                    <p class="text-gray-400 text-lg">大学期间的项目实践与探索</p>
+                    <div class="w-16 h-0.5 bg-gradient-to-r from-violet-500 to-pink-500 mx-auto mt-4"></div>
                 </div>
-                <h3 class="text-lg text-gray-400 mb-2">暂无文章</h3>
-                <p class="text-gray-600 text-sm">精彩内容，敬请期待</p>
+
+                <!-- 项目分类筛选 -->
+                <div id="project-filter-bar" class="flex flex-wrap justify-center gap-2 mb-8">
+                    <button class="filter-btn active px-4 py-1.5 rounded-full text-sm border border-white/10" data-filter="all">全部</button>
+                </div>
+
+                <!-- 项目统计 -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-white" id="stat-projects">0</div>
+                        <div class="text-xs text-gray-500 mt-1">项目总数</div>
+                    </div>
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-green-400" id="stat-completed">0</div>
+                        <div class="text-xs text-gray-500 mt-1">已完成</div>
+                    </div>
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-yellow-400" id="stat-dev">0</div>
+                        <div class="text-xs text-gray-500 mt-1">开发中</div>
+                    </div>
+                    <div class="stat-card glass-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-gray-400" id="stat-categories">0</div>
+                        <div class="text-xs text-gray-500 mt-1">项目分类</div>
+                    </div>
+                </div>
+
+                <!-- 项目列表 -->
+                <div id="projects-list" class="space-y-4">
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="skeleton w-full sm:w-48 h-32 rounded-xl flex-shrink-0"></div>
+                            <div class="flex-1 space-y-3 py-1">
+                                <div class="skeleton h-5 w-32 rounded"></div>
+                                <div class="skeleton h-7 w-3/4 rounded"></div>
+                                <div class="skeleton h-4 w-full rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 空状态 -->
+                <div id="projects-empty-state" class="hidden text-center py-16">
+                    <div class="w-20 h-20 glass-card rounded-full flex items-center justify-center mx-auto mb-5">
+                        <i class="fa fa-folder-open text-3xl text-gray-600" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg text-gray-400 mb-2">暂无项目</h3>
+                    <p class="text-gray-600 text-sm">项目正在整理中</p>
+                </div>
             </div>
         </div>
     </main>
@@ -414,6 +485,149 @@
             e.stopPropagation();
             document.getElementById('opacity-panel').classList.toggle('open');
         });
+
+        // ========== Tab 切换 ==========
+        var currentTab = 'posts';
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                currentTab = this.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(function(b) {
+                    b.classList.remove('bg-blue-500/30', 'text-white');
+                    b.classList.add('text-gray-400');
+                });
+                this.classList.add('bg-blue-500/30', 'text-white');
+                this.classList.remove('text-gray-400');
+                document.getElementById('tab-posts').classList.toggle('hidden', currentTab !== 'posts');
+                document.getElementById('tab-projects').classList.toggle('hidden', currentTab !== 'projects');
+            });
+        });
+
+        // ========== 项目列表加载 ==========
+        var allProjects = [];
+        var activeProjectFilter = 'all';
+
+        var projectCoverConfig = {
+            code:    { icon: 'fa-code',    gradient: 'from-blue-500/30 to-violet-500/30',   iconColor: 'text-blue-300' },
+            book:    { icon: 'fa-book',    gradient: 'from-emerald-500/30 to-teal-500/30',  iconColor: 'text-emerald-300' },
+            heart:   { icon: 'fa-heart',   gradient: 'from-orange-500/30 to-red-500/30',    iconColor: 'text-orange-300' },
+            gear:    { icon: 'fa-gear',    gradient: 'from-gray-500/30 to-gray-400/30',     iconColor: 'text-gray-300' },
+            rocket:  { icon: 'fa-rocket',  gradient: 'from-amber-500/30 to-orange-500/30',  iconColor: 'text-amber-300' },
+            music:   { icon: 'fa-music',   gradient: 'from-pink-500/30 to-rose-500/30',     iconColor: 'text-pink-300' },
+            default: { icon: 'fa-folder',  gradient: 'from-violet-500/30 to-purple-500/30', iconColor: 'text-violet-300' }
+        };
+
+        var projectTagColors = {
+            'Vue3': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+            'Node.js': 'bg-green-500/20 text-green-400 border-green-500/30',
+            'MySQL': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+            'Python': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+            'React': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+            'HTML5': 'bg-red-500/20 text-red-400 border-red-500/30',
+            'TailwindCSS': 'bg-sky-500/20 text-sky-400 border-sky-500/30',
+            'JavaScript': 'bg-amber-500/20 text-amber-400 border-amber-500/30'
+        };
+
+        function getProjectTagClass(tag) {
+            return projectTagColors[tag] || 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+        }
+
+        function getProjectCover(cfg) {
+            return projectCoverConfig[cfg] || projectCoverConfig['default'];
+        }
+
+        function renderProjectCard(project) {
+            var cover = getProjectCover(project.cover);
+            var tagsHtml = (project.tags || []).map(function(tag) {
+                return '<span class="px-2 py-0.5 text-xs rounded-full border ' + getProjectTagClass(tag) + '">' + tag + '</span>';
+            }).join('');
+
+            var statusClass = project.status === '已完成' ? 'text-green-400' : (project.status === '开发中' ? 'text-yellow-400' : 'text-gray-400');
+            var statusIcon = project.status === '已完成' ? 'fa-check-circle' : (project.status === '开发中' ? 'fa-code' : 'fa-clock');
+
+            return '<article class="post-item glass-card rounded-xl p-5 cursor-pointer">'
+                + '  <a href="project.html?slug=' + project.slug + '" class="flex flex-col sm:flex-row sm:items-start gap-4">'
+                + '    <div class="flex-shrink-0 w-full sm:w-44 h-28 bg-gradient-to-br ' + cover.gradient + ' rounded-lg flex items-center justify-center">'
+                + '      <i class="fa ' + cover.icon + ' text-3xl ' + cover.iconColor + '"></i>'
+                + '    </div>'
+                + '    <div class="flex-1 min-w-0">'
+                + '      <div class="flex items-center flex-wrap gap-2 mb-2">'
+                + '        <span class="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">' + project.category + '</span>'
+                + '        <span class="text-xs ' + statusClass + '"><i class="fa ' + statusIcon + '"></i> ' + project.status + '</span>'
+                +         tagsHtml
+                + '        <span class="text-xs text-gray-600">' + project.date + '</span>'
+                + '      </div>'
+                + '      <h2 class="text-lg font-semibold text-white mb-1.5">' + project.title + '</h2>'
+                + '      <p class="text-gray-500 text-sm line-clamp-2">' + (project.summary || '') + '</p>'
+                + '    </div>'
+                + '  </a>'
+                + '</article>';
+        }
+
+        function getFilteredProjects() {
+            return allProjects.filter(function(project) {
+                return activeProjectFilter === 'all' || project.category === activeProjectFilter;
+            });
+        }
+
+        function renderProjects() {
+            var listEl = document.getElementById('projects-list');
+            var emptyEl = document.getElementById('projects-empty-state');
+            var filtered = getFilteredProjects();
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = '';
+                emptyEl.classList.remove('hidden');
+                return;
+            }
+            emptyEl.classList.add('hidden');
+            listEl.innerHTML = filtered.map(renderProjectCard).join('');
+        }
+
+        function renderProjectFilters() {
+            var bar = document.getElementById('project-filter-bar');
+            var categories = new Set();
+            allProjects.forEach(function(p) { categories.add(p.category); });
+            var catsArr = Array.from(categories);
+
+            var html = '<button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/10 ' + (activeProjectFilter === 'all' ? 'active' : '') + '" data-filter="all">全部</button>';
+            catsArr.forEach(function(cat) {
+                html += '<button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/10 ' + (activeProjectFilter === cat ? 'active' : '') + '" data-filter="' + cat + '">' + cat + '</button>';
+            });
+            bar.innerHTML = html;
+
+            bar.querySelectorAll('.filter-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    activeProjectFilter = this.dataset.filter;
+                    renderProjectFilters();
+                    renderProjects();
+                });
+            });
+        }
+
+        function updateProjectStats() {
+            document.getElementById('stat-projects').textContent = allProjects.length;
+            document.getElementById('stat-completed').textContent = allProjects.filter(function(p) { return p.status === '已完成'; }).length;
+            document.getElementById('stat-dev').textContent = allProjects.filter(function(p) { return p.status === '开发中'; }).length;
+            var categories = new Set();
+            allProjects.forEach(function(p) { categories.add(p.category); });
+            document.getElementById('stat-categories').textContent = categories.size;
+        }
+
+        // 加载项目数据
+        fetch('projects/projects.json?t=' + Date.now())
+            .then(function(res) {
+                if (!res.ok) throw new Error('加载失败');
+                return res.json();
+            })
+            .then(function(projects) {
+                allProjects = projects;
+                updateProjectStats();
+                renderProjectFilters();
+                renderProjects();
+            })
+            .catch(function() {
+                document.getElementById('projects-list').innerHTML = '<div class="text-center py-16"><p class="text-gray-500">项目列表加载失败</p></div>';
+            });
 
         // ========== 博客数据加载 ==========
 
@@ -529,7 +743,7 @@
         }
 
         // 加载数据
-        fetch('posts/posts.json')
+        fetch('posts/posts.json?t=' + Date.now())
             .then(function(res) {
                 if (!res.ok) throw new Error('加载失败');
                 return res.json();

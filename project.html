@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>项目详情 | 王一止的博客</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #bg-video {
+            position: fixed; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -2; object-fit: cover;
+        }
+        #bg-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+        .nav-glass {
+            background: rgba(10, 10, 20, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .project-card {
+            background: rgba(20, 20, 30, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .project-card img { max-width: 100%; border-radius: 8px; }
+        .project-card h1 { font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: #fff; }
+        .project-card h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #e0e0e0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .project-card h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #d0d0d0; }
+        .project-card p { line-height: 1.85; margin-bottom: 1rem; color: #c0c0c0; }
+        .project-card a { color: #60a5fa; text-decoration: underline; }
+        .project-card a:hover { color: #93c5fd; }
+        .project-card code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #f472b6; }
+        .project-card pre { background: rgba(0,0,0,0.5); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
+        .project-card pre code { background: none; padding: 0; color: #e0e0e0; }
+        .project-card blockquote { border-left: 3px solid #3b82f6; padding-left: 1rem; margin: 1rem 0; color: #a0a0a0; font-style: italic; }
+        .project-card ul, .project-card ol { padding-left: 1.5rem; margin: 1rem 0; }
+        .project-card li { margin-bottom: 0.5rem; color: #c0c0c0; }
+        .project-card table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .project-card th, .project-card td { border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; }
+        .project-card th { background: rgba(255,255,255,0.05); }
+        .project-card input[type="checkbox"] { margin-right: 0.5rem; }
+        .tag-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .status-completed { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .status-dev { background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .status-planned { background: rgba(156, 163, 175, 0.2); color: #9ca3af; border: 1px solid rgba(156, 163, 175, 0.3); }
+        /* 图片灯箱 */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9);
+            z-index: 1000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox img {
+            max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px;
+        }
+        .lightbox-close {
+            position: absolute; top: 20px; right: 20px;
+            width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1);
+            border: none; border-radius: 50%; color: white; font-size: 20px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .lightbox-close:hover { background: rgba(255, 255, 255, 0.2); }
+        .gallery-img { cursor: pointer; }
+        .gallery-img:hover { opacity: 0.9; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen">
+    <!-- 背景视频 -->
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="" type="video/mp4">
+    </video>
+    <div id="bg-overlay"></div>
+
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 nav-glass z-50 py-3">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-5">
+                    <a href="blog.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                        <i class="fa fa-arrow-left"></i>
+                        <span class="hidden sm:inline">返回博客</span>
+                    </a>
+                    <a href="index.html" class="text-gray-500 hover:text-white transition-colors flex items-center gap-1.5 text-sm">
+                        <i class="fa fa-home"></i>
+                        <span class="hidden sm:inline">首页</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 项目内容 -->
+    <main class="pt-20 pb-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <!-- 项目头部信息 -->
+            <div id="project-header" class="project-card rounded-2xl p-8 mb-6">
+                <div class="text-center py-20">
+                    <div class="animate-spin w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p class="text-gray-500">加载中...</p>
+                </div>
+            </div>
+            
+            <!-- 项目详细介绍 -->
+            <div id="project-content" class="project-card rounded-2xl p-8 md:p-12">
+                <div class="text-center py-20">
+                    <div class="animate-spin w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p class="text-gray-500">加载中...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 图片灯箱 -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script>
+        // 背景视频
+        var bgVideos = [
+            { file: '[NK]BITTER-SPICE_live wallpaper.mp4' },
+            { file: 'AMY 4K.mp4' },
+            { file: 'Chill Cat Coffe.mp4' },
+            { file: 'bizhi.mp4' }
+        ];
+        var bgVideo = document.getElementById('bg-video');
+        var savedBg = localStorage.getItem('blog-bg') || 0;
+        bgVideo.src = './sources/video/' + bgVideos[savedBg].file;
+
+        // 透明度设置
+        var bgOverlay = document.getElementById('bg-overlay');
+        var savedOv = localStorage.getItem('blog-ov') || 55;
+        var savedCard = localStorage.getItem('blog-card') || 70;
+        var savedBlur = localStorage.getItem('blog-blur') || 16;
+        bgOverlay.style.background = 'rgba(0,0,0,' + (savedOv/100).toFixed(2) + ')';
+        document.querySelectorAll('.project-card').forEach(function(el) {
+            el.style.background = 'rgba(20,20,30,' + (savedCard/100).toFixed(2) + ')';
+            el.style.backdropFilter = 'blur(' + savedBlur + 'px)';
+            el.style.webkitBackdropFilter = 'blur(' + savedBlur + 'px)';
+        });
+
+        marked.setOptions({ breaks: true, gfm: true });
+
+        var slug = new URLSearchParams(window.location.search).get('slug');
+        var headerEl = document.getElementById('project-header');
+        var contentEl = document.getElementById('project-content');
+
+        if (!slug) {
+            headerEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">未指定项目</p><a href="blog.html" class="text-blue-400 hover:underline">返回项目列表</a></div>';
+            contentEl.innerHTML = '';
+        } else {
+            fetch('projects/projects.json?t=' + Date.now())
+                .then(function(r) { return r.json(); })
+                .then(function(projects) {
+                    var project = projects.find(function(p) { return p.slug === slug; });
+                    if (!project) {
+                        headerEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">项目不存在</p><a href="blog.html" class="text-blue-400 hover:underline">返回项目列表</a></div>';
+                        contentEl.innerHTML = '';
+                        return;
+                    }
+
+                    document.title = project.title + ' | 王一止的项目';
+
+                    // 渲染项目头部
+                    var tagColors = {
+                        'Vue3': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+                        'Node.js': 'bg-green-500/20 text-green-400 border-green-500/30',
+                        'MySQL': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+                        'Python': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+                        'React': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+                        'HTML5': 'bg-red-500/20 text-red-400 border-red-500/30',
+                        'TailwindCSS': 'bg-sky-500/20 text-sky-400 border-sky-500/30',
+                        'JavaScript': 'bg-amber-500/20 text-amber-400 border-amber-500/30'
+                    };
+
+                    var statusClass = project.status === '已完成' ? 'status-completed' : (project.status === '开发中' ? 'status-dev' : 'status-planned');
+                    var statusIcon = project.status === '已完成' ? 'fa-check-circle' : (project.status === '开发中' ? 'fa-code' : 'fa-clock');
+
+                    var tagsHtml = (project.tags || []).map(function(tag) {
+                        var cls = tagColors[tag] || 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+                        return '<span class="tag-badge ' + cls + '">' + tag + '</span>';
+                    }).join(' ');
+
+                    var githubBtn = project.github ? '<a href="' + project.github + '" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-violet-600 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all"><i class="fab fa-github"></i> GitHub</a>' : '';
+
+                    headerEl.innerHTML = ''
+                        + '<div class="flex flex-col md:flex-row md:items-start gap-6">'
+                        + '  <div class="flex-1">'
+                        + '    <div class="flex items-center gap-3 mb-3">'
+                        + '      <span class="text-sm px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">' + project.category + '</span>'
+                        + '      <span class="status-badge ' + statusClass + '"><i class="fa ' + statusIcon + '"></i> ' + project.status + '</span>'
+                        + '      <span class="text-sm text-gray-500">' + project.date + '</span>'
+                        + '    </div>'
+                        + '    <h1 class="text-3xl font-bold text-white mb-3">' + project.title + '</h1>'
+                        + '    <p class="text-gray-400 text-lg mb-4">' + project.summary + '</p>'
+                        + '    <div class="flex flex-wrap gap-2 mb-4">' + tagsHtml + '</div>'
+                        + '    ' + githubBtn
+                        + '  </div>'
+                        + '</div>';
+
+                    // 加载 README.md
+                    fetch('projects/' + slug + '/README.md?t=' + Date.now())
+                        .then(function(r) {
+                            if (!r.ok) throw new Error('项目介绍不存在');
+                            return r.text();
+                        })
+                        .then(function(md) {
+                            contentEl.innerHTML = marked.parse(md);
+                            // 加载项目图片
+                            loadProjectImages(slug);
+                        })
+                        .catch(function() {
+                            contentEl.innerHTML = '<p class="text-gray-500 text-center py-8">该项目暂无详细介绍</p>';
+                        });
+                })
+                .catch(function() {
+                    headerEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">项目加载失败</p><a href="blog.html" class="text-blue-400 hover:underline">返回项目列表</a></div>';
+                    contentEl.innerHTML = '';
+                });
+        }
+
+        // 加载项目图片
+        function loadProjectImages(slug) {
+            // 尝试加载项目文件夹中的图片文件
+            var imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
+            var imagesFound = [];
+            var loadedCount = 0;
+            var totalToCheck = imageExtensions.length * 5; // 检查 img-1 到 img-5
+
+            function checkImage(url) {
+                return new Promise(function(resolve) {
+                    var img = new Image();
+                    img.onload = function() {
+                        imagesFound.push(url);
+                        resolve(true);
+                    };
+                    img.onerror = function() {
+                        resolve(false);
+                    };
+                    img.src = url;
+                });
+            }
+
+            // 检查项目文件夹中的图片
+            var checks = [];
+            for (var i = 1; i <= 5; i++) {
+                imageExtensions.forEach(function(ext) {
+                    checks.push(checkImage('projects/' + slug + '/img-' + i + '.' + ext));
+                });
+            }
+
+            Promise.all(checks).then(function() {
+                if (imagesFound.length > 0) {
+                    // 添加图片展示区域
+                    var galleryDiv = document.createElement('div');
+                    galleryDiv.className = 'mt-8 pt-8 border-t border-white/10';
+                    galleryDiv.innerHTML = '<h2 class="text-2xl font-bold text-white mb-6">相关图片</h2>';
+                    
+                    var gridDiv = document.createElement('div');
+                    gridDiv.className = 'grid grid-cols-1 md:grid-cols-2 gap-4';
+                    
+                    imagesFound.forEach(function(imgUrl) {
+                        var imgWrapper = document.createElement('div');
+                        imgWrapper.className = 'glass-card rounded-xl overflow-hidden';
+                        
+                        var img = document.createElement('img');
+                        img.src = imgUrl;
+                        img.className = 'w-full h-auto gallery-img hover:scale-105 transition-all duration-300';
+                        img.alt = '相关图片';
+                        img.onclick = function() { openLightbox(imgUrl); };
+                        
+                        imgWrapper.appendChild(img);
+                        gridDiv.appendChild(imgWrapper);
+                    });
+                    
+                    galleryDiv.appendChild(gridDiv);
+                    contentEl.appendChild(galleryDiv);
+                }
+            });
+        }
+
+        // 打开灯箱
+        function openLightbox(src) {
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭灯箱
+        function closeLightbox() {
+            var lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 点击背景关闭
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // ESC 关闭
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
