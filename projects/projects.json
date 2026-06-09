@@ -1,20 +1,20 @@
 [
     {
-        "slug": "smart-campus-app",
-        "title": "智慧校园助手",
-        "category": "Web应用",
-        "date": "2025-09-15",
-        "tags": ["Vue3", "Node.js", "MySQL"],
-        "summary": "为校园生活打造的一站式服务平台，集成课表查询、成绩管理、图书馆预约等功能。",
+        "slug": "沈师课程表",
+        "title": "沈师课程表",
+        "category": "微信小程序",
+        "date": "2026年6月",
+        "tags": ["JAVA", "小程序", "Vibe Coding","Database"],
+        "summary": "为沈师学子提供课表查询服务",
         "cover": "code",
-        "status": "已完成",
-        "github": "https://github.com/Wzz2333/smart-campus-app"
+        "status": "开发中",
+        "github": ""
     },
     {
         "slug": "物理实验竞赛",
         "title": "基于AI的二维简谐振动轨迹智能分析系统",
-        "category": "物理实验",
-        "date": "2026-05-20",
+        "category": "竞赛",
+        "date": "2026年5月",
         "tags": ["Python", "OpenCV", "AI"],
         "summary": "2026年辽宁省物理实验竞赛",
         "cover": "code",
@@ -24,11 +24,22 @@
     {
         "slug": "花园宝宝-安卓APP",
         "title": "花园宝宝",
-        "category": "安卓APP",
-        "date": "2026-04-15",
+        "category": "竞赛",
+        "date": "2026年4月",
         "tags": ["APP", "JAVA", "安卓"],
         "summary": "一款帮助用户专注学习的安卓APP",
-        "cover": "rocket",
+        "cover": "code",
+        "status": "已完成",
+        "github": ""
+    },
+     {
+        "slug": "计算机博弈竞赛",
+        "title": "计算机博弈",
+        "category": "竞赛",
+        "date": "2026年5月",
+        "tags": ["竞赛", "Python", "算法"],
+        "summary": "辽宁省大学生计算机博弈竞赛",
+        "cover": "code",
         "status": "已完成",
         "github": ""
     }
