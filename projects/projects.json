@@ -42,5 +42,16 @@
         "cover": "code",
         "status": "已完成",
         "github": ""
+    },
+    {
+        "slug": "MarkdownEditor",
+        "title": "MarkdownEditor",
+        "category": "竞赛",
+        "date": "2026年6月",
+        "tags": ["工具", "Java", "前后端开发"],
+        "summary": "做着玩儿的Markdown编辑器",
+        "cover": "code",
+        "status": "已完成",
+        "github": ""
     }
 ]
