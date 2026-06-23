@@ -53,5 +53,16 @@
         "cover": "code",
         "status": "已完成",
         "github": ""
+    },
+    {
+        "slug": "2026-数模竞赛A题",
+        "title": "辽宁冬季冰雪道路图像智能增强",
+        "category": "竞赛",
+        "date": "2026年6月",
+        "tags": ["Python", "OpenCV", "PyTorch", "图像增强"],
+        "summary": "2026辽宁省大学生数学建模竞赛A题，针对冰雪道路监控图像构建增强模型与综合评价体系",
+        "cover": "code",
+        "status": "开发中",
+        "github": ""
     }
 ]
