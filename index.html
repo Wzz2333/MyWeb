@@ -5,18 +5,19 @@
     <meta name="description" content="一个基于 GitHub Pages 部署的现代、美观、响应式静态网站">
     <meta name="keywords" content="GitHub Pages, 静态网站, 响应式设计, Tailwind CSS">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#3b82f6">
+    <meta name="theme-color" content="#0A0E13">
     <title>王一止 | 个人网站</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dark-space-bg text-gray-100">
     <!-- 导航栏 -->
-    <header class="fixed top-0 left-0 right-0 bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-xl z-50 transition-all duration-300 border-b border-white/10 py-4">
+    <header class="fixed top-0 left-0 right-0 bg-[#0A0E13]/95 z-50 transition-all duration-300 border-b border-[#223041] py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">王一止</a>
+            <a href="#" class="text-2xl font-bold text-white">王一止<span class="inline-block w-2 h-2 bg-[#38BDF8] ml-2"></span></a>
             
             <!-- 桌面端导航 -->
             <nav class="hidden md:flex items-center space-x-10">
@@ -24,7 +25,7 @@
                 <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">关于我</a>
                 <a href="#social" class="text-gray-300 hover:text-white transition-colors duration-300">常用链接</a>
                 <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">联系我</a>
-                <a href="blog.html" class="px-5 py-2 bg-gradient-to-r from-blue-600 to-violet-600 rounded-full text-white font-medium hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105 transition-all duration-300">
+                <a href="blog.html" class="px-5 py-2 bg-[#38BDF8] rounded-lg text-[#082F3F] font-medium hover:bg-[#5ECBF8] transition-colors">
                     <i class="fa fa-pencil mr-2" aria-hidden="true"></i>博客
                 </a>
             </nav>
@@ -36,13 +37,13 @@
         </div>
         
         <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-xl border-b border-white/10">
+        <div id="mobile-menu" class="md:hidden hidden bg-[#0A0E13] border-b border-[#223041]">
             <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
                 <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">首页</a>
                 <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">关于我</a>
                 <a href="#social" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">常用链接</a>
                 <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300 py-2">联系我</a>
-                <a href="blog.html" class="py-2 px-4 bg-gradient-to-r from-blue-600 to-violet-600 rounded-full text-white font-medium text-center">
+                <a href="blog.html" class="py-2 px-4 bg-[#38BDF8] rounded-lg text-[#082F3F] font-medium text-center">
                     <i class="fa fa-pencil mr-2" aria-hidden="true"></i>博客
                 </a>
             </div>
@@ -50,48 +51,32 @@
     </header>
 
     <!-- Hero 区 -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pb-56">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-blue-900/20 to-purple-900/25 z-0"></div>
-        <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
-        <div class="container mx-auto px-6 z-10 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
-                王一止
-            </h1>
+    <section id="home" class="min-h-[92vh] flex items-center justify-center relative py-24">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <img src="./sources/head.jpg" alt="个人头像" class="w-24 h-24 rounded-full object-cover mx-auto mb-6 border border-[#223041]">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">王一止<span class="inline-block w-2.5 h-2.5 bg-[#38BDF8] ml-3"></span></h1>
+            <p class="text-gray-400 mb-5">沈阳师范大学 · 电子信息工程 · 大三在读</p>
+            <!-- 时间显示 -->
+            <div id="time-display" class="font-mono text-sm text-gray-500 mb-8 flex flex-wrap justify-center gap-x-4 gap-y-1">
+                <span id="time"></span>
+                <span id="date"></span>
+                <span id="lunar"></span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <a href="blog.html" class="px-5 py-2.5 bg-[#38BDF8] rounded-lg text-[#082F3F] font-medium hover:bg-[#5ECBF8] transition-colors">
+                    <i class="fa fa-pencil mr-2" aria-hidden="true"></i>看博客
+                </a>
+                <a href="#contact" class="px-5 py-2.5 border border-[#223041] rounded-lg text-gray-200 hover:border-[#38BDF8]/70 transition-colors">联系我</a>
+            </div>
             <!-- 中国古典诗词随机显示 -->
-            <div id="poetry-container" class="mb-2 max-w-5xl mx-auto cursor-pointer w-full">
-                <div id="poetry-text" class="transition-all duration-800 ease-out font-[Ziti2]">
-                    <div class="text-4xl md:text-6xl text-center mb-2">
-                        <span class="inline-block transform hover:scale-105 transition-transform">
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">长</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">风</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">破</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">浪</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">会</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">有</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">时</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-2">，</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">直</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">挂</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">云</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1 mr-1">帆</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mr-1">济</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform -translate-y-1 mr-1">沧</span>
-                            <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent transform translate-y-1">海</span>
-                        </span>
-                    </div>
-                    <div class="text-xl md:text-2xl text-center">
-                        <span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">—— 李白</span>
-                    </div>
+            <div id="poetry-container" class="max-w-2xl mx-auto cursor-pointer bg-[#121820] border border-[#223041] rounded-xl px-6 py-7" title="点按换一首">
+                <p class="text-xs font-mono tracking-[0.3em] text-[#D9B36C] mb-4">一 首 诗</p>
+                <div id="poetry-text" class="transition-all duration-500 ease-out poem-serif">
+                    <div class="text-2xl md:text-[28px] leading-relaxed text-center mb-3 text-[#E7ECF1]">长风破浪会有时，直挂云帆济沧海</div>
+                    <div class="text-base text-center text-[#D9B36C]">—— 李白</div>
                 </div>
             </div>
-            <!-- 时间显示 -->
-            <div id="time-display" class="mt-4 mb-6 text-center">
-                <div id="time" class="text-xl md:text-2xl text-gray-300 font-normal"></div>
-                <div id="date" class="text-lg md:text-xl text-gray-400 font-normal mt-1"></div>
-                <div id="lunar" class="text-base md:text-lg text-gray-500 font-normal mt-1"></div>
-            </div>
-            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mb-2"></div>
-            
+
             <script>
                 // 中国古典诗词数组
                 const poetryList = [
@@ -220,33 +205,11 @@
                     setTimeout(() => {
                         const poetry = getRandomPoetry();
                         
-                        // 生成错落有致的文字（古诗部分）
-                        let poemHtml = '<span class="inline-block transform hover:scale-105 transition-transform">';
-                        const poemOffsets = ['-translate-y-1 mr-1', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'mr-2', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'translate-y-1 mr-1', 'mr-1', '-translate-y-1 mr-1', 'translate-y-1'];
-                        
-                        for (let i = 0; i < poetry.text.length; i++) {
-                            const char = poetry.text[i];
-                            const offset = poemOffsets[i] || '';
-                            poemHtml += `<span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent ${offset}">${char}</span>`;
-                        }
-                        
-                        poemHtml += '</span>';
-                        
-                        // 生成作者部分
-                        const authorHtml = `<span class="inline-block bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">—— ${poetry.author}</span>`;
-                        
-                        // 组合完整 HTML
-                        const fullHtml = `
-                            <div class="text-4xl md:text-6xl text-center mb-2">
-                                ${poemHtml}
-                            </div>
-                            <div class="text-xl md:text-2xl text-center">
-                                ${authorHtml}
-                            </div>
-                        `;
-                        
-                        poetryElement.innerHTML = fullHtml;
-                        
+                        // 生成诗句（纯色衬线整句呈现，不再逐字渐变）
+                        const poemHtml = `<div class="text-2xl md:text-[28px] leading-relaxed text-center mb-3 text-[#E7ECF1]">${poetry.text}</div>`;
+                        const authorHtml = `<div class="text-base text-center text-[#D9B36C]">—— ${poetry.author}</div>`;
+                        const fullHtml = poemHtml + authorHtml;
+                                                
                         // 淡入动画
                         poetryElement.style.opacity = '1';
                         poetryElement.style.transform = 'translateY(0)';
@@ -275,15 +238,15 @@
     </section>
 
     <!-- 关于我 / 项目介绍区 -->
-    <section id="about" class="pt-20 pb-32">
+    <section id="about" class="py-[72px]">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">关于我</h2>
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">关于我</h2>
             
             <!-- 初始状态：居中的主卡片 -->
             <div id="about-initial" class="flex justify-center transition-all duration-700 ease-out">
-                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 hover:shadow-blue-500/20 cursor-pointer max-w-lg w-full" id="main-card" onclick="toggleAboutSection();">
+                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full" id="main-card" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
-                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover shadow-xl mb-6 border-2 border-blue-500/30">
+                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
                         沈阳师范大学在校学生
@@ -294,9 +257,9 @@
             <!-- 点击后状态：主卡片左移 + 子卡片 -->
             <div id="about-expanded" class="flex flex-col md:flex-row gap-8 hidden transition-all duration-700 ease-out">
                 <!-- 主卡片 -->
-                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 hover:shadow-blue-500/20 cursor-pointer max-w-lg w-full md:w-1/2" onclick="toggleAboutSection();">
+                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full md:w-1/2" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
-                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover shadow-xl mb-6 border-2 border-blue-500/30">
+                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
                         沈阳师范大学在校学生
@@ -306,25 +269,25 @@
                 <!-- 子卡片容器 -->
                 <div class="md:w-1/2 space-y-6">
                     <!-- 子卡片 1 -->
-                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="document.getElementById('modal-1').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-1').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
                         <h3 class="text-xl font-semibold mb-4 text-white">关于沈阳师范大学</h3>
                         <p class="text-gray-400">点击了解更多关于我的母校</p>
                     </div>
                     
                     <!-- 子卡片 2 -->
-                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="document.getElementById('modal-2').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-2').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
                         <h3 class="text-xl font-semibold mb-4 text-white">关于辽宁沈阳</h3>
                         <p class="text-gray-400">点击了解更多关于我所在的城市</p>
                     </div>
                     
                     <!-- 子卡片 3 -->
-                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="document.getElementById('modal-3').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-3').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
                         <h3 class="text-xl font-semibold mb-4 text-white">关于山东宁阳</h3>
                         <p class="text-gray-400">点击了解更多关于我的家乡</p>
                     </div>
                     
                     <!-- 子卡片 4：我的荣誉 -->
-                    <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/10 cursor-pointer" onclick="openHonorsModal()">
+                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="openHonorsModal()">
                         <h3 class="text-xl font-semibold mb-4 text-white">我的荣誉</h3>
                         <p class="text-gray-400">点击查看我的荣誉奖项</p>
                     </div>
@@ -334,15 +297,15 @@
     </section>
     
     <!-- 模态框 -->
-    <div id="modal-1" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-zinc-900/90 backdrop-blur-2xl rounded-3xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div id="modal-1" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-6">
                 <h3 class="text-2xl font-bold text-white">关于沈阳师范大学</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <img src="./sources/text/SYNU/SYNU.png" alt="沈阳师范大学" class="rounded-2xl w-full h-auto">
+                    <img src="./sources/text/SYNU/SYNU.png" alt="沈阳师范大学" class="rounded-xl w-full h-auto">
                 </div>
                 <div class="space-y-4">
                     <p class="text-gray-300">沈阳师范大学是辽宁省人民政府与教育部共建的一所综合性大学，位于辽宁省沈阳市。学校创建于1951年，是一所历史悠久、学科门类齐全的高等学府。</p>
@@ -353,15 +316,15 @@
         </div>
     </div>
     
-    <div id="modal-2" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-zinc-900/90 backdrop-blur-2xl rounded-3xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div id="modal-2" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-6">
                 <h3 class="text-2xl font-bold text-white">关于辽宁沈阳</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <img src="./sources/text/LiaoNingShenYang/SY.jpeg" alt="辽宁沈阳" class="rounded-2xl w-full h-auto">
+                    <img src="./sources/text/LiaoNingShenYang/SY.jpeg" alt="辽宁沈阳" class="rounded-xl w-full h-auto">
                 </div>
                 <div class="space-y-4">
                     <p class="text-gray-300">沈阳是辽宁省省会，是中国东北地区的经济、文化、交通和商贸中心，也是中国重要的工业基地和历史文化名城。沈阳位于辽河平原中部，地势平坦，气候四季分明。</p>
@@ -372,15 +335,15 @@
         </div>
     </div>
     
-    <div id="modal-3" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-zinc-900/90 backdrop-blur-2xl rounded-3xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div id="modal-3" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-6">
                 <h3 class="text-2xl font-bold text-white">关于山东宁阳</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <img src="./sources/text/NingYang/Ningyang.jpg" alt="山东宁阳" class="rounded-2xl w-full h-auto">
+                    <img src="./sources/text/NingYang/Ningyang.jpg" alt="山东宁阳" class="rounded-xl w-full h-auto">
                 </div>
                 <div class="space-y-4">
                     <p class="text-gray-300">宁阳县位于山东省中部，泰安市南部，是泰安市下辖的一个县。宁阳县历史悠久，文化底蕴深厚，是中国古代文明的重要发祥地之一。</p>
@@ -392,249 +355,200 @@
     </div>
 
     <!-- 常用链接区 -->
-    <section id="social" class="py-32">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 text-white">常用链接</h2>
-            <p class="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
+    <section id="social" class="py-[72px]">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold mb-3 text-white">常用链接</h2>
+            <p class="text-gray-400 mb-12">
                 我常用的网站快捷入口，点击即可访问
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- 网站卡片 1 -->
-                <a href="https://bilibili.com" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fa fa-play-circle text-2xl text-blue-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Bilibili</h3>
-                <p class="text-gray-400 text-sm">
-                    bilibili.com
-                </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            中国领先的年轻人文化社区和视频平台
-                        </div>
-                    </div>
+            <h3 class="flex items-center gap-3 mb-4">
+                <span class="text-sm font-mono tracking-widest text-[#38BDF8]">AI 与工具</span>
+                <span class="text-xs text-gray-600 font-mono">06</span>
+                <span class="flex-1 h-px bg-[#223041]"></span>
+            </h3>
+            <div class="space-y-3 mb-10">
+                <a href="https://grok.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-robot text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">Grok</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">grok.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">由Elon Musk开发的AI对话助手，专注于实时信息和幽默回答</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 网站卡片 2 -->
-                <a href="https://www.douyin.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fab fa-tiktok text-2xl text-white" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">抖音</h3>
-                    <p class="text-gray-400 text-sm">
-                        douyin.com
-                    </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            中国最流行的短视频分享平台
-                        </div>
-                    </div>
+                <a href="https://chatgpt.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-comments text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">ChatGPT</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">chatgpt.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">OpenAI开发的AI对话模型，提供智能问答和创意生成服务</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 网站卡片 3 -->
-                <a href="https://grok.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fa fa-robot text-2xl text-blue-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Grok</h3>
-                    <p class="text-gray-400 text-sm">
-                        grok.com
-                    </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            由Elon Musk开发的AI对话助手，专注于实时信息和幽默回答
-                        </div>
-                    </div>
+                <a href="https://github.com/dashboard" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fab fa-github text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">GitHub</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">github.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">全球最大的代码托管平台，开发者协作工具</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 网站卡片 4 -->
-                <a href="https://webvpn.synu.edu.cn/users/sign_in" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fa fa-university text-2xl text-blue-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">沈阳师范大学 VPN</h3>
-                    <p class="text-gray-400 text-sm">
-                        webvpn.synu.edu.cn
-                    </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            沈阳师范大学校园VPN，用于远程访问校内资源
-                        </div>
-                    </div>
+                <a href="https://pan.baidu.com/disk/main?from=homeFlow&login_type=weixin#/index?category=all" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-cloud text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">百度网盘</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">pan.baidu.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">百度推出的云存储服务，提供文件存储、分享和下载功能</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 网站卡片 5 -->
-                <a href="https://github.com/dashboard" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fab fa-github text-2xl text-blue-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">GitHub</h3>
-                    <p class="text-gray-400 text-sm">
-                        github.com
-                    </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            全球最大的代码托管平台，开发者协作工具
-                        </div>
-                    </div>
+                <a href="https://ikuuu.club/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-globe text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">iKuuu</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">ikuuu.club</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">提供VPN服务，帮助用户安全访问互联网</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 网站卡片 6 -->
-                <a href="https://pan.baidu.com/disk/main?from=homeFlow&login_type=weixin#/index?category=all" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fa fa-cloud text-2xl text-blue-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">百度网盘</h3>
-                    <p class="text-gray-400 text-sm">
-                        pan.baidu.com
-                    </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            百度推出的云存储服务，提供文件存储、分享和下载功能
-                        </div>
-                    </div>
+                <a href="https://mail.qq.com/cgi-bin/frame_html?sid=h4h0VJSTZ1LPVht6&r=d89b0dde6405fd3a3b41a959e79b3460" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-envelope text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">QQ邮箱</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">mail.qq.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">腾讯QQ邮箱，提供邮件收发、文件存储等功能</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 网站卡片 7 -->
-                <a href="https://ikuuu.club/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fa fa-globe text-2xl text-blue-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">iKuuu</h3>
-                    <p class="text-gray-400 text-sm">
-                        ikuuu.club
-                    </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            提供VPN服务，帮助用户安全访问互联网
-                        </div>
-                    </div>
+            </div>
+            <h3 class="flex items-center gap-3 mb-4">
+                <span class="text-sm font-mono tracking-widest text-[#38BDF8]">学习</span>
+                <span class="text-xs text-gray-600 font-mono">03</span>
+                <span class="flex-1 h-px bg-[#223041]"></span>
+            </h3>
+            <div class="space-y-3 mb-10">
+                <a href="https://webvpn.synu.edu.cn/users/sign_in" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-university text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">沈阳师范大学 VPN</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">webvpn.synu.edu.cn</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">沈阳师范大学校园VPN，用于远程访问校内资源</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 网站卡片 8 -->
-                <a href="https://chatgpt.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                        <i class="fa fa-comments text-2xl text-blue-400" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">ChatGPT</h3>
-                    <p class="text-gray-400 text-sm">
-                        chatgpt.com
-                    </p>
-                    <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                            OpenAI开发的AI对话模型，提供智能问答和创意生成服务
-                        </div>
-                    </div>
+                <a href="https://changjiang.yuketang.cn/v2/web/index" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-graduation-cap text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">长江雨课堂</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">changjiang.yuketang.cn</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">在线教育平台，提供课程学习、作业提交等功能</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                
-                <!-- 展开按钮 -->
-                <div class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 flex justify-center pt-8">
-                    <button id="toggle-more-links" class="px-8 py-3 bg-zinc-900/70 backdrop-blur-md border border-gray-700 rounded-xl hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-                        <span>显示更多链接</span>
-                        <i class="fa fa-chevron-down transition-transform duration-300" id="toggle-icon"></i>
-                    </button>
-                </div>
-                
-                <!-- 更多链接 -->
-                <div id="more-links" class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 hidden">
-                    <!-- 更多链接 1 -->
-                    <a href="https://www.google.com/intl/zh-cn/earth/index.html" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                            <i class="fa fa-globe text-2xl text-blue-400" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Google 地球</h3>
-                        <p class="text-gray-400 text-sm">
-                            google.com/earth
-                        </p>
-                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                                世界上最详尽的地球仪，通过卫星图像、3D 建筑与地形图像探索全球
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- 更多链接 2 -->
-                    <a href="https://wallhaven.cc/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                            <i class="fa fa-image text-2xl text-blue-400" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Wallhaven</h3>
-                        <p class="text-gray-400 text-sm">
-                            wallhaven.cc
-                        </p>
-                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                                高质量壁纸分享网站，拥有大量精美壁纸资源
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- 更多链接 3 -->
-                    <a href="https://www.gamer520.com/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                            <i class="fa fa-gamepad text-2xl text-blue-400" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">Gamer520</h3>
-                        <p class="text-gray-400 text-sm">
-                            gamer520.com
-                        </p>
-                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                                游戏资讯网站，提供游戏下载、攻略和最新游戏动态
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- 更多链接 4 -->
-                    <a href="https://changjiang.yuketang.cn/v2/web/index" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                            <i class="fa fa-graduation-cap text-2xl text-blue-400" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">长江雨课堂</h3>
-                        <p class="text-gray-400 text-sm">
-                            changjiang.yuketang.cn
-                        </p>
-                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                                在线教育平台，提供课程学习、作业提交等功能
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- 更多链接 5 -->
-                    <a href="https://www.mcmod.cn/" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                            <i class="fa fa-cube text-2xl text-blue-400" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">MC百科</h3>
-                        <p class="text-gray-400 text-sm">
-                            mcmod.cn
-                        </p>
-                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                                最大的Minecraft中文MOD百科，提供游戏模组信息和教程
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- 更多链接 6 -->
-                    <a href="https://mail.qq.com/cgi-bin/frame_html?sid=h4h0VJSTZ1LPVht6&r=d89b0dde6405fd3a3b41a959e79b3460" target="_blank" class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-zinc-800/70 group relative">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mb-5 group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
-                            <i class="fa fa-envelope text-2xl text-blue-400" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">QQ邮箱</h3>
-                        <p class="text-gray-400 text-sm">
-                            mail.qq.com
-                        </p>
-                        <div class="absolute bottom-full left-0 right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-lg p-3 shadow-lg text-sm text-gray-300">
-                                腾讯QQ邮箱，提供邮件收发、文件存储等功能
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <a href="https://bilibili.com" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-play-circle text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">Bilibili</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">bilibili.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">中国领先的年轻人文化社区和视频平台</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!-- 展开按钮 -->
+            <div class="flex justify-center pt-2 pb-10">
+                <button id="toggle-more-links" class="px-6 py-2.5 bg-[#121820] border border-[#223041] rounded-lg hover:border-[#38BDF8]/70 transition-colors flex items-center gap-2 text-gray-200">
+                    <span>显示更多链接</span>
+                    <i class="fa fa-chevron-down transition-transform duration-300" id="toggle-icon"></i>
+                </button>
+            </div>
+
+            <!-- 更多链接 -->
+            <div id="more-links" class="hidden">
+            <h3 class="flex items-center gap-3 mb-4">
+                <span class="text-sm font-mono tracking-widest text-[#38BDF8]">日常</span>
+                <span class="text-xs text-gray-600 font-mono">05</span>
+                <span class="flex-1 h-px bg-[#223041]"></span>
+            </h3>
+            <div class="space-y-3">
+                <a href="https://www.douyin.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fab fa-tiktok text-xl text-white" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">抖音</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">douyin.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">中国最流行的短视频分享平台</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.google.com/intl/zh-cn/earth/index.html" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-globe text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">Google 地球</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">google.com/earth</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">世界上最详尽的地球仪，通过卫星图像、3D 建筑与地形图像探索全球</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
+                </a>
+                <a href="https://wallhaven.cc/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-image text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">Wallhaven</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">wallhaven.cc</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">高质量壁纸分享网站，拥有大量精美壁纸资源</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.gamer520.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-gamepad text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">Gamer520</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">gamer520.com</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">游戏资讯网站，提供游戏下载、攻略和最新游戏动态</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.mcmod.cn/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                    <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <i class="fa fa-cube text-xl text-[#38BDF8]" aria-hidden="true"></i>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-white font-medium leading-tight">MC百科</span>
+                        <span class="block text-gray-500 text-xs font-mono mt-0.5 truncate">mcmod.cn</span>
+                    </span>
+                    <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">最大的Minecraft中文MOD百科，提供游戏模组信息和教程</span>
+                    <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
+                </a>
+            </div>
             </div>
         </div>
+
     </section>
     
     <script>
@@ -657,85 +571,88 @@
     </script>
 
     <!-- 联系方式区 -->
-    <section id="contact" class="py-32">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl md:text-6xl font-bold text-center mb-20 text-white">联系我</h2>
-            <div class="flex justify-center">
-                <div class="bg-zinc-900/70 backdrop-blur-md rounded-3xl p-10 shadow-2xl max-w-2xl w-full">
-                    <h3 class="text-3xl font-semibold mb-10 text-center text-white">联系方式</h3>
-                    <div class="space-y-10">
-                        <div class="flex items-start">
-                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
-                                <i class="fa fa-envelope text-2xl text-blue-400" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-medium mb-3 text-white">邮箱</h4>
-                                <p class="text-gray-300">1295368207@qq.com</p>
-                                <p class="text-gray-300">wz1295368207@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
-                                <i class="fa fa-map-marker text-2xl text-blue-400" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-medium mb-3 text-white">地址</h4>
-                                <p class="text-gray-300">中国辽宁省沈阳市</p>
-                            </div>
-                        </div>
-                        
-                        <!-- 社交图标 -->
-                        <div class="mt-12">
-                            <h4 class="text-xl font-medium mb-6 text-center text-white">关注我</h4>
-                            <div class="flex flex-wrap justify-center gap-8">
-                                <a href="https://github.com/Wzz2333" target="_blank" class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110">
-                                    <i class="fab fa-github text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
-                                </a>
-                                <a href="https://x.com/WangZhe00331794" target="_blank" class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-twitter text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-hidden="true"></i>
+    <section id="contact" class="py-[72px]">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold mb-3 text-white">联系我</h2>
+            <p class="text-gray-400 mb-12">邮箱是最稳的联系方式，点击邮箱即可复制</p>
+            <div class="bg-[#121820] border border-[#223041] rounded-xl px-6 py-6">
+                <div class="flex flex-col md:flex-row md:items-center gap-8">
+                    <div class="flex-1 space-y-4">
+                        <p class="copy-email flex items-center gap-3 text-gray-200 font-mono text-[15px] cursor-pointer hover:text-[#38BDF8] transition-colors" title="点击复制">
+                            <i class="fa fa-envelope text-[#38BDF8]" aria-hidden="true"></i>1295368207@qq.com
+                        </p>
+                        <p class="copy-email flex items-center gap-3 text-gray-200 font-mono text-[15px] cursor-pointer hover:text-[#38BDF8] transition-colors" title="点击复制">
+                            <i class="fa fa-envelope text-[#38BDF8]" aria-hidden="true"></i>wz1295368207@gmail.com
+                        </p>
+                        <p class="flex items-center gap-3 text-gray-400 text-[15px]">
+                            <i class="fa fa-map-marker text-[#38BDF8]" aria-hidden="true"></i>中国辽宁省沈阳市
+                        </p>
+                    </div>
+                    <!-- 社交图标 -->
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://github.com/Wzz2333" target="_blank" class="w-11 h-11 border border-[#223041] rounded-lg flex items-center justify-center hover:border-[#38BDF8]/70 transition-colors" aria-label="GitHub">
+                            <i class="fab fa-github text-xl text-gray-300" aria-hidden="true"></i>
                         </a>
-                        <a href="https://space.bilibili.com/351313082?spm_id_from=333.1007.0.0" target="_blank" class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-bilibili text-2xl text-blue-400 hover:text-blue-300 transition-colors" aria-hidden="true"></i>
+                        <a href="https://x.com/WangZhe00331794" target="_blank" class="w-11 h-11 border border-[#223041] rounded-lg flex items-center justify-center hover:border-[#38BDF8]/70 transition-colors" aria-label="Twitter/X">
+                            <i class="fab fa-twitter text-xl text-gray-300" aria-hidden="true"></i>
                         </a>
-                                <button 
-                                    class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110"
-                                    onclick="openModal('qq-modal')"
-                                    aria-label="扫码关注我的QQ"
-                                >
-                                    <i class="fab fa-qq text-2xl text-blue-400" aria-hidden="true"></i>
-                                </button>
-                                <button 
-                                    class="w-16 h-16 bg-zinc-800/50 border border-gray-700 rounded-xl flex items-center justify-center hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-110"
-                                    onclick="openModal('tiktok-modal')"
-                                    aria-label="扫码关注我的抖音"
-                                >
-                                    <i class="fab fa-tiktok text-2xl text-white" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
+                        <a href="https://space.bilibili.com/351313082?spm_id_from=333.1007.0.0" target="_blank" class="w-11 h-11 border border-[#223041] rounded-lg flex items-center justify-center hover:border-[#38BDF8]/70 transition-colors" aria-label="Bilibili">
+                            <i class="fab fa-bilibili text-xl text-gray-300" aria-hidden="true"></i>
+                        </a>
+                        <button
+                            class="w-11 h-11 border border-[#223041] rounded-lg flex items-center justify-center hover:border-[#38BDF8]/70 transition-colors"
+                            onclick="openModal('qq-modal')"
+                            aria-label="扫码关注我的QQ"
+                        >
+                            <i class="fab fa-qq text-xl text-gray-300" aria-hidden="true"></i>
+                        </button>
+                        <button
+                            class="w-11 h-11 border border-[#223041] rounded-lg flex items-center justify-center hover:border-[#38BDF8]/70 transition-colors"
+                            onclick="openModal('tiktok-modal')"
+                            aria-label="扫码关注我的抖音"
+                        >
+                            <i class="fab fa-tiktok text-xl text-gray-300" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
+                <p id="copy-tip" class="text-xs text-gray-600 font-mono mt-5 h-4"></p>
             </div>
         </div>
+
     </section>
 
+    <script>
+        // 点击邮箱复制到剪贴板
+        document.querySelectorAll('.copy-email').forEach(function(el) {
+            el.addEventListener('click', function() {
+                const tip = document.getElementById('copy-tip');
+                const addr = el.textContent.trim();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(addr).then(function() {
+                        if (tip) tip.textContent = '已复制：' + addr;
+                    });
+                }
+            });
+        });
+    </script>
+
     <!-- Footer -->
-    <footer class="py-12 bg-gradient-to-t from-black via-zinc-950 to-transparent backdrop-blur-md border-t border-white/10">
+    <footer class="py-12 bg-[#0A0E13] border-t border-[#223041]">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <p class="text-gray-400">© 2026 王一止. 保留所有权利.</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Wzz2333" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="https://github.com/Wzz2333" target="_blank" class="text-gray-400 hover:text-[#38BDF8] transition-colors">
                         <i class="fab fa-github" aria-hidden="true"></i>
                     </a>
-                    <a href="#home" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="#home" class="text-gray-400 hover:text-[#38BDF8] transition-colors">
                         <i class="fa fa-arrow-up" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
-            <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mt-8"></div>
+            <div class="w-full h-px bg-[#223041] mt-8"></div>
             <div class="text-center mt-8">
                 <p class="text-gray-500 text-sm">简约大气 · 现代黑化 · 2026</p>
             </div>
@@ -790,11 +707,11 @@
     <!-- QQ模态框 -->
     <div 
         id="qq-modal" 
-        class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300 ease-out"
+        class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden transition-all duration-300 ease-out"
         aria-modal="true"
         role="dialog"
     >
-        <div class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl transform transition-all duration-300 ease-out scale-90 opacity-0" id="qq-modal-content">
+        <div class="bg-[#121820] border border-[#223041] rounded-xl p-6 max-w-md w-full mx-4 transform transition-all duration-300 ease-out scale-90 opacity-0" id="qq-modal-content">
             <div class="flex justify-end mb-4">
                 <button 
                     class="text-gray-400 hover:text-white text-2xl transition-colors"
@@ -818,11 +735,11 @@
     <!-- 抖音模态框 -->
     <div 
         id="tiktok-modal" 
-        class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300 ease-out"
+        class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden transition-all duration-300 ease-out"
         aria-modal="true"
         role="dialog"
     >
-        <div class="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl transform transition-all duration-300 ease-out scale-90 opacity-0" id="tiktok-modal-content">
+        <div class="bg-[#121820] border border-[#223041] rounded-xl p-6 max-w-md w-full mx-4 transform transition-all duration-300 ease-out scale-90 opacity-0" id="tiktok-modal-content">
             <div class="flex justify-end mb-4">
                 <button 
                     class="text-gray-400 hover:text-white text-2xl transition-colors"
@@ -844,8 +761,8 @@
     </div>
     
     <!-- 我的荣誉模态框 -->
-    <div id="honors-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-zinc-900/95 backdrop-blur-2xl rounded-3xl p-8 max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div id="honors-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
+        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-8">
                 <h3 class="text-2xl font-bold text-white">我的荣誉</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="document.getElementById('honors-modal').classList.add('hidden'); document.body.style.overflow = '';">×</button>
@@ -976,10 +893,10 @@
             
             honorImages.forEach(honor => {
                 const card = document.createElement('div');
-                card.className = 'relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-blue-500/20 cursor-pointer group';
+                card.className = 'relative overflow-hidden rounded-xl   transition-all duration-300 transform   cursor-pointer group';
                 
                 card.innerHTML = `
-                    <img src="${honor.path}" alt="${honor.name}" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="${honor.path}" alt="${honor.name}" class="w-full h-48 object-cover transition-transform duration-500 group-">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
                         <p class="text-white font-medium text-center">${honor.name}</p>
                     </div>
