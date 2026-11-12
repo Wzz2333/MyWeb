@@ -2,8 +2,8 @@
 
 /* 变量定义 */
 :root {
-  --primary-color: #3b82f6;
-  --secondary-color: #8b5cf6;
+  --primary-color: #38bdf8;
+  --secondary-color: #38bdf8;
   --success-color: #10b981;
   --danger-color: #ef4444;
   --light-color: #f3f4f6;
@@ -21,9 +21,10 @@
   font-style: normal;
 }
 
-/* 全局深空渐变背景 */
+/* 全局背景：墨蓝近黑纯色，顶部一层极淡的信号蓝光晕 */
 .dark-space-bg {
-  background: linear-gradient(to bottom, #0a0a0a 0%, #1a1429 40%, #2a1b3d 70%, #0f172a 100%);
+  background-color: #0a0e13;
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(56, 189, 248, 0.08), transparent);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -36,7 +37,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--light-color);
+  background: #0a0e13;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -285,4 +286,9 @@ header.scrolled {
 #post-content input[type="checkbox"] {
   margin-right: 0.5rem;
   accent-color: #3b82f6;
+}
+
+/* 诗词衬线字体（首页新版） */
+.poem-serif {
+  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
 }
