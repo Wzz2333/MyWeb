@@ -8,7 +8,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=20261114">
+    <link rel="stylesheet" href="css/style.css?v=20261114ui">
     <style>
         #bg-video {
             position: fixed; top: 50%; left: 50%;
@@ -72,6 +72,7 @@
     </style>
 </head>
 <body class="text-gray-200 min-h-screen">
+    <div id="read-progress"></div>
     <!-- 背景视频 -->
     <video id="bg-video" autoplay muted loop playsinline>
         <source src="" type="video/mp4">
@@ -120,9 +121,14 @@
     <main class="pt-20 pb-16">
         <div class="container mx-auto px-6 max-w-3xl">
             <div id="post-content" class="article-card rounded-2xl p-8 md:p-12">
-                <div class="text-center py-20">
-                    <div class="animate-spin w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-                    <p class="text-gray-500">加载中...</p>
+                <div class="py-4">
+                    <div class="skeleton h-7 w-3/4 mb-5"></div>
+                    <div class="skeleton h-4 w-32 mb-8"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-2/3 mb-3"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-3/4"></div>
                 </div>
             </div>
         </div>
@@ -141,7 +147,7 @@
         var savedBg = localStorage.getItem('blog-bg') || 0;
         var netInfo = navigator.connection || {};
         var saveTraffic = netInfo.saveData || /2g/.test(netInfo.effectiveType || '');
-        if (!saveTraffic) { bgVideo.src = './sources/video/' + bgVideos[savedBg].file; }
+        if (!saveTraffic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) { bgVideo.src = './sources/video/' + bgVideos[savedBg].file; }
 
         // ========== 透明度调节 ==========
         var ovSlider = document.getElementById('ov-slider');
@@ -199,7 +205,60 @@
         var contentEl = document.getElementById('post-content');
 
         // ========== 文章加载（日记真加密：AES-GCM，浏览器端解密） ==========
-        function renderMarkdown(md) { contentEl.innerHTML = marked.parse(md); }
+        function renderMarkdown(md) {
+            contentEl.innerHTML = marked.parse(md);
+            afterRender();
+        }
+
+        // ========== 阅读增强：目录 + 进度条 + 上下篇 ==========
+        var postNeighbors = null;
+
+        function buildToc() {
+            var hs = contentEl.querySelectorAll('h2, h3');
+            if (hs.length < 2) return;
+            var items = '';
+            hs.forEach(function(h, i) {
+                var id = 'toc-' + i;
+                h.id = id;
+                items += '<a href="#' + id + '"' + (h.tagName === 'H3' ? ' class="toc-h3"' : '') + '>' + h.textContent + '</a>';
+            });
+            var box = document.createElement('div');
+            box.className = 'toc-box';
+            box.innerHTML = '<div class="toc-title">目 录</div>' + items;
+            contentEl.insertBefore(box, contentEl.firstChild);
+        }
+
+        function renderPostNav() {
+            if (!postNeighbors) return;
+            var old = document.getElementById('post-nav');
+            if (old) old.remove();
+            function card(p, label, cls) {
+                if (!p) return '<a class="' + cls + ' disabled" href="#"><div class="pn-label">' + label + '</div><div class="pn-title">没有了</div></a>';
+                return '<a class="' + cls + '" href="post.html?slug=' + encodeURIComponent(p.slug) + '"><div class="pn-label">' + label + '</div><div class="pn-title">' + p.title + '</div></a>';
+            }
+            var nav = document.createElement('div');
+            nav.className = 'post-nav';
+            nav.id = 'post-nav';
+            nav.innerHTML = card(postNeighbors.older, '上一篇', 'prev') + card(postNeighbors.newer, '下一篇', 'next');
+            contentEl.parentNode.appendChild(nav);
+        }
+
+        function updateProgress() {
+            var bar = document.getElementById('read-progress');
+            if (!bar) return;
+            var h = document.documentElement;
+            var total = h.scrollHeight - h.clientHeight;
+            var p = total > 0 ? (h.scrollTop || document.body.scrollTop) / total : 0;
+            bar.style.width = (p * 100).toFixed(1) + '%';
+        }
+
+        function afterRender() {
+            buildToc();
+            renderPostNav();
+            updateProgress();
+        }
+
+        window.addEventListener('scroll', function() { requestAnimationFrame(updateProgress); }, { passive: true });
 
         function showLoadError() {
             contentEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">文章加载失败</p><a href="blog.html" class="text-blue-400 hover:underline">返回博客列表</a></div>';
@@ -279,6 +338,10 @@
                 .then(function(posts) {
                     var post = posts.find(function(p) { return p.slug === slug; });
                     if (post) document.title = post.title + ' | 王一止的博客';
+                    var postIdx = posts.findIndex(function(p) { return p.slug === slug; });
+                    if (postIdx >= 0) {
+                        postNeighbors = { older: posts[postIdx + 1] || null, newer: posts[postIdx - 1] || null };
+                    }
                     if (post && post.locked) {
                         fetch('posts/' + slug + '.md?t=' + Date.now())
                             .then(function(r) {
@@ -298,5 +361,12 @@
                 .catch(function() { renderPost(); });
         }
     </script>
+
+    <!-- 移动端底部导航 -->
+    <nav class="mobile-tabbar">
+        <a href="index.html" data-tab="home"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="blog.html" data-tab="blog" class="active"><i class="fa fa-pen-to-square"></i><span>博客</span></a>
+        <a href="index.html#about" data-tab="about"><i class="fa fa-user"></i><span>关于我</span></a>
+    </nav>
 </body>
 </html>

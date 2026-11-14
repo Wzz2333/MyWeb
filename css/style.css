@@ -287,3 +287,62 @@ header.scrolled {
 .poem-serif {
   font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
 }
+
+/* ===== 移动端底部导航 ===== */
+.mobile-tabbar { display: none; }
+@media (max-width: 767px) {
+    body { padding-bottom: 62px; }
+    .mobile-tabbar {
+        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+        background: rgba(10, 14, 19, 0.97); border-top: 1px solid #223041;
+        padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+        justify-content: space-around;
+    }
+    .mobile-tabbar a {
+        display: flex; flex-direction: column; align-items: center; gap: 2px;
+        color: #8A97A5; font-size: 11px; text-decoration: none; padding: 4px 14px;
+    }
+    .mobile-tabbar a i { font-size: 18px; }
+    .mobile-tabbar a.active { color: #38BDF8; }
+}
+/* ===== 阅读进度条 ===== */
+#read-progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 70;
+    background: linear-gradient(90deg, #38BDF8, #6382ff);
+}
+/* ===== 文章目录 ===== */
+.toc-box {
+    border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+}
+.toc-box .toc-title { font-size: 13px; letter-spacing: 0.2em; color: #9fb3c8; margin-bottom: 10px; }
+.toc-box a { display: block; color: #c7d2dd; text-decoration: none; font-size: 14px; padding: 3px 0; }
+.toc-box a:hover { color: #38BDF8; }
+.toc-box a.toc-h3 { padding-left: 16px; font-size: 13px; color: #93a5b5; }
+#post-content h2, #post-content h3 { scroll-margin-top: 96px; }
+/* ===== 上一篇 / 下一篇 ===== */
+.post-nav { display: flex; gap: 12px; margin-top: 20px; }
+.post-nav a {
+    flex: 1; display: block; min-width: 0;
+    border: 1px solid rgba(255,255,255,0.1); background: rgba(20,20,30,0.7);
+    border-radius: 12px; padding: 14px 18px; color: #c7d2dd; text-decoration: none;
+}
+.post-nav a:hover { border-color: rgba(56,189,248,0.5); }
+.post-nav .pn-label { font-size: 11px; letter-spacing: 0.15em; color: #7d8fa3; margin-bottom: 6px; }
+.post-nav .pn-title { font-size: 14px; color: #E7ECF1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.post-nav a.next { text-align: right; }
+.post-nav a.disabled { opacity: 0.35; pointer-events: none; }
+/* ===== 骨架屏 ===== */
+.skeleton {
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.09) 50%, rgba(255,255,255,0.04) 75%);
+    background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 6px;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+/* ===== 减少动态偏好 ===== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto !important; }
+}

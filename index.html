@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
-    <link rel="stylesheet" href="css/style.css?v=20261114">
+    <link rel="stylesheet" href="css/style.css?v=20261114ui">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
 </head>
 <body class="dark-space-bg text-gray-100">
@@ -80,7 +80,7 @@
             </div>
             <!-- 中国古典诗词随机显示 -->
             <div id="poetry-container" class="max-w-2xl mx-auto cursor-pointer bg-[#121820] border border-[#223041] rounded-xl px-6 py-7" title="点按换一首">
-                <p class="text-xs font-mono tracking-[0.3em] text-[#D9B36C] mb-4">一 首 诗</p>
+                <p class="text-xs font-mono tracking-[0.3em] text-[#D9B36C] mb-4">今 日 一 首</p>
                 <div id="poetry-text" class="transition-all duration-500 ease-out poem-serif">
                     <div class="text-2xl md:text-[28px] leading-relaxed text-center mb-3 text-[#E7ECF1]">长风破浪会有时，直挂云帆济沧海</div>
                     <div class="text-base text-center text-[#D9B36C]">—— 李白</div>
@@ -193,8 +193,15 @@
                     { text: "拣尽寒枝不肯栖，寂寞沙洲冷", author: "苏轼" }
                 ];
                 
-                let currentIndex = 0;
                 let poetryInterval;
+                
+                // 今日一首：按本地日期定下今天的首发诗，同一天谁打开都是这一首
+                function dailyPoetryIndex() {
+                    const now = new Date();
+                    const dayNum = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+                    return (Math.imul(dayNum, 2654435761) >>> 0) % poetryList.length;
+                }
+                let currentIndex = dailyPoetryIndex();
                 
                 function getRandomPoetry() {
                     let newIndex;
@@ -235,12 +242,17 @@
                     clearInterval(poetryInterval);
                 }
                 
-                // 初始启动
-                startPoetryCycle();
+                // 初始启动：先立刻渲染今日一首，再开始轮播
+                (function renderDailyPoetry() {
+                    const poetry = poetryList[currentIndex];
+                    document.getElementById('poetry-text').innerHTML = `<div class="text-2xl md:text-[28px] leading-relaxed text-center mb-3 text-[#E7ECF1]">${poetry.text}</div><div class="text-base text-center text-[#D9B36C]">—— ${poetry.author}</div>`;
+                })();
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (!reduceMotion) startPoetryCycle();
                 
                 // 鼠标悬停暂停
                 document.getElementById('poetry-container').addEventListener('mouseenter', stopPoetryCycle);
-                document.getElementById('poetry-container').addEventListener('mouseleave', startPoetryCycle);
+                document.getElementById('poetry-container').addEventListener('mouseleave', function() { if (!reduceMotion) startPoetryCycle(); });
                 
                 // 点击切换
                 document.getElementById('poetry-container').addEventListener('click', updatePoetry);
@@ -949,5 +961,12 @@
         });
         </script>
     <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- 移动端底部导航 -->
+    <nav class="mobile-tabbar">
+        <a href="index.html" data-tab="home" class="active"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="blog.html" data-tab="blog"><i class="fa fa-pen-to-square"></i><span>博客</span></a>
+        <a href="index.html#about" data-tab="about"><i class="fa fa-user"></i><span>关于我</span></a>
+    </nav>
 </body>
 </html>

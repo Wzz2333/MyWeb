@@ -2,63 +2,42 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="页面未找到 - 404 错误">
-    <meta name="keywords" content="404, 页面未找到, 错误">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#3b82f6">
-    <title>页面未找到 | 404 错误</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="theme-color" content="#0A0E13">
+    <title>页面走丢了 | 王一止</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=20261114">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20261114ui">
+    <style>
+        body { background: #0A0E13; }
+        .poem-serif { font-family: "Noto Serif SC", "Songti SC", "STSong", serif; }
+    </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <!-- 导航栏 -->
-    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-blue-600 dark:text-blue-400">我的网站</a>
-            
-            <!-- 深色模式切换 -->
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
-                <i class="fa fa-sun-o hidden dark:block" aria-hidden="true"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- 404 错误页面 -->
-    <section class="error-404 pt-32 pb-16">
-        <div class="container mx-auto px-4">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">404</h1>
-            <h2 class="text-2xl md:text-3xl mb-8">页面未找到</h2>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl">
-                抱歉，您访问的页面不存在或已被移除。请检查您输入的网址是否正确，或返回首页继续浏览。
-            </p>
-            <a href="index.html" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all transform hover:scale-105">
-                返回首页
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 bg-gray-100 dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <p class="text-gray-600 dark:text-gray-300">© 2026 我的静态网站. 保留所有权利.</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="https://github.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                        <i class="fa fa-github" aria-hidden="true"></i>
-                    </a>
-                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                    </a>
-                </div>
+<body class="text-gray-200 min-h-screen flex flex-col">
+    <main class="flex-1 flex items-center justify-center px-6 py-24">
+        <div class="text-center max-w-xl">
+            <div class="font-mono text-sm tracking-[0.3em] text-[#38BDF8] mb-4">404</div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-6">这一页，走丢了</h1>
+            <p class="poem-serif text-xl md:text-2xl text-[#E7ECF1] leading-relaxed mb-3">山重水复疑无路，柳暗花明又一村</p>
+            <p class="text-sm text-[#D9B36C] mb-10">—— 陆游</p>
+            <p class="text-gray-400 mb-10">你找的页面可能被移动、删除，或者地址打错了。</p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="index.html" class="px-5 py-2.5 bg-[#38BDF8] rounded-lg text-[#082F3F] font-medium hover:bg-[#5ECBF8] transition-colors">
+                    <i class="fa fa-home mr-2" aria-hidden="true"></i>回首页
+                </a>
+                <a href="blog.html" class="px-5 py-2.5 border border-[#223041] rounded-lg text-gray-200 hover:border-[#38BDF8]/70 transition-colors">
+                    <i class="fa fa-pen-to-square mr-2" aria-hidden="true"></i>看博客
+                </a>
             </div>
         </div>
-    </footer>
+    </main>
 
-    <script src="js/main.js"></script>
+    <!-- 移动端底部导航 -->
+    <nav class="mobile-tabbar">
+        <a href="index.html" data-tab="home"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="blog.html" data-tab="blog"><i class="fa fa-pen-to-square"></i><span>博客</span></a>
+        <a href="index.html#about" data-tab="about"><i class="fa fa-user"></i><span>关于我</span></a>
+    </nav>
 </body>
 </html>

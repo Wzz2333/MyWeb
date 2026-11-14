@@ -6,7 +6,8 @@
         "tags": ["日记"],
         "summary": "王二止的日记，已上锁，输入密码查看。",
         "cover": "book",
-        "locked": true
+        "locked": true,
+        "minutes": 2
     },
     {
         "slug": "日记-2026-11-12",
@@ -15,7 +16,8 @@
         "tags": ["日记"],
         "summary": "王二止的日记，已上锁，输入密码查看。",
         "cover": "book",
-        "locked": true
+        "locked": true,
+        "minutes": 5
     },
     {
         "slug": "和AI助手忙活的两天",
@@ -23,7 +25,8 @@
         "date": "2026-11-12",
         "tags": ["日常"],
         "summary": "给 AI 助手起名王二止之后，我俩两天里赶了两个比赛、搭了两个学习小工具、给个人网站做了一次 UI 大改版，中间还抓了它一个 bug。",
-        "cover": "rocket"
+        "cover": "rocket",
+        "minutes": 4
     },
     {
         "slug": "个人网站项目总结",
@@ -31,7 +34,8 @@
         "date": "2026-07-14",
         "tags": ["日常"],
         "summary": "详细介绍个人网站的全部功能模块：Hero区诗词轮播、关于我、常用链接、博客系统、数据驱动设计等，回顾从零到一的搭建过程。",
-        "cover": "code"
+        "cover": "code",
+        "minutes": 10
     },
     {
         "slug": "hello-world",
@@ -39,7 +43,8 @@
         "date": "2026-06-01",
         "tags": ["日常"],
         "summary": "这是我的第一篇博客文章，记录搭建个人网站的心得体会和技术选型思路。",
-        "cover": "code"
+        "cover": "code",
+        "minutes": 1
     },
       {
         "slug": "大二获奖总结",
@@ -47,7 +52,8 @@
         "date": "2026年6月",
         "tags": ["汇总"],
         "summary": "总结大二获奖情况，用于计算综测",
-        "cover": "code"
+        "cover": "code",
+        "minutes": 2
     },
        {
         "slug": "物理科学与技术学院本科学生综合素质测评办法",
@@ -55,7 +61,8 @@
         "date": "2026年6月",
         "tags": ["汇总"],
         "summary": "2024版参考综测评定",
-        "cover": "code"
+        "cover": "code",
+        "minutes": 18
     },
      {
         "slug": "小学期日常",
@@ -63,7 +70,8 @@
         "date": "2026年6月",
         "tags": ["日常"],
         "summary": "吐槽",
-        "cover": "code"
+        "cover": "code",
+        "minutes": 2
     }
     
 ]

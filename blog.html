@@ -10,7 +10,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=20261114">
+    <link rel="stylesheet" href="css/style.css?v=20261114ui">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
     <style>
         /* 视频背景 */
@@ -494,6 +494,12 @@
             document.getElementById('opacity-panel').classList.toggle('open');
         });
 
+        // 减少动态偏好：暂停背景视频自动播放
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var bgv = document.getElementById('bg-video');
+            if (bgv) { bgv.removeAttribute('autoplay'); bgv.pause(); }
+        }
+
         // ========== Tab 切换 ==========
         var currentTab = 'posts';
         document.querySelectorAll('.tab-btn').forEach(function(btn) {
@@ -679,6 +685,7 @@
                 return '<span class="px-2 py-0.5 text-xs rounded-full border ' + getTagClass(tag) + '">' + tag + '</span>';
             }).join('');
             var lockHtml = post.locked ? '<span class="px-2 py-0.5 text-xs rounded-full border bg-amber-500/20 text-amber-300 border-amber-500/30"><i class="fa fa-lock"></i> 已上锁</span>' : '';
+            var minutesHtml = post.minutes ? '<span class="text-xs text-gray-600"><i class="fa fa-clock"></i> 约' + post.minutes + '分钟</span>' : '';
 
             return '<article class="post-item glass-card rounded-xl p-5 cursor-pointer">'
                 + '  <a href="post.html?slug=' + post.slug + '" class="flex flex-col sm:flex-row sm:items-start gap-4">'
@@ -688,7 +695,7 @@
                 + '    <div class="flex-1 min-w-0">'
                 + '      <div class="flex items-center flex-wrap gap-2 mb-2">'
                 +         tagsHtml + lockHtml
-                + '        <span class="text-xs text-gray-600">' + post.date + '</span>'
+                + '        <span class="text-xs text-gray-600">' + post.date + '</span>' + minutesHtml
                 + '      </div>'
                 + '      <h2 class="text-lg font-semibold text-white mb-1.5">' + post.title + '</h2>'
                 + '      <p class="text-gray-500 text-sm line-clamp-2">' + (post.summary || '') + '</p>'
@@ -795,5 +802,12 @@
         <p class="text-xs text-gray-600">本站累计访问 <span id="busuanzi_value_site_pv">-</span> 次 · 访客 <span id="busuanzi_value_site_uv">-</span> 人</p>
     </div>
     <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- 移动端底部导航 -->
+    <nav class="mobile-tabbar">
+        <a href="index.html" data-tab="home"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="blog.html" data-tab="blog" class="active"><i class="fa fa-pen-to-square"></i><span>博客</span></a>
+        <a href="index.html#about" data-tab="about"><i class="fa fa-user"></i><span>关于我</span></a>
+    </nav>
 </body>
 </html>
