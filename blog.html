@@ -8,9 +8,10 @@
     <meta name="theme-color" content="#000000">
     <title>博客 | 王一止</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261114">
+    <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
     <style>
         /* 视频背景 */
         #bg-video {
@@ -429,8 +430,10 @@
             });
         }
 
-        // 初始化背景
-        bgVideo.src = './sources/video/' + bgVideos[currentBg].file;
+        // 初始化背景（省流量模式/慢网络时不加载视频背景，点选背景仍可手动打开）
+        var netInfo = navigator.connection || {};
+        var saveTraffic = netInfo.saveData || /2g/.test(netInfo.effectiveType || '');
+        if (!saveTraffic) { bgVideo.src = './sources/video/' + bgVideos[currentBg].file; }
         renderBgOptions();
 
         // 切换下拉菜单
@@ -698,7 +701,7 @@
             return allPosts.filter(function(post) {
                 var matchFilter = activeFilter === 'all' || (post.tags || []).indexOf(activeFilter) !== -1;
                 var q = searchQuery.toLowerCase();
-                var matchSearch = !q || (post.title || '').toLowerCase().indexOf(q) !== -1 || (post.summary || '').toLowerCase().indexOf(q) !== -1;
+                var matchSearch = !q || (post.title || '').toLowerCase().indexOf(q) !== -1 || (post.summary || '').toLowerCase().indexOf(q) !== -1 || (bodyIndex[post.slug] || '').indexOf(q) !== -1;
                 return matchFilter && matchSearch;
             });
         }
@@ -767,11 +770,30 @@
                 document.getElementById('posts-list').innerHTML = '<div class="text-center py-16"><p class="text-gray-500">文章列表加载失败</p></div>';
             });
 
+        // 全文搜索索引（仅未上锁文章，首次搜索时懒加载）
+        var bodyIndex = {};
+        var bodyIndexStarted = false;
+        function buildBodyIndex() {
+            if (bodyIndexStarted) return;
+            bodyIndexStarted = true;
+            allPosts.filter(function(p) { return !p.locked; }).forEach(function(p) {
+                fetch('posts/' + p.slug + '.md?t=' + Date.now())
+                    .then(function(r) { return r.text(); })
+                    .then(function(t) { bodyIndex[p.slug] = t.toLowerCase(); renderPosts(); })
+                    .catch(function() {});
+            });
+        }
+
         // 搜索
         document.getElementById('search-input').addEventListener('input', function(e) {
             searchQuery = e.target.value;
+            buildBodyIndex();
             renderPosts();
         });
     </script>
+    <div class="text-center pb-10 -mt-2">
+        <p class="text-xs text-gray-600">本站累计访问 <span id="busuanzi_value_site_pv">-</span> 次 · 访客 <span id="busuanzi_value_site_uv">-</span> 人</p>
+    </div>
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>

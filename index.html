@@ -8,10 +8,11 @@
     <meta name="theme-color" content="#0A0E13">
     <title>王一止 | 个人网站</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
-    <link rel="stylesheet" href="css/style.css?v=20261112">
+    <link rel="stylesheet" href="css/style.css?v=20261114">
+    <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
 </head>
 <body class="dark-space-bg text-gray-100">
     <!-- 导航栏 -->
@@ -62,6 +63,15 @@
                 <span id="date"></span>
                 <span id="lunar"></span>
             </div>
+            <div id="tuimian-countdown" class="font-mono text-sm text-[#D9B36C] -mt-4 mb-8"></div>
+            <script>
+                (function() {
+                    var target = new Date('2027-09-21T09:00:00+08:00');
+                    var days = Math.ceil((target - new Date()) / 86400000);
+                    var el = document.getElementById('tuimian-countdown');
+                    if (el && days > 0) el.textContent = '距 2027 推免系统开放（预估）还有 ' + days + ' 天';
+                })();
+            </script>
             <div class="flex flex-wrap justify-center gap-3 mb-12">
                 <a href="blog.html" class="px-5 py-2.5 bg-[#38BDF8] rounded-lg text-[#082F3F] font-medium hover:bg-[#5ECBF8] transition-colors">
                     <i class="fa fa-pencil mr-2" aria-hidden="true"></i>看博客
@@ -250,7 +260,7 @@
                         <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
-                        沈阳师范大学在校学生
+                        沈阳师范大学电子信息工程专业大三在读，正在为推免努力
                     </p>
                 </div>
             </div>
@@ -263,7 +273,7 @@
                         <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
-                        沈阳师范大学在校学生
+                        沈阳师范大学电子信息工程专业大三在读，正在为推免努力
                     </p>
                 </div>
                 
@@ -656,6 +666,7 @@
             <div class="w-full h-px bg-[#223041] mt-8"></div>
             <div class="text-center mt-8">
                 <p class="text-gray-500 text-sm">简约大气 · 现代黑化 · 2026</p>
+                <p class="text-gray-600 text-xs mt-2">本站累计访问 <span id="busuanzi_value_site_pv">-</span> 次 · 访客 <span id="busuanzi_value_site_uv">-</span> 人</p>
             </div>
         </div>
     </footer>
@@ -937,5 +948,6 @@
             }
         });
         </script>
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>

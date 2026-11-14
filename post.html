@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#000000">
     <title>文章 | 王一止的博客</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261114">
     <style>
         #bg-video {
             position: fixed; top: 50%; left: 50%;
@@ -139,7 +139,9 @@
         ];
         var bgVideo = document.getElementById('bg-video');
         var savedBg = localStorage.getItem('blog-bg') || 0;
-        bgVideo.src = './sources/video/' + bgVideos[savedBg].file;
+        var netInfo = navigator.connection || {};
+        var saveTraffic = netInfo.saveData || /2g/.test(netInfo.effectiveType || '');
+        if (!saveTraffic) { bgVideo.src = './sources/video/' + bgVideos[savedBg].file; }
 
         // ========== 透明度调节 ==========
         var ovSlider = document.getElementById('ov-slider');
@@ -196,8 +198,12 @@
         var slug = new URLSearchParams(window.location.search).get('slug');
         var contentEl = document.getElementById('post-content');
 
-        // ========== 文章加载（带日记上锁） ==========
-        var DIARY_PASSWORD = '0503';
+        // ========== 文章加载（日记真加密：AES-GCM，浏览器端解密） ==========
+        function renderMarkdown(md) { contentEl.innerHTML = marked.parse(md); }
+
+        function showLoadError() {
+            contentEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">文章加载失败</p><a href="blog.html" class="text-blue-400 hover:underline">返回博客列表</a></div>';
+        }
 
         function renderPost() {
             fetch('posts/' + slug + '.md?t=' + Date.now())
@@ -205,17 +211,37 @@
                     if (!r.ok) throw new Error('文章不存在');
                     return r.text();
                 })
-                .then(function(md) { contentEl.innerHTML = marked.parse(md); })
-                .catch(function() {
-                    contentEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">文章加载失败</p><a href="blog.html" class="text-blue-400 hover:underline">返回博客列表</a></div>';
-                });
+                .then(renderMarkdown)
+                .catch(showLoadError);
         }
 
-        function showLock(post) {
+        function parseEncrypted(text) {
+            var m = text.match(/-----BEGIN ENCRYPTED POST-----\s*([\s\S]*?)\s*-----END ENCRYPTED POST-----/);
+            if (!m) return null;
+            try { return JSON.parse(m[1]); } catch (e) { return null; }
+        }
+
+        function b64ToBytes(b64) {
+            var bin = atob(b64);
+            var bytes = new Uint8Array(bin.length);
+            for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+            return bytes;
+        }
+
+        async function decryptWithPassword(payload, pw) {
+            var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+            var key = await crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt: b64ToBytes(payload.salt), iterations: payload.iter, hash: 'SHA-256' },
+                base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+            var plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBytes(payload.iv) }, key, b64ToBytes(payload.data));
+            return new TextDecoder().decode(plain);
+        }
+
+        function showLock(post, payload) {
             contentEl.innerHTML = '<div class="text-center py-16">'
                 + '<div class="text-5xl mb-5" style="color:#D9B36C"><i class="fa fa-lock"></i></div>'
                 + '<h1 class="text-2xl font-bold text-white mb-3">' + post.title + '</h1>'
-                + '<p class="text-gray-400 mb-8">这是王二止的日记，已上锁，输入密码查看。</p>'
+                + '<p class="text-gray-400 mb-8">这是王二止的日记，内容已加密，输入密码查看。</p>'
                 + '<div class="flex justify-center gap-2 max-w-xs mx-auto">'
                 + '<input id="lock-pw" type="password" inputmode="numeric" autocomplete="off" placeholder="输入密码" class="flex-1 min-w-0 bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-center text-white tracking-[0.3em] focus:outline-none focus:border-blue-400">'
                 + '<button id="lock-btn" class="px-5 py-2.5 bg-blue-500 hover:bg-blue-400 text-white rounded-lg transition-colors">解锁</button>'
@@ -223,18 +249,26 @@
                 + '<p id="lock-err" class="text-red-400 text-sm mt-4" style="display:none">密码不对，再想想。</p>'
                 + '</div>';
             var input = document.getElementById('lock-pw');
-            function tryUnlock() {
-                if (input.value === DIARY_PASSWORD) {
-                    sessionStorage.setItem('diaryUnlocked', '1');
-                    renderPost();
-                } else {
-                    document.getElementById('lock-err').style.display = 'block';
-                    input.select();
+            var errEl = document.getElementById('lock-err');
+            async function tryUnlock(pw, silent) {
+                try {
+                    var md = await decryptWithPassword(payload, pw);
+                    sessionStorage.setItem('diaryPw', pw);
+                    renderMarkdown(md);
+                    return true;
+                } catch (e) {
+                    if (!silent) { errEl.style.display = 'block'; input.select(); }
+                    return false;
                 }
             }
-            document.getElementById('lock-btn').addEventListener('click', tryUnlock);
-            input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryUnlock(); });
-            input.focus();
+            document.getElementById('lock-btn').addEventListener('click', function() { tryUnlock(input.value, false); });
+            input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryUnlock(input.value, false); });
+            var saved = sessionStorage.getItem('diaryPw');
+            if (saved) {
+                tryUnlock(saved, true).then(function(ok) { if (!ok) { sessionStorage.removeItem('diaryPw'); input.focus(); } });
+            } else {
+                input.focus();
+            }
         }
 
         if (!slug) {
@@ -244,14 +278,22 @@
                 .then(function(r) { return r.json(); })
                 .then(function(posts) {
                     var post = posts.find(function(p) { return p.slug === slug; });
-                    if (post) {
-                        document.title = post.title + ' | 王一止的博客';
-                        if (post.locked && sessionStorage.getItem('diaryUnlocked') !== '1') {
-                            showLock(post);
-                            return;
-                        }
+                    if (post) document.title = post.title + ' | 王一止的博客';
+                    if (post && post.locked) {
+                        fetch('posts/' + slug + '.md?t=' + Date.now())
+                            .then(function(r) {
+                                if (!r.ok) throw new Error('文章不存在');
+                                return r.text();
+                            })
+                            .then(function(text) {
+                                var payload = parseEncrypted(text);
+                                if (payload) showLock(post, payload);
+                                else renderMarkdown(text);
+                            })
+                            .catch(showLoadError);
+                    } else {
+                        renderPost();
                     }
-                    renderPost();
                 })
                 .catch(function() { renderPost(); });
         }
