@@ -196,16 +196,10 @@
         var slug = new URLSearchParams(window.location.search).get('slug');
         var contentEl = document.getElementById('post-content');
 
-        if (!slug) {
-            contentEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">未指定文章</p><a href="blog.html" class="text-blue-400 hover:underline">返回博客列表</a></div>';
-        } else {
-            fetch('posts/posts.json?t=' + Date.now())
-                .then(function(r) { return r.json(); })
-                .then(function(posts) {
-                    var post = posts.find(function(p) { return p.slug === slug; });
-                    if (post) document.title = post.title + ' | 王一止的博客';
-                });
+        // ========== 文章加载（带日记上锁） ==========
+        var DIARY_PASSWORD = '0503';
 
+        function renderPost() {
             fetch('posts/' + slug + '.md?t=' + Date.now())
                 .then(function(r) {
                     if (!r.ok) throw new Error('文章不存在');
@@ -215,6 +209,51 @@
                 .catch(function() {
                     contentEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">文章加载失败</p><a href="blog.html" class="text-blue-400 hover:underline">返回博客列表</a></div>';
                 });
+        }
+
+        function showLock(post) {
+            contentEl.innerHTML = '<div class="text-center py-16">'
+                + '<div class="text-5xl mb-5" style="color:#D9B36C"><i class="fa fa-lock"></i></div>'
+                + '<h1 class="text-2xl font-bold text-white mb-3">' + post.title + '</h1>'
+                + '<p class="text-gray-400 mb-8">这是王二止的日记，已上锁，输入密码查看。</p>'
+                + '<div class="flex justify-center gap-2 max-w-xs mx-auto">'
+                + '<input id="lock-pw" type="password" inputmode="numeric" autocomplete="off" placeholder="输入密码" class="flex-1 min-w-0 bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-center text-white tracking-[0.3em] focus:outline-none focus:border-blue-400">'
+                + '<button id="lock-btn" class="px-5 py-2.5 bg-blue-500 hover:bg-blue-400 text-white rounded-lg transition-colors">解锁</button>'
+                + '</div>'
+                + '<p id="lock-err" class="text-red-400 text-sm mt-4" style="display:none">密码不对，再想想。</p>'
+                + '</div>';
+            var input = document.getElementById('lock-pw');
+            function tryUnlock() {
+                if (input.value === DIARY_PASSWORD) {
+                    sessionStorage.setItem('diaryUnlocked', '1');
+                    renderPost();
+                } else {
+                    document.getElementById('lock-err').style.display = 'block';
+                    input.select();
+                }
+            }
+            document.getElementById('lock-btn').addEventListener('click', tryUnlock);
+            input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryUnlock(); });
+            input.focus();
+        }
+
+        if (!slug) {
+            contentEl.innerHTML = '<div class="text-center py-16"><p class="text-gray-500 mb-3">未指定文章</p><a href="blog.html" class="text-blue-400 hover:underline">返回博客列表</a></div>';
+        } else {
+            fetch('posts/posts.json?t=' + Date.now())
+                .then(function(r) { return r.json(); })
+                .then(function(posts) {
+                    var post = posts.find(function(p) { return p.slug === slug; });
+                    if (post) {
+                        document.title = post.title + ' | 王一止的博客';
+                        if (post.locked && sessionStorage.getItem('diaryUnlocked') !== '1') {
+                            showLock(post);
+                            return;
+                        }
+                    }
+                    renderPost();
+                })
+                .catch(function() { renderPost(); });
         }
     </script>
 </body>

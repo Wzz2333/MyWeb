@@ -675,6 +675,7 @@
             var tagsHtml = (post.tags || []).map(function(tag) {
                 return '<span class="px-2 py-0.5 text-xs rounded-full border ' + getTagClass(tag) + '">' + tag + '</span>';
             }).join('');
+            var lockHtml = post.locked ? '<span class="px-2 py-0.5 text-xs rounded-full border bg-amber-500/20 text-amber-300 border-amber-500/30"><i class="fa fa-lock"></i> 已上锁</span>' : '';
 
             return '<article class="post-item glass-card rounded-xl p-5 cursor-pointer">'
                 + '  <a href="post.html?slug=' + post.slug + '" class="flex flex-col sm:flex-row sm:items-start gap-4">'
@@ -683,7 +684,7 @@
                 + '    </div>'
                 + '    <div class="flex-1 min-w-0">'
                 + '      <div class="flex items-center flex-wrap gap-2 mb-2">'
-                +         tagsHtml
+                +         tagsHtml + lockHtml
                 + '        <span class="text-xs text-gray-600">' + post.date + '</span>'
                 + '      </div>'
                 + '      <h2 class="text-lg font-semibold text-white mb-1.5">' + post.title + '</h2>'
