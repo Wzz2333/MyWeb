@@ -446,3 +446,47 @@ header.scrolled {
 
 /* 次要文字提亮（覆盖 tailwind 的 text-gray-500） */
 .text-gray-500 { color: #8fa1b3; }
+
+/* 全站玻璃卡：统一半透明毛玻璃（覆盖原实心底色） */
+.glass-card {
+  background: linear-gradient(160deg, rgba(24, 30, 40, 0.55), rgba(12, 17, 24, 0.45)) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+/* 章节标题装饰：信号蓝→暖金竖线 + 编号 */
+.sec-title { display: flex; align-items: center; gap: 0.65rem; }
+.sec-title.sec-center { justify-content: center; }
+.sec-title::before { content: ''; flex-shrink: 0; width: 4px; height: 1.05em; border-radius: 2px; background: linear-gradient(180deg, #38bdf8, #d9b36c); box-shadow: 0 0 10px rgba(56, 189, 248, 0.45); }
+.sec-title::after { content: attr(data-num); font-size: 0.42em; font-weight: 600; letter-spacing: 0.3em; color: rgba(56, 189, 248, 0.75); }
+/* 板块滚动淡入 */
+.reveal-init { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-init.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal-init { opacity: 1; transform: none; transition: none; } }
+/* 回到顶部按钮（与音乐按钮同款玻璃圆钮，居右） */
+#to-top {
+  position: fixed; right: 16px; bottom: 84px; z-index: 70;
+  width: 48px; height: 48px; border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: #7dd3fc; cursor: pointer;
+  background: rgba(15, 21, 29, 0.55);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 14px rgba(56, 189, 248, 0.12);
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.25s ease, color 0.25s ease;
+}
+#to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+#to-top:hover { border-color: rgba(56, 189, 248, 0.75); color: #bae6fd; }
+@media (min-width: 768px) { #to-top { bottom: 24px; } }
+/* 分享提示 toast */
+#share-toast {
+  position: fixed; left: 50%; bottom: 150px; z-index: 80;
+  transform: translateX(-50%) translateY(10px);
+  padding: 0.6rem 1.1rem; border-radius: 9999px;
+  background: rgba(15, 21, 29, 0.85);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.4); color: #e0f2fe; font-size: 0.85rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#share-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (min-width: 768px) { #share-toast { bottom: 96px; } }

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
-    <link rel="stylesheet" href="css/style.css?v=20261123nx">
+    <link rel="stylesheet" href="css/style.css?v=20261123ui">
     <link rel="stylesheet" href="sources/player/APlayer.min.css">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
 </head>
@@ -76,9 +76,10 @@
                     <i class="fa fa-pencil mr-2" aria-hidden="true"></i>看博客
                 </a>
                 <a href="#contact" class="px-5 py-2.5 border border-[#223041] rounded-lg text-gray-200 hover:border-[#38BDF8]/70 transition-colors">联系我</a>
+                <button id="share-btn" type="button" class="px-5 py-2.5 border border-[#223041] rounded-lg text-gray-200 hover:border-[#38BDF8]/70 transition-colors"><i class="fa fa-share-nodes mr-2" aria-hidden="true"></i>分享</button>
             </div>
             <!-- 中国古典诗词随机显示 -->
-            <div id="poetry-container" class="max-w-2xl mx-auto cursor-pointer bg-[#121820] border border-[#223041] rounded-xl px-6 py-7" title="点按换一首">
+            <div id="poetry-container" class="max-w-2xl mx-auto cursor-pointer glass-card border border-[#223041] rounded-xl px-6 py-7" title="点按换一首">
                 <p class="text-xs font-mono tracking-[0.3em] text-[#D9B36C] mb-4">今 日 一 首</p>
                 <div id="poetry-text" class="transition-all duration-500 ease-out poem-serif">
                     <div class="text-2xl md:text-[28px] leading-relaxed text-center mb-3 text-[#E7ECF1]">长风破浪会有时，直挂云帆济沧海</div>
@@ -260,13 +261,13 @@
     </section>
 
     <!-- 关于我 / 项目介绍区 -->
-    <section id="about" class="py-[72px]">
+    <section id="about" class="reveal py-[72px]">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12 text-white">关于我</h2>
+            <h2 class="text-3xl font-bold text-center mb-12 text-white sec-title sec-center" data-num="01">关于我</h2>
             
             <!-- 初始状态：居中的主卡片 -->
             <div id="about-initial" class="flex justify-center transition-all duration-700 ease-out">
-                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full glass-card" id="main-card" onclick="toggleAboutSection();">
+                <div class="glass-card border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full glass-card" id="main-card" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
                         <img src="./sources/head.webp?v=20261123" alt="个人头像" class="avatar-glow w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
@@ -279,7 +280,7 @@
             <!-- 点击后状态：主卡片左移 + 子卡片 -->
             <div id="about-expanded" class="flex flex-col md:flex-row gap-8 hidden transition-all duration-700 ease-out">
                 <!-- 主卡片 -->
-                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full md:w-1/2 glass-card" onclick="toggleAboutSection();">
+                <div class="glass-card border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full md:w-1/2 glass-card" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
                         <img src="./sources/head.webp?v=20261123" alt="个人头像" class="avatar-glow w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
@@ -291,25 +292,25 @@
                 <!-- 子卡片容器 -->
                 <div class="md:w-1/2 space-y-6">
                     <!-- 子卡片 1 -->
-                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-1').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                    <div class="glass-card border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-1').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
                         <h3 class="text-xl font-semibold mb-4 text-white">关于沈阳师范大学</h3>
                         <p class="text-gray-400">点击了解更多关于我的母校</p>
                     </div>
                     
                     <!-- 子卡片 2 -->
-                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-2').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                    <div class="glass-card border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-2').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
                         <h3 class="text-xl font-semibold mb-4 text-white">关于辽宁沈阳</h3>
                         <p class="text-gray-400">点击了解更多关于我所在的城市</p>
                     </div>
                     
                     <!-- 子卡片 3 -->
-                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-3').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
+                    <div class="glass-card border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="document.getElementById('modal-3').classList.remove('hidden'); document.body.style.overflow = 'hidden';">
                         <h3 class="text-xl font-semibold mb-4 text-white">关于山东宁阳</h3>
                         <p class="text-gray-400">点击了解更多关于我的家乡</p>
                     </div>
                     
                     <!-- 子卡片 4：我的荣誉 -->
-                    <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="openHonorsModal()">
+                    <div class="glass-card border border-[#223041] rounded-xl p-8 transition-all duration-300 transform cursor-pointer" onclick="openHonorsModal()">
                         <h3 class="text-xl font-semibold mb-4 text-white">我的荣誉</h3>
                         <p class="text-gray-400">点击查看我的荣誉奖项</p>
                     </div>
@@ -320,7 +321,7 @@
     
     <!-- 模态框 -->
     <div id="modal-1" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="glass-card border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-6">
                 <h3 class="text-2xl font-bold text-white">关于沈阳师范大学</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
@@ -339,7 +340,7 @@
     </div>
     
     <div id="modal-2" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="glass-card border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-6">
                 <h3 class="text-2xl font-bold text-white">关于辽宁沈阳</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
@@ -358,7 +359,7 @@
     </div>
     
     <div id="modal-3" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="glass-card border border-[#223041] rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-6">
                 <h3 class="text-2xl font-bold text-white">关于山东宁阳</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="this.closest('[id^=modal-]').classList.add('hidden'); document.body.style.overflow = '';">×</button>
@@ -377,9 +378,9 @@
     </div>
 
     <!-- 常用链接区 -->
-    <section id="social" class="py-[72px]">
+    <section id="social" class="reveal py-[72px]">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-3xl font-bold mb-3 text-white">常用链接</h2>
+            <h2 class="text-3xl font-bold mb-3 text-white sec-title" data-num="02">常用链接</h2>
             <p class="text-gray-400 mb-12">
                 我常用的网站快捷入口，点击即可访问
             </p>
@@ -389,7 +390,7 @@
                 <span class="flex-1 h-px bg-[#223041]"></span>
             </h3>
             <div class="space-y-3 mb-10">
-                <a href="https://wzz2333.github.io/xiangqi-game/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://wzz2333.github.io/xiangqi-game/" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-chess text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -407,7 +408,7 @@
                 <span class="flex-1 h-px bg-[#223041]"></span>
             </h3>
             <div class="space-y-3 mb-10">
-                <a href="https://grok.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://grok.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-robot text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -418,7 +419,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">由Elon Musk开发的AI对话助手，专注于实时信息和幽默回答</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://chatgpt.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://chatgpt.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-comments text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -429,7 +430,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">OpenAI开发的AI对话模型，提供智能问答和创意生成服务</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://github.com/dashboard" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://github.com/dashboard" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fab fa-github text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -440,7 +441,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">全球最大的代码托管平台，开发者协作工具</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://pan.baidu.com/disk/main?from=homeFlow&login_type=weixin#/index?category=all" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://pan.baidu.com/disk/main?from=homeFlow&login_type=weixin#/index?category=all" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-cloud text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -451,7 +452,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">百度推出的云存储服务，提供文件存储、分享和下载功能</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://mail.qq.com/cgi-bin/frame_html?sid=h4h0VJSTZ1LPVht6&r=d89b0dde6405fd3a3b41a959e79b3460" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://mail.qq.com/cgi-bin/frame_html?sid=h4h0VJSTZ1LPVht6&r=d89b0dde6405fd3a3b41a959e79b3460" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-envelope text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -469,7 +470,7 @@
                 <span class="flex-1 h-px bg-[#223041]"></span>
             </h3>
             <div class="space-y-3 mb-10">
-                <a href="https://webvpn.synu.edu.cn/users/sign_in" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://webvpn.synu.edu.cn/users/sign_in" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-university text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -480,7 +481,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">沈阳师范大学校园VPN，用于远程访问校内资源</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://changjiang.yuketang.cn/v2/web/index" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://changjiang.yuketang.cn/v2/web/index" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-graduation-cap text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -491,7 +492,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">在线教育平台，提供课程学习、作业提交等功能</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://bilibili.com" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://bilibili.com" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-play-circle text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -505,7 +506,7 @@
             </div>
             <!-- 展开按钮 -->
             <div class="flex justify-center pt-2 pb-10">
-                <button id="toggle-more-links" class="px-6 py-2.5 bg-[#121820] border border-[#223041] rounded-lg hover:border-[#38BDF8]/70 transition-colors flex items-center gap-2 text-gray-200">
+                <button id="toggle-more-links" class="px-6 py-2.5 glass-card border border-[#223041] rounded-lg hover:border-[#38BDF8]/70 transition-colors flex items-center gap-2 text-gray-200">
                     <span>显示更多链接</span>
                     <i class="fa fa-chevron-down transition-transform duration-300" id="toggle-icon"></i>
                 </button>
@@ -519,7 +520,7 @@
                 <span class="flex-1 h-px bg-[#223041]"></span>
             </h3>
             <div class="space-y-3">
-                <a href="https://www.douyin.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://www.douyin.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fab fa-tiktok text-xl text-white" aria-hidden="true"></i>
                     </span>
@@ -530,7 +531,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">中国最流行的短视频分享平台</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.google.com/intl/zh-cn/earth/index.html" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://www.google.com/intl/zh-cn/earth/index.html" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-globe text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -541,7 +542,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">世界上最详尽的地球仪，通过卫星图像、3D 建筑与地形图像探索全球</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://wallhaven.cc/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://wallhaven.cc/" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-image text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -552,7 +553,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">高质量壁纸分享网站，拥有大量精美壁纸资源</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.gamer520.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://www.gamer520.com/" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-gamepad text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -563,7 +564,7 @@
                     <span class="hidden md:block text-gray-400 text-sm truncate max-w-[38%]">游戏资讯网站，提供游戏下载、攻略和最新游戏动态</span>
                     <i class="fa fa-arrow-right text-gray-600 group-hover:text-[#38BDF8] transition-colors flex-shrink-0" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.mcmod.cn/" target="_blank" class="flex items-center gap-4 px-4 py-3 bg-[#121820] border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
+                <a href="https://www.mcmod.cn/" target="_blank" class="flex items-center gap-4 px-4 py-3 glass-card border border-[#223041] rounded-xl hover:border-[#38BDF8]/70 transition-colors group">
                     <span class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
                         <i class="fa fa-cube text-xl text-[#38BDF8]" aria-hidden="true"></i>
                     </span>
@@ -600,11 +601,11 @@
     </script>
 
     <!-- 联系方式区 -->
-    <section id="contact" class="py-[72px]">
+    <section id="contact" class="reveal py-[72px]">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-3xl font-bold mb-3 text-white">联系我</h2>
+            <h2 class="text-3xl font-bold mb-3 text-white sec-title" data-num="03">联系我</h2>
             <p class="text-gray-400 mb-12">邮箱是最稳的联系方式，点击邮箱即可复制</p>
-            <div class="bg-[#121820] border border-[#223041] rounded-xl px-6 py-6">
+            <div class="glass-card border border-[#223041] rounded-xl px-6 py-6">
                 <div class="flex flex-col md:flex-row md:items-center gap-8">
                     <div class="flex-1 space-y-4">
                         <p class="copy-email flex items-center gap-3 text-gray-200 font-mono text-[15px] cursor-pointer hover:text-[#38BDF8] transition-colors" title="点击复制">
@@ -742,7 +743,7 @@
         aria-modal="true"
         role="dialog"
     >
-        <div class="bg-[#121820] border border-[#223041] rounded-xl p-6 max-w-md w-full mx-4 transform transition-all duration-300 ease-out scale-90 opacity-0" id="qq-modal-content">
+        <div class="glass-card border border-[#223041] rounded-xl p-6 max-w-md w-full mx-4 transform transition-all duration-300 ease-out scale-90 opacity-0" id="qq-modal-content">
             <div class="flex justify-end mb-4">
                 <button 
                     class="text-gray-400 hover:text-white text-2xl transition-colors"
@@ -770,7 +771,7 @@
         aria-modal="true"
         role="dialog"
     >
-        <div class="bg-[#121820] border border-[#223041] rounded-xl p-6 max-w-md w-full mx-4 transform transition-all duration-300 ease-out scale-90 opacity-0" id="tiktok-modal-content">
+        <div class="glass-card border border-[#223041] rounded-xl p-6 max-w-md w-full mx-4 transform transition-all duration-300 ease-out scale-90 opacity-0" id="tiktok-modal-content">
             <div class="flex justify-end mb-4">
                 <button 
                     class="text-gray-400 hover:text-white text-2xl transition-colors"
@@ -793,7 +794,7 @@
     
     <!-- 我的荣誉模态框 -->
     <div id="honors-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="if (event.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }">
-        <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="glass-card border border-[#223041] rounded-xl p-8 max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-8">
                 <h3 class="text-2xl font-bold text-white">我的荣誉</h3>
                 <button class="close-modal text-gray-400 hover:text-white text-2xl" onclick="document.getElementById('honors-modal').classList.add('hidden'); document.body.style.overflow = '';">×</button>
@@ -1106,6 +1107,8 @@
         requestAnimationFrame(frame);
     })();
     </script>
+    <div id="share-toast" role="status">链接已复制，去粘贴分享吧</div>
+    <button id="to-top" type="button" aria-label="回到顶部"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
     <button id="music-fab" type="button" aria-label="打开音乐台" aria-expanded="false"><i class="fa fa-music" aria-hidden="true"></i></button>
     <div id="music-panel" hidden>
         <div class="mp-head"><span><i class="fa fa-music" aria-hidden="true"></i> 音乐台</span><button id="music-close" type="button" aria-label="关闭音乐台"><i class="fa fa-times" aria-hidden="true"></i></button></div>
@@ -1226,5 +1229,41 @@
     })();
     </script>
 
+    <script>
+    /* 网站小件：分享按钮、回到顶部、板块滚动淡入 */
+    (function () {
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var toastTimer = null;
+        function showToast() {
+            var t = document.getElementById('share-toast');
+            if (!t) return;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+        }
+        var shareBtn = document.getElementById('share-btn');
+        if (shareBtn) shareBtn.addEventListener('click', function () {
+            var payload = { title: document.title, text: '王一止的个人网站', url: location.href };
+            if (navigator.share) { navigator.share(payload).catch(function () {}); }
+            else if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(location.href).then(showToast, showToast); }
+            else { showToast(); }
+        });
+        var toTop = document.getElementById('to-top');
+        if (toTop) {
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 600) toTop.classList.add('show'); else toTop.classList.remove('show');
+            }, { passive: true });
+            toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); });
+        }
+        var els = document.querySelectorAll('.reveal');
+        if (els.length && 'IntersectionObserver' in window && !reduced) {
+            els.forEach(function (el) { el.classList.add('reveal-init'); });
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+            }, { threshold: 0.06 });
+            els.forEach(function (el) { io.observe(el); });
+        }
+    })();
+    </script>
 </body>
 </html>

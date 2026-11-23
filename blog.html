@@ -10,7 +10,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=20261114ui">
+    <link rel="stylesheet" href="css/style.css?v=20261123ui">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
     <style>
         /* 视频背景 */
@@ -809,5 +809,17 @@
         <a href="blog.html" data-tab="blog" class="active"><i class="fa fa-pen-to-square"></i><span>博客</span></a>
         <a href="index.html#about" data-tab="about"><i class="fa fa-user"></i><span>关于我</span></a>
     </nav>
+    <button id="to-top" type="button" aria-label="回到顶部"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+    <script>
+    (function () {
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var toTop = document.getElementById('to-top');
+        if (!toTop) return;
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 600) toTop.classList.add('show'); else toTop.classList.remove('show');
+        }, { passive: true });
+        toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); });
+    })();
+    </script>
 </body>
 </html>
