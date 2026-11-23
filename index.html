@@ -55,7 +55,7 @@
     <!-- Hero 区 -->
     <section id="home" class="min-h-[92vh] flex items-center justify-center relative py-24">
         <div class="container mx-auto px-6 text-center max-w-3xl">
-            <img src="./sources/head.jpg" alt="个人头像" class="w-24 h-24 rounded-full object-cover mx-auto mb-6 border border-[#223041]">
+            <img src="./sources/head.jpg" alt="个人头像" class="w-32 h-32 rounded-full object-cover mx-auto mb-6 border border-[#223041]">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">王一止<span class="inline-block w-2.5 h-2.5 bg-[#38BDF8] ml-3"></span></h1>
             <p class="text-gray-400 mb-5">沈阳师范大学 · 电子信息工程 · 大三在读</p>
             <!-- 时间显示 -->
@@ -261,7 +261,7 @@
             <div id="about-initial" class="flex justify-center transition-all duration-700 ease-out">
                 <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full" id="main-card" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
-                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover mb-6 border-2 border-[#223041]">
+                        <img src="./sources/head.jpg" alt="个人头像" class="w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
                         王一止
@@ -274,7 +274,7 @@
                 <!-- 主卡片 -->
                 <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full md:w-1/2" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
-                        <img src="./sources/head.jpg" alt="个人头像" class="w-40 h-40 rounded-full object-cover mb-6 border-2 border-[#223041]">
+                        <img src="./sources/head.jpg" alt="个人头像" class="w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
                         王一止
@@ -974,34 +974,55 @@
         <a href="index.html#about" data-tab="about"><i class="fa fa-user"></i><span>关于我</span></a>
     </nav>
     <script>
-    /* 首页背景：双层李萨如曲线 + 示波器刻度点阵 + 星尘粒子（分层合成） */
+    /* 首页背景：深空星野（星云底图 + 双层闪烁星 + 双层李萨如曲线） */
     (function () {
         var canvas = document.getElementById('lissajous-bg');
         if (!canvas || !canvas.getContext) return;
         var ctx = canvas.getContext('2d');
         var W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 1.5);
-        var gridCanvas = null, particles = [];
-        function makeGrid() {
-            gridCanvas = document.createElement('canvas');
-            gridCanvas.width = Math.round(W * DPR);
-            gridCanvas.height = Math.round(H * DPR);
-            var g = gridCanvas.getContext('2d');
+        var bgCanvas = null, stars = [];
+        function makeBackdrop() {
+            bgCanvas = document.createElement('canvas');
+            bgCanvas.width = Math.round(W * DPR);
+            bgCanvas.height = Math.round(H * DPR);
+            var g = bgCanvas.getContext('2d');
             g.setTransform(DPR, 0, 0, DPR, 0, 0);
-            g.fillStyle = 'rgba(148, 197, 255, 0.055)';
+            var base = g.createLinearGradient(0, 0, 0, H);
+            base.addColorStop(0, '#060a14');
+            base.addColorStop(0.5, '#0a0e13');
+            base.addColorStop(1, '#04060a');
+            g.fillStyle = base; g.fillRect(0, 0, W, H);
+            function blob(x, y, r, color) {
+                var rg = g.createRadialGradient(x, y, 0, x, y, r);
+                rg.addColorStop(0, color); rg.addColorStop(1, 'rgba(0,0,0,0)');
+                g.fillStyle = rg; g.fillRect(x - r, y - r, r * 2, r * 2);
+            }
+            blob(W * 0.22, H * 0.16, Math.max(W, H) * 0.42, 'rgba(59,78,160,0.20)');
+            blob(W * 0.84, H * 0.30, Math.max(W, H) * 0.36, 'rgba(24,96,120,0.16)');
+            blob(W * 0.60, H * 0.80, Math.max(W, H) * 0.40, 'rgba(96,60,150,0.13)');
+            blob(W * 0.5, H * 0.40, Math.max(W, H) * 0.30, 'rgba(56,120,200,0.10)');
+            var vg = g.createRadialGradient(W / 2, H * 0.45, Math.min(W, H) * 0.35, W / 2, H * 0.45, Math.max(W, H) * 0.78);
+            vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,0.45)');
+            g.fillStyle = vg; g.fillRect(0, 0, W, H);
+            g.fillStyle = 'rgba(148, 197, 255, 0.04)';
             var step = 46;
             for (var x = step / 2; x < W; x += step) for (var y = step / 2; y < H; y += step) {
                 g.beginPath(); g.arc(x, y, 1.1, 0, 6.2832); g.fill();
             }
         }
-        function makeParticles() {
-            particles = [];
-            var n = Math.round(Math.min(90, W / 14));
-            for (var i = 0; i < n; i++) particles.push({
-                x: Math.random() * W, y: Math.random() * H,
-                r: 0.6 + Math.random() * 1.3,
-                vx: (Math.random() - 0.5) * 0.08, vy: (Math.random() - 0.5) * 0.06,
-                tw: Math.random() * 6.2832, ts: 0.004 + Math.random() * 0.01
-            });
+        function makeStars() {
+            stars = [];
+            var n = Math.round(Math.min(170, W / 8));
+            for (var i = 0; i < n; i++) {
+                var near = Math.random() < 0.25;
+                stars.push({
+                    x: Math.random() * W, y: Math.random() * H,
+                    r: near ? 1.2 + Math.random() * 0.9 : 0.5 + Math.random() * 0.6,
+                    base: near ? 0.55 : 0.28, amp: near ? 0.40 : 0.22, near: near,
+                    vx: (Math.random() - 0.5) * 0.03, vy: (Math.random() - 0.5) * 0.025,
+                    tw: Math.random() * 6.2832, ts: 0.006 + Math.random() * 0.016
+                });
+            }
         }
         function resize() {
             W = window.innerWidth; H = window.innerHeight;
@@ -1010,7 +1031,7 @@
             canvas.style.width = W + 'px';
             canvas.style.height = H + 'px';
             ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-            makeGrid(); makeParticles();
+            makeBackdrop(); makeStars();
         }
         resize();
         window.addEventListener('resize', resize);
@@ -1044,16 +1065,22 @@
         }
         function draw(time) {
             ctx.clearRect(0, 0, W, H);
-            if (gridCanvas) ctx.drawImage(gridCanvas, 0, 0, W, H);
-            var i, p;
-            for (i = 0; i < particles.length; i++) {
-                p = particles[i];
+            if (bgCanvas) ctx.drawImage(bgCanvas, 0, 0, W, H);
+            var i, p, a;
+            for (i = 0; i < stars.length; i++) {
+                p = stars[i];
                 p.x += p.vx; p.y += p.vy; p.tw += p.ts * 16;
                 if (p.x < -4) p.x = W + 4; if (p.x > W + 4) p.x = -4;
                 if (p.y < -4) p.y = H + 4; if (p.y > H + 4) p.y = -4;
-                var a = 0.10 + 0.10 * (0.5 + 0.5 * Math.sin(p.tw));
+                a = p.base + p.amp * Math.sin(p.tw);
+                if (a < 0.03) a = 0.03;
+                if (p.near) {
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 3.2, 0, 6.2832);
+                    ctx.fillStyle = 'rgba(180, 210, 255,' + (a * 0.13).toFixed(3) + ')';
+                    ctx.fill();
+                }
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832);
-                ctx.fillStyle = 'rgba(170, 205, 255,' + a.toFixed(3) + ')';
+                ctx.fillStyle = 'rgba(200, 222, 255,' + a.toFixed(3) + ')';
                 ctx.fill();
             }
             var cx = W / 2, cy = H * 0.44;
