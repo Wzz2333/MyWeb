@@ -1,10 +1,103 @@
 [
     {
+        "slug": "中国象棋小游戏",
+        "title": "中国象棋小游戏",
+        "category": "Web应用",
+        "date": "2026年11月",
+        "tags": [
+            "JavaScript",
+            "游戏AI",
+            "Alpha-Beta搜索"
+        ],
+        "summary": "可在线对弈的中国象棋网页游戏：电脑引擎采用位置评估 + Alpha-Beta 多步搜索，能算 4~5 层变化",
+        "cover": "code",
+        "status": "已完成",
+        "github": "https://github.com/Wzz2333/xiangqi-game"
+    },
+    {
+        "slug": "简易活塞抽水机",
+        "title": "简易活塞抽水机",
+        "category": "竞赛",
+        "date": "2026年11月",
+        "tags": [
+            "物理教具",
+            "大气压强",
+            "PVC"
+        ],
+        "summary": "「巧具名师」教具大赛命题组作品：PVC 管与单向阀复现活塞式抽水机，讲清大气压强与省力杠杆，已入围决赛",
+        "cover": "gear",
+        "status": "已完成",
+        "github": ""
+    },
+    {
+        "slug": "插排的最后一夜",
+        "title": "插排的最后一夜（AI安全视频）",
+        "category": "视频",
+        "date": "2026年11月",
+        "tags": [
+            "AI视频",
+            "安全宣传"
+        ],
+        "summary": "「安全稳定大家谈」AI 视频征集参赛作品：拟人化插排讲宿舍用电安全，128 秒 · 1080p，已提交",
+        "cover": "music",
+        "status": "已完成",
+        "github": ""
+    },
+    {
+        "slug": "峰值检波电路",
+        "title": "峰值检波电路设计",
+        "category": "课程设计",
+        "date": "2026年11月",
+        "tags": [
+            "KiCad",
+            "模拟电路",
+            "PCB"
+        ],
+        "summary": "二极管峰值检波电路期末设计：1 MHz 载波、肖特基 1N5711、50×40mm 双层 PCB，含原理图、Gerber 与 BOM",
+        "cover": "gear",
+        "status": "已完成",
+        "github": ""
+    },
+    {
+        "slug": "书签里的春天",
+        "title": "书签里的春天（绿书签海报）",
+        "category": "设计",
+        "date": "2026年11月",
+        "tags": [
+            "海报设计",
+            "公益"
+        ],
+        "summary": "2027 年「绿书签行动」海报设计征集参赛作品：57×84cm，书签如发光的门，共护健康成长",
+        "cover": "heart",
+        "status": "开发中",
+        "github": ""
+    },
+    {
+        "slug": "个人网站",
+        "title": "个人网站 synuwz.online",
+        "category": "Web应用",
+        "date": "2026年11月",
+        "tags": [
+            "HTML",
+            "JavaScript",
+            "GitHub Pages"
+        ],
+        "summary": "本站：深空星野动态背景、音乐台、博客与荣誉墙，持续迭代中",
+        "cover": "rocket",
+        "status": "开发中",
+        "github": "https://github.com/Wzz2333/MyWeb"
+    },
+    {
         "slug": "沈师课程表",
         "title": "沈师课程表",
         "category": "微信小程序",
         "date": "2026年6月",
-        "tags": ["JAVA", "小程序", "Vibe Coding","Database"],
+        "tags": [
+            "JAVA",
+            "小程序",
+            "Vibe Coding",
+            "Database"
+        ],
         "summary": "为沈师学子提供课表查询服务",
         "cover": "code",
         "status": "开发中",
@@ -15,7 +108,11 @@
         "title": "基于AI的二维简谐振动轨迹智能分析系统",
         "category": "竞赛",
         "date": "2026年5月",
-        "tags": ["Python", "OpenCV", "AI"],
+        "tags": [
+            "Python",
+            "OpenCV",
+            "AI"
+        ],
         "summary": "2026年辽宁省物理实验竞赛",
         "cover": "code",
         "status": "已完成",
@@ -26,18 +123,26 @@
         "title": "花园宝宝",
         "category": "竞赛",
         "date": "2026年4月",
-        "tags": ["APP", "JAVA", "安卓"],
+        "tags": [
+            "APP",
+            "JAVA",
+            "安卓"
+        ],
         "summary": "一款帮助用户专注学习的安卓APP",
         "cover": "code",
         "status": "已完成",
         "github": ""
     },
-     {
+    {
         "slug": "计算机博弈竞赛",
         "title": "计算机博弈",
         "category": "竞赛",
         "date": "2026年5月",
-        "tags": ["竞赛", "Python", "算法"],
+        "tags": [
+            "竞赛",
+            "Python",
+            "算法"
+        ],
         "summary": "辽宁省大学生计算机博弈竞赛",
         "cover": "code",
         "status": "已完成",
@@ -48,7 +153,11 @@
         "title": "MarkdownEditor",
         "category": "竞赛",
         "date": "2026年6月",
-        "tags": ["工具", "Java", "前后端开发"],
+        "tags": [
+            "工具",
+            "Java",
+            "前后端开发"
+        ],
         "summary": "做着玩儿的Markdown编辑器",
         "cover": "code",
         "status": "已完成",
@@ -59,7 +168,12 @@
         "title": "辽宁冬季冰雪道路图像智能增强",
         "category": "竞赛",
         "date": "2026年6月",
-        "tags": ["Python", "OpenCV", "PyTorch", "图像增强"],
+        "tags": [
+            "Python",
+            "OpenCV",
+            "PyTorch",
+            "图像增强"
+        ],
         "summary": "2026辽宁省大学生数学建模竞赛A题，针对冰雪道路监控图像构建增强模型与综合评价体系",
         "cover": "code",
         "status": "开发中",
