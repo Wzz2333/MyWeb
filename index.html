@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
-    <link rel="stylesheet" href="css/style.css?v=20261123ap">
+    <link rel="stylesheet" href="css/style.css?v=20261123ms">
     <link rel="stylesheet" href="sources/player/APlayer.min.css">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
 </head>
@@ -70,6 +70,15 @@
                     <i class="fa fa-pencil mr-2" aria-hidden="true"></i>看博客
                 </a>
                 <a href="#contact" class="px-5 py-2.5 border border-[#223041] rounded-lg text-gray-200 hover:border-[#38BDF8]/70 transition-colors">联系我</a>
+            </div>
+            <!-- 搜歌：Internet Archive 开放曲库 -->
+            <div id="music-search">
+                <div class="ms-row">
+                    <input id="music-search-input" type="text" placeholder="搜首歌：曲名或作者，如 Bach、Chopin、jazz">
+                    <button id="music-search-btn" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜歌</button>
+                </div>
+                <p class="ms-note">曲库来自 Internet Archive 开放音频（公共领域 / CC 授权），点搜索结果即可加入播放器播放</p>
+                <ul id="music-results"></ul>
             </div>
             <!-- 中国古典诗词随机显示 -->
             <div id="poetry-container" class="max-w-2xl mx-auto cursor-pointer bg-[#121820] border border-[#223041] rounded-xl px-6 py-7" title="点按换一首">
@@ -1104,7 +1113,7 @@
     <script src="sources/player/APlayer.min.js"></script>
     <script>
     /* 主页音乐播放器：APlayer（MIT 开源），曲目均为公共领域 / CC 授权 */
-    new APlayer({
+    var ap = new APlayer({
         container: document.getElementById('aplayer'),
         fixed: true,
         mini: true,
@@ -1122,5 +1131,52 @@
         ]
     });
     </script>
+    <script>
+    /* 搜歌：查 Internet Archive 开放曲库，点结果加入 APlayer 播放 */
+    (function () {
+        var input = document.getElementById('music-search-input');
+        var btn = document.getElementById('music-search-btn');
+        var list = document.getElementById('music-results');
+        if (!input || !btn || !list || typeof ap === 'undefined') return;
+        function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+        function msg(t) { list.innerHTML = '<li class="ms-msg">' + esc(t) + '</li>'; }
+        function doSearch() {
+            var q = input.value.trim().replace(/["()\[\]{}]/g, ' ');
+            if (!q) { msg('先输入曲名或作者'); return; }
+            msg('搜索中…');
+            var query = 'mediatype:audio AND (title:(' + q + ') OR creator:(' + q + ') OR description:(' + q + '))';
+            var url = 'https://archive.org/advancedsearch.php?q=' + encodeURIComponent(query) + '&fl[]=identifier&fl[]=title&fl[]=creator&fl[]=year&sort[]=downloads desc&rows=12&output=json';
+            fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+                var docs = (d.response && d.response.docs) || [];
+                if (!docs.length) { msg('没找到，换个关键词试试（英文曲名命中率更高）'); return; }
+                list.innerHTML = '';
+                docs.forEach(function (doc) {
+                    var li = document.createElement('li');
+                    li.innerHTML = '<span class="ms-title">' + esc(doc.title || doc.identifier) + '</span><span class="ms-sub">' + esc(doc.creator || '佚名') + (doc.year ? ' · ' + esc(doc.year) : '') + '</span>';
+                    li.addEventListener('click', function () { loadAndPlay(doc, li); });
+                    list.appendChild(li);
+                });
+            }).catch(function () { msg('搜索失败，网络可能不通，稍后再试'); });
+        }
+        function loadAndPlay(doc, li) {
+            var old = li.innerHTML;
+            li.innerHTML = '<span class="ms-sub">加载中…</span>';
+            fetch('https://archive.org/metadata/' + encodeURIComponent(doc.identifier)).then(function (r) { return r.json(); }).then(function (meta) {
+                var files = (meta && meta.files) || [], mp3 = null, i;
+                for (i = 0; i < files.length; i++) { if (/\.mp3$/i.test(files[i].name || '') && files[i].source === 'original') { mp3 = files[i]; break; } }
+                if (!mp3) for (i = 0; i < files.length; i++) { if (/\.mp3$/i.test(files[i].name || '')) { mp3 = files[i]; break; } }
+                if (!mp3) { li.innerHTML = old; msg('这条没有可播的 MP3，换一条试试'); return; }
+                var url = 'https://archive.org/download/' + encodeURIComponent(doc.identifier) + '/' + encodeURIComponent(mp3.name);
+                ap.list.add({ name: doc.title || mp3.name, artist: doc.creator || 'Internet Archive', url: url, cover: 'sources/head.png?v=20261123' });
+                ap.list.switch(ap.list.audios.length - 1);
+                ap.play();
+                li.innerHTML = old;
+            }).catch(function () { li.innerHTML = old; msg('加载失败，稍后再试'); });
+        }
+        btn.addEventListener('click', doSearch);
+        input.addEventListener('keydown', function (e) { if (e.key === 'Enter') doSearch(); });
+    })();
+    </script>
+
 </body>
 </html>
