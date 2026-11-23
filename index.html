@@ -1138,12 +1138,13 @@
             for (var wi = 0; wi < wstars.length; wi++) {
                 var ws = wstars[wi];
                 var r0 = ws.r;
-                ws.r += ws.r * 0.0035 * spd * ws.s * (0.3 + (ws.r / maxR) * 1.4) + 0.12 * spd;
+                ws.r += ws.r * 0.010 * spd * ws.s * (0.3 + (ws.r / maxR) * 1.4) + 0.3 * spd;
                 if (ws.r > maxR + 24) { ws.a = Math.random() * 6.2832; ws.r = 10 + Math.random() * 26; ws.s = 0.7 + Math.random() * 0.6; r0 = ws.r; }
                 var ca = Math.cos(ws.a), sa = Math.sin(ws.a);
-                var al = Math.min(0.75, 0.10 + (ws.r / maxR) * 0.62);
+                var al = Math.min(0.78, 0.16 + (ws.r / maxR) * 0.60);
+                var tail = Math.max(2, ws.r - (ws.r - r0) * 10);
                 ctx.beginPath();
-                ctx.moveTo(wcx + ca * r0, wcy + sa * r0);
+                ctx.moveTo(wcx + ca * tail, wcy + sa * tail);
                 ctx.lineTo(wcx + ca * ws.r, wcy + sa * ws.r);
                 ctx.strokeStyle = 'rgba(190, 218, 255,' + al.toFixed(3) + ')';
                 ctx.lineWidth = ws.r > maxR * 0.55 ? 1.6 : 1;
