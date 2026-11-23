@@ -346,3 +346,11 @@ header.scrolled {
     }
     html { scroll-behavior: auto !important; }
 }
+
+/* 首页李萨如波形背景画布 */
+#lissajous-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}

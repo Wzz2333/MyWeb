@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
-    <link rel="stylesheet" href="css/style.css?v=20261114ui">
+    <link rel="stylesheet" href="css/style.css?v=20261123lis">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
 </head>
 <body class="dark-space-bg text-gray-100">
+    <canvas id="lissajous-bg" aria-hidden="true"></canvas>
     <!-- 导航栏 -->
     <header class="fixed top-0 left-0 right-0 bg-[#0A0E13]/95 z-50 transition-all duration-300 border-b border-[#223041] py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
@@ -972,5 +973,58 @@
         <a href="blog.html" data-tab="blog"><i class="fa fa-pen-to-square"></i><span>博客</span></a>
         <a href="index.html#about" data-tab="about"><i class="fa fa-user"></i><span>关于我</span></a>
     </nav>
+    <script>
+    /* 首页背景：李萨如曲线（频率比 3:2，相位缓行） */
+    (function () {
+        var canvas = document.getElementById('lissajous-bg');
+        if (!canvas || !canvas.getContext) return;
+        var ctx = canvas.getContext('2d');
+        var W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+        function resize() {
+            W = window.innerWidth; H = window.innerHeight;
+            canvas.width = Math.round(W * DPR);
+            canvas.height = Math.round(H * DPR);
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        function draw(phase) {
+            ctx.clearRect(0, 0, W, H);
+            var cx = W / 2, cy = H * 0.42;
+            var ax = Math.min(W * 0.44, 560), ay = Math.min(H * 0.33, 360);
+            function path() {
+                ctx.beginPath();
+                var steps = 420;
+                for (var i = 0; i <= steps; i++) {
+                    var t = (i / steps) * Math.PI * 2;
+                    var x = cx + ax * Math.sin(3 * t + phase);
+                    var y = cy + ay * Math.sin(2 * t);
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+            }
+            ctx.lineJoin = 'round';
+            path();
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.05)';
+            ctx.lineWidth = 7;
+            ctx.stroke();
+            path();
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.16)';
+            ctx.lineWidth = 1.6;
+            ctx.stroke();
+        }
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) { draw(1.1); return; }
+        var start = null, last = 0;
+        function frame(ts) {
+            if (!start) start = ts;
+            if (ts - last > 33) { last = ts; draw(((ts - start) / 1000) * 0.12); }
+            requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+    })();
+    </script>
 </body>
 </html>
