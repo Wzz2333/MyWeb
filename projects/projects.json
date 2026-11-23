@@ -44,21 +44,6 @@
         "github": ""
     },
     {
-        "slug": "峰值检波电路",
-        "title": "峰值检波电路设计",
-        "category": "课程设计",
-        "date": "2026年11月",
-        "tags": [
-            "KiCad",
-            "模拟电路",
-            "PCB"
-        ],
-        "summary": "二极管峰值检波电路期末设计：1 MHz 载波、肖特基 1N5711、50×40mm 双层 PCB，含原理图、Gerber 与 BOM",
-        "cover": "gear",
-        "status": "已完成",
-        "github": ""
-    },
-    {
         "slug": "书签里的春天",
         "title": "书签里的春天（绿书签海报）",
         "category": "设计",
