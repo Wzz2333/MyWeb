@@ -1090,7 +1090,7 @@
             lastPointer = performance.now() / 1000;
         }, { passive: true });
         /* 星际穿越式飞行星流：星点从中心向外加速飞掠、拉出光轨；按住指针=油门加速 */
-        var wstars = [], pressing = false, throttle = 0;
+        var wstars; var pressing = false, throttle = 0;
         function makeWarp() {
             wstars = [];
             var n = Math.round(Math.min(130, Math.max(46, W / 9)));
