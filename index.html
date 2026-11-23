@@ -1234,9 +1234,10 @@
     (function () {
         var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var toastTimer = null;
-        function showToast() {
+        function showToast(msg) {
             var t = document.getElementById('share-toast');
             if (!t) return;
+            if (msg) t.textContent = msg;
             t.classList.add('show');
             clearTimeout(toastTimer);
             toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
@@ -1244,9 +1245,17 @@
         var shareBtn = document.getElementById('share-btn');
         if (shareBtn) shareBtn.addEventListener('click', function () {
             var payload = { title: document.title, text: '王一止的个人网站', url: location.href };
-            if (navigator.share) { navigator.share(payload).catch(function () {}); }
-            else if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(location.href).then(showToast, showToast); }
-            else { showToast(); }
+            function copyFallback(failed) {
+                var tip = failed ? '分享没成功，链接已复制，去微信粘贴发送吧' : null;
+                if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(location.href).then(function () { showToast(tip); }, function () { showToast(tip); }); }
+                else { showToast(tip); }
+            }
+            if (navigator.share) {
+                navigator.share(payload).catch(function (err) {
+                    if (!err || err.name !== 'AbortError') copyFallback(true);
+                });
+            }
+            else { copyFallback(false); }
         });
         var toTop = document.getElementById('to-top');
         if (toTop) {
