@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
-    <link rel="stylesheet" href="css/style.css?v=20261123lis">
+    <link rel="stylesheet" href="css/style.css?v=20261123ap">
+    <link rel="stylesheet" href="sources/player/APlayer.min.css">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
 </head>
 <body class="dark-space-bg text-gray-100">
@@ -55,7 +56,7 @@
     <!-- Hero 区 -->
     <section id="home" class="min-h-[92vh] flex items-center justify-center relative py-24">
         <div class="container mx-auto px-6 text-center max-w-3xl">
-            <img src="./sources/head.jpg?v=20261123" alt="个人头像" class="w-32 h-32 rounded-full object-cover mx-auto mb-6 border border-[#223041]">
+            <img src="./sources/head.png?v=20261123" alt="个人头像" class="avatar-glow w-32 h-32 rounded-full object-cover mx-auto mb-6 border border-[#223041]">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">王一止<span class="inline-block w-2.5 h-2.5 bg-[#38BDF8] ml-3"></span></h1>
             <p class="text-gray-400 mb-5">沈阳师范大学 · 电子信息工程 · 大三在读</p>
             <!-- 时间显示 -->
@@ -259,9 +260,9 @@
             
             <!-- 初始状态：居中的主卡片 -->
             <div id="about-initial" class="flex justify-center transition-all duration-700 ease-out">
-                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full" id="main-card" onclick="toggleAboutSection();">
+                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full glass-card" id="main-card" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
-                        <img src="./sources/head.jpg?v=20261123" alt="个人头像" class="w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
+                        <img src="./sources/head.png?v=20261123" alt="个人头像" class="avatar-glow w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
                         王一止
@@ -272,9 +273,9 @@
             <!-- 点击后状态：主卡片左移 + 子卡片 -->
             <div id="about-expanded" class="flex flex-col md:flex-row gap-8 hidden transition-all duration-700 ease-out">
                 <!-- 主卡片 -->
-                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full md:w-1/2" onclick="toggleAboutSection();">
+                <div class="bg-[#121820] border border-[#223041] rounded-xl p-8 transition-all duration-700 transform cursor-pointer max-w-lg w-full md:w-1/2 glass-card" onclick="toggleAboutSection();">
                     <div class="flex flex-col items-center mb-8">
-                        <img src="./sources/head.jpg?v=20261123" alt="个人头像" class="w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
+                        <img src="./sources/head.png?v=20261123" alt="个人头像" class="avatar-glow w-52 h-52 rounded-full object-cover mb-6 border-2 border-[#223041]">
                     </div>
                     <p class="text-xl text-gray-300 text-center leading-relaxed">
                         王一止
@@ -664,6 +665,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <p class="text-gray-400">© 2026 王一止. 保留所有权利.</p>
+                    <p class="text-gray-500 text-xs mt-2">本站音乐：肖邦 · 巴赫 · 德彪西（公共领域 / CC0 录音）｜ Meditation Impromptu — Kevin MacLeod（CC BY 3.0）｜ 播放器 APlayer（MIT 开源）</p>
                 </div>
                 <div class="flex space-x-6">
                     <a href="https://github.com/Wzz2333" target="_blank" class="text-gray-400 hover:text-[#38BDF8] transition-colors">
@@ -1097,6 +1099,28 @@
         }
         requestAnimationFrame(frame);
     })();
+    </script>
+    <div id="aplayer"></div>
+    <script src="sources/player/APlayer.min.js"></script>
+    <script>
+    /* 主页音乐播放器：APlayer（MIT 开源），曲目均为公共领域 / CC 授权 */
+    new APlayer({
+        container: document.getElementById('aplayer'),
+        fixed: true,
+        mini: true,
+        autoplay: false,
+        theme: '#38BDF8',
+        loop: 'all',
+        order: 'list',
+        preload: 'metadata',
+        volume: 0.7,
+        audio: [
+            { name: '夜曲 Op.9 No.2', artist: '肖邦 Chopin', url: 'sources/music/nocturne.mp3', cover: 'sources/head.png?v=20261123' },
+            { name: '哥德堡变奏曲 · 咏叹调', artist: '巴赫 Bach · Kimiko Ishizaka', url: 'sources/music/goldberg-aria.mp3', cover: 'sources/head.png?v=20261123' },
+            { name: '月光 Clair de Lune', artist: '德彪西 Debussy', url: 'sources/music/clair-de-lune.mp3', cover: 'sources/head.png?v=20261123' },
+            { name: 'Meditation Impromptu 01', artist: 'Kevin MacLeod', url: 'sources/music/meditation-impromptu.mp3', cover: 'sources/head.png?v=20261123' }
+        ]
+    });
     </script>
 </body>
 </html>
