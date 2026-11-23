@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20261114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap">
-    <link rel="stylesheet" href="css/style.css?v=20261123pm">
+    <link rel="stylesheet" href="css/style.css?v=20261123fb">
     <link rel="stylesheet" href="sources/player/APlayer.min.css">
     <link rel="alternate" type="application/rss+xml" title="王一止的博客 RSS" href="feed.xml">
 </head>
@@ -70,15 +70,6 @@
                     <i class="fa fa-pencil mr-2" aria-hidden="true"></i>看博客
                 </a>
                 <a href="#contact" class="px-5 py-2.5 border border-[#223041] rounded-lg text-gray-200 hover:border-[#38BDF8]/70 transition-colors">联系我</a>
-            </div>
-            <!-- 搜歌：Internet Archive 开放曲库 -->
-            <div id="music-search">
-                <div class="ms-row">
-                    <input id="music-search-input" type="text" placeholder="搜首歌：曲名或作者，如 Bach、Chopin、jazz">
-                    <button id="music-search-btn" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜歌</button>
-                </div>
-                <p class="ms-note">曲库来自 Internet Archive 开放音频（公共领域 / CC 授权），点搜索结果即可加入播放器播放</p>
-                <ul id="music-results"></ul>
             </div>
             <!-- 中国古典诗词随机显示 -->
             <div id="poetry-container" class="max-w-2xl mx-auto cursor-pointer bg-[#121820] border border-[#223041] rounded-xl px-6 py-7" title="点按换一首">
@@ -1109,14 +1100,23 @@
         requestAnimationFrame(frame);
     })();
     </script>
-    <div id="aplayer"></div>
+    <button id="music-fab" type="button" aria-label="打开音乐台" aria-expanded="false"><i class="fa fa-music" aria-hidden="true"></i></button>
+    <div id="music-panel" hidden>
+        <div class="mp-head"><span><i class="fa fa-music" aria-hidden="true"></i> 音乐台</span><button id="music-close" type="button" aria-label="关闭音乐台"><i class="fa fa-times" aria-hidden="true"></i></button></div>
+        <div id="aplayer"></div>
+        <div class="ms-row">
+            <input id="music-search-input" type="text" placeholder="搜歌：曲名或作者，如 Bach、Chopin、jazz">
+            <button id="music-search-btn" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜歌</button>
+        </div>
+        <p class="ms-note">曲库来自 Internet Archive 开放音频（公共领域 / CC 授权），点结果即可加入歌单播放</p>
+        <ul id="music-results"></ul>
+    </div>
     <script src="sources/player/APlayer.min.js"></script>
     <script>
     /* 主页音乐播放器：APlayer（MIT 开源），曲目均为公共领域 / CC 授权 */
     var ap = new APlayer({
         container: document.getElementById('aplayer'),
-        fixed: true,
-        mini: true,
+        listMaxHeight: '180px',
         autoplay: false,
         theme: '#38BDF8',
         loop: 'all',
@@ -1130,6 +1130,27 @@
             { name: 'Meditation Impromptu 01', artist: 'Kevin MacLeod', url: 'sources/music/meditation-impromptu.mp3', cover: 'sources/head.png?v=20261123' }
         ]
     });
+    </script>
+    <script>
+    /* 音乐台面板开关：点左下角音乐按钮展开/收起 */
+    (function () {
+        var fab = document.getElementById('music-fab');
+        var panel = document.getElementById('music-panel');
+        var closeBtn = document.getElementById('music-close');
+        if (!fab || !panel) return;
+        function toggle(force) {
+            var show = typeof force === 'boolean' ? force : panel.hidden;
+            panel.hidden = !show;
+            fab.setAttribute('aria-expanded', show ? 'true' : 'false');
+        }
+        fab.addEventListener('click', function () { toggle(); });
+        if (closeBtn) closeBtn.addEventListener('click', function () { toggle(false); });
+        if (typeof ap !== 'undefined' && ap.on) {
+            ap.on('play', function () { fab.classList.add('is-playing'); });
+            ap.on('pause', function () { fab.classList.remove('is-playing'); });
+            ap.on('ended', function () { fab.classList.remove('is-playing'); });
+        }
+    })();
     </script>
     <script>
     /* 搜歌：查 Internet Archive 开放曲库，点结果加入 APlayer 播放 */

@@ -373,7 +373,6 @@ header.scrolled {
   border: 1px solid rgba(56, 189, 248, 0.18);
   border-radius: 12px;
   box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
-  z-index: 60;
 }
 .aplayer .aplayer-info { background: transparent !important; border-bottom: 1px solid rgba(34, 48, 65, 0.8) !important; }
 .aplayer .aplayer-info .aplayer-music .aplayer-title { color: #e8f2fb !important; }
@@ -384,26 +383,52 @@ header.scrolled {
 .aplayer .aplayer-list ol li .aplayer-list-cur { background: #38bdf8 !important; }
 .aplayer .aplayer-list ol li .aplayer-list-index { color: #5f748c !important; }
 .aplayer .aplayer-list ol li .aplayer-list-author { color: #8fa6bb !important; }
-@media (max-width: 767px) {
-  .aplayer.aplayer-fixed .aplayer-body { bottom: 70px; }
-  .aplayer.aplayer-fixed .aplayer-miniswitcher { bottom: 70px; }
-}
 
-/* 主页搜歌（Internet Archive 开放曲库） */
-#music-search { max-width: 36rem; margin: -1.5rem auto 3rem; padding: 0 0.25rem; }
-#music-search .ms-row { display: flex; gap: 0.5rem; }
-#music-search-input { flex: 1; min-width: 0; padding: 0.625rem 1rem; border-radius: 0.5rem; background: rgba(18, 24, 32, 0.85); border: 1px solid #223041; color: #f3f4f6; outline: none; }
+/* 音乐按钮 + 弹出面板：玻璃质感融入星野背景，点按钮展开 */
+#music-fab {
+  position: fixed; left: 16px; bottom: 84px; z-index: 70;
+  width: 48px; height: 48px; border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #7dd3fc; cursor: pointer;
+  background: rgba(15, 21, 29, 0.55);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 14px rgba(56, 189, 248, 0.12);
+  transition: border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+#music-fab:hover { border-color: rgba(56, 189, 248, 0.75); color: #bae6fd; }
+#music-fab.is-playing { color: #38bdf8; border-color: rgba(56, 189, 248, 0.85); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.4); }
+#music-panel {
+  position: fixed; left: 16px; bottom: 142px; z-index: 70;
+  width: min(344px, calc(100vw - 32px));
+  border-radius: 16px; padding: 14px;
+  background: linear-gradient(160deg, rgba(24, 30, 40, 0.85), rgba(12, 17, 24, 0.8));
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+#music-panel[hidden] { display: none; }
+#music-panel .mp-head { display: flex; align-items: center; justify-content: space-between; color: #7dd3fc; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 0.55rem; }
+#music-close { background: transparent; border: none; color: #9ca3af; cursor: pointer; padding: 4px 6px; font-size: 0.95rem; }
+#music-close:hover { color: #e5e7eb; }
+#music-panel .aplayer { background: transparent !important; border: none; box-shadow: none; margin-bottom: 0.65rem; }
+#music-panel .ms-row { display: flex; gap: 0.5rem; }
+#music-search-input { flex: 1; min-width: 0; padding: 0.6rem 0.9rem; border-radius: 0.5rem; background: rgba(10, 14, 19, 0.55); border: 1px solid #223041; color: #f3f4f6; outline: none; }
 #music-search-input:focus { border-color: rgba(56, 189, 248, 0.7); }
 #music-search-input::placeholder { color: #6b7280; }
-#music-search-btn { padding: 0.625rem 1rem; border-radius: 0.5rem; background: #38bdf8; color: #082f3f; font-weight: 500; flex-shrink: 0; cursor: pointer; border: none; }
+#music-search-btn { padding: 0.6rem 0.95rem; border-radius: 0.5rem; background: #38bdf8; color: #082f3f; font-weight: 500; flex-shrink: 0; cursor: pointer; border: none; }
 #music-search-btn:hover { background: #5ecbf8; }
-#music-search .ms-note { color: #6b7280; font-size: 0.75rem; margin-top: 0.5rem; }
-#music-results { margin-top: 0.75rem; text-align: left; padding: 0; }
-#music-results li { padding: 0.75rem 1rem; background: rgba(18, 24, 32, 0.85); border: 1px solid #223041; border-radius: 0.75rem; cursor: pointer; margin-bottom: 0.5rem; list-style: none; }
+#music-panel .ms-note { color: #6b7280; font-size: 0.72rem; margin-top: 0.45rem; }
+#music-results { margin-top: 0.5rem; padding: 0; max-height: 220px; overflow-y: auto; }
+#music-results li { padding: 0.65rem 0.85rem; background: rgba(10, 14, 19, 0.45); border: 1px solid #223041; border-radius: 0.75rem; cursor: pointer; margin-bottom: 0.5rem; list-style: none; }
 #music-results li:hover { border-color: rgba(56, 189, 248, 0.7); }
-#music-results .ms-title { display: block; color: #f3f4f6; font-size: 0.875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#music-results .ms-sub { display: block; color: #6b7280; font-size: 0.75rem; margin-top: 0.125rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#music-results li.ms-msg { color: #6b7280; font-size: 0.875rem; padding: 0.25rem; cursor: default; background: transparent; border: none; }
+#music-results .ms-title { display: block; color: #f3f4f6; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#music-results .ms-sub { display: block; color: #6b7280; font-size: 0.72rem; margin-top: 0.125rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#music-results li.ms-msg { color: #6b7280; font-size: 0.85rem; padding: 0.25rem; cursor: default; background: transparent; border: none; }
+@media (min-width: 768px) {
+  #music-fab { bottom: 24px; }
+  #music-panel { bottom: 84px; }
+}
 
 /* 诗词卡：半透明毛玻璃 + 暖金描边，与星野背景融合 */
 #poetry-container {
