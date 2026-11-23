@@ -415,16 +415,16 @@ header.scrolled {
 #music-panel .ms-row { display: flex; gap: 0.5rem; }
 #music-search-input { flex: 1; min-width: 0; padding: 0.6rem 0.9rem; border-radius: 0.5rem; background: rgba(10, 14, 19, 0.55); border: 1px solid #223041; color: #f3f4f6; outline: none; }
 #music-search-input:focus { border-color: rgba(56, 189, 248, 0.7); }
-#music-search-input::placeholder { color: #6b7280; }
+#music-search-input::placeholder { color: #8fa1b3; }
 #music-search-btn { padding: 0.6rem 0.95rem; border-radius: 0.5rem; background: #38bdf8; color: #082f3f; font-weight: 500; flex-shrink: 0; cursor: pointer; border: none; }
 #music-search-btn:hover { background: #5ecbf8; }
-#music-panel .ms-note { color: #6b7280; font-size: 0.72rem; margin-top: 0.45rem; }
+#music-panel .ms-note { color: #8fa1b3; font-size: 0.72rem; margin-top: 0.45rem; }
 #music-results { margin-top: 0.5rem; padding: 0; max-height: 220px; overflow-y: auto; }
 #music-results li { padding: 0.65rem 0.85rem; background: rgba(10, 14, 19, 0.45); border: 1px solid #223041; border-radius: 0.75rem; cursor: pointer; margin-bottom: 0.5rem; list-style: none; }
 #music-results li:hover { border-color: rgba(56, 189, 248, 0.7); }
 #music-results .ms-title { display: block; color: #f3f4f6; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#music-results .ms-sub { display: block; color: #6b7280; font-size: 0.72rem; margin-top: 0.125rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#music-results li.ms-msg { color: #6b7280; font-size: 0.85rem; padding: 0.25rem; cursor: default; background: transparent; border: none; }
+#music-results .ms-sub { display: block; color: #8fa1b3; font-size: 0.72rem; margin-top: 0.125rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#music-results li.ms-msg { color: #8fa1b3; font-size: 0.85rem; padding: 0.25rem; cursor: default; background: transparent; border: none; }
 @media (min-width: 768px) {
   #music-fab { bottom: 24px; }
   #music-panel { bottom: 84px; }
@@ -443,3 +443,6 @@ header.scrolled {
   border-color: rgba(217, 179, 108, 0.45);
   box-shadow: 0 22px 54px rgba(0, 0, 0, 0.45), 0 0 24px rgba(217, 179, 108, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
+
+/* 次要文字提亮（覆盖 tailwind 的 text-gray-500） */
+.text-gray-500 { color: #8fa1b3; }
