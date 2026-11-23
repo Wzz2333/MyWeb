@@ -1021,7 +1021,7 @@
         }
         function makeStars() {
             stars = [];
-            var n = Math.round(Math.min(170, W / 8));
+            var n = Math.round(Math.min(120, W / 10));
             for (var i = 0; i < n; i++) {
                 var near = Math.random() < 0.25;
                 stars.push({
@@ -1074,7 +1074,7 @@
             canvas.style.width = W + 'px';
             canvas.style.height = H + 'px';
             ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-            makeBackdrop(); makeStars();
+            makeBackdrop(); makeStars(); makeWarp();
         }
         resize();
         window.addEventListener('resize', resize);
@@ -1089,6 +1089,18 @@
             zt = Math.max(0.7, Math.min(1.35, zt + (e.deltaY < 0 ? 0.08 : -0.08)));
             lastPointer = performance.now() / 1000;
         }, { passive: true });
+        /* 星际穿越式飞行星流：星点从中心向外加速飞掠、拉出光轨；按住指针=油门加速 */
+        var wstars = [], pressing = false, throttle = 0;
+        function makeWarp() {
+            wstars = [];
+            var n = Math.round(Math.min(130, Math.max(46, W / 9)));
+            for (var i = 0; i < n; i++) {
+                wstars.push({ a: Math.random() * 6.2832, r: 12 + Math.random() * Math.hypot(W, H) / 2, s: 0.7 + Math.random() * 0.6 });
+            }
+        }
+        window.addEventListener('pointerdown', function () { pressing = true; lastPointer = performance.now() / 1000; }, { passive: true });
+        window.addEventListener('pointerup', function () { pressing = false; }, { passive: true });
+        window.addEventListener('pointercancel', function () { pressing = false; }, { passive: true });
         function curvePath(cx, cy, ax, ay, fa, fb, phase) {
             ctx.beginPath();
             var steps = 360;
@@ -1120,6 +1132,25 @@
         function draw(time) {
             ctx.clearRect(0, 0, W, H);
             if (bgCanvas) ctx.drawImage(bgCanvas, 0, 0, W, H);
+            var wcx = W / 2, wcy = H * 0.44, maxR = Math.hypot(W, H) / 2;
+            throttle += ((pressing ? 1 : 0) - throttle) * 0.045;
+            var spd = 1 + throttle * 5;
+            for (var wi = 0; wi < wstars.length; wi++) {
+                var ws = wstars[wi];
+                var r0 = ws.r;
+                ws.r += ws.r * 0.0035 * spd * ws.s * (0.3 + (ws.r / maxR) * 1.4) + 0.12 * spd;
+                if (ws.r > maxR + 24) { ws.a = Math.random() * 6.2832; ws.r = 10 + Math.random() * 26; ws.s = 0.7 + Math.random() * 0.6; r0 = ws.r; }
+                var ca = Math.cos(ws.a), sa = Math.sin(ws.a);
+                var al = Math.min(0.75, 0.10 + (ws.r / maxR) * 0.62);
+                ctx.beginPath();
+                ctx.moveTo(wcx + ca * r0, wcy + sa * r0);
+                ctx.lineTo(wcx + ca * ws.r, wcy + sa * ws.r);
+                ctx.strokeStyle = 'rgba(190, 218, 255,' + al.toFixed(3) + ')';
+                ctx.lineWidth = ws.r > maxR * 0.55 ? 1.6 : 1;
+                ctx.stroke();
+                ctx.beginPath(); ctx.arc(wcx + ca * ws.r, wcy + sa * ws.r, ws.r > maxR * 0.55 ? 1.4 : 1, 0, 6.2832);
+                ctx.fillStyle = 'rgba(220, 236, 255,' + Math.min(0.95, al + 0.18).toFixed(3) + ')'; ctx.fill();
+            }
             var i, p, a;
             for (i = 0; i < stars.length; i++) {
                 p = stars[i];
